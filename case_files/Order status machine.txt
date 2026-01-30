@@ -1,0 +1,33 @@
+type Order struct {
+    State string
+}
+
+func (o *Order) Pay() {
+    if o.State == "Created" {
+        o.State = "Paid"
+        fmt.Println("Payment successful.")
+    } else {
+        fmt.Println("Cannot pay. Order is not in Created state.")
+    }
+}
+
+func (o *Order) Ship() {
+    if o.State == "Paid" {
+        o.State = "Shipped"
+        fmt.Println("Order shipped.")
+    }
+}
+
+func (o *Order) ConfirmReceipt() {
+    if o.State == "Shipped" {
+        o.State = "Completed"
+        fmt.Println("Order completed.")
+    }
+}
+
+func (o *Order) Cancel() {
+    if o.State == "Created" || o.State == "Paid" {
+        o.State = "Cancelled"
+        fmt.Println("Order cancelled.")
+    }
+}

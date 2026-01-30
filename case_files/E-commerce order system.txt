@@ -1,0 +1,39 @@
+class User:
+    def __init__(self, user_id, name):
+        self.user_id = user_id
+        self.name = name
+        self.cart = ShoppingCart()  # User has a ShoppingCart
+
+    def place_order(self):
+        order = Order(self.cart)
+        order.process_payment()
+        return order
+
+class ShoppingCart:
+    def __init__(self):
+        self.items = []  # List of Product
+
+    def add_item(self, product):
+        self.items.append(product)
+
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Order:
+    def __init__(self, cart):
+        self.items = cart.items
+        self.status = "Pending"
+        self.payment_processor = PaymentProcessor()
+
+    def process_payment(self):
+        if self.payment_processor.pay(self.calculate_total()):
+            self.status = "Paid"
+        else:
+            self.status = "Failed"
+
+class PaymentProcessor:
+    def pay(self, amount):
+        # Call external API
+        return True

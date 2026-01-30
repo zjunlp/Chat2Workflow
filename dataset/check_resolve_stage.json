@@ -1,0 +1,119 @@
+{
+    "PaperDeepReader_4":{
+        "md": ".md"
+    },
+    "SciencePopularization_1":{
+        "picture": ".png"
+    },
+    "SciencePopularization_2":{
+        "audio": ".wav"
+    },
+    "BookCharacter_2":{
+        "biography": ".docx"
+    },
+    "BookCharacter_3":{
+        "illustration": ".png"
+    },
+    "DeepResearch_2":{
+        "mermaid_pic": ".png"
+    },
+    "DeepResearch_3":{
+        "report_file": ".pdf"
+    },
+    "BatchFiles_1":{
+        "docx_file": ".docx"
+    },
+    "BatchFiles_2":{
+        "docx_file": ".docx"
+    },
+    "BatchFiles_3":{
+        "docx_file": ".docx"
+    },
+    "FormulaOCR_2":{
+        "markdown": ".md"
+    },
+    "FormulaOCR_3":{
+        "markdown": ".md"
+    },
+    "Translation_2":{
+        "pdf_file": ".pdf"
+    },
+    "ContractReview_2":{
+        "pdf_file": ".pdf"
+    },
+    "ContractReview_3":{
+        "pdf_file": ".pdf",
+        "docx_file": ".docx"
+    },
+    "ResumeScreening_1":{
+        "accountant_resumes" : ".pdf",
+        "arts_resumes" : ".pdf",
+        "sales_resumes" : ".pdf",
+        "teacher_resumes" : ".pdf"
+    },
+    "ResumeScreening_3":{
+        "best_resumes" : ".pdf"
+    },
+    "MeetingSummary_1":{
+        "file" : ".md"
+    },
+    "MeetingSummary_2":{
+        "file" : ".docx"
+    },
+    "Mermaid_1":{
+        "mermaid_pic": ".png"
+    },
+    "Mermaid_2":{
+        "mermaid_pic": ".png"
+    },
+    "Code_3":{
+        "markdown": ".md"
+    },
+    "StudyPlanner_3":{
+        "ppt": ".pptx"
+    },
+    "ExamQuestion_3":{
+        "teacher_ver": ".pdf",
+        "student_ver": ".pdf"
+    },
+    "ExamQuestion_4":{
+        "teacher_ver": ".docx",
+        "student_ver": ".docx"
+    },
+    "HomeworkGrading_2":{
+        "picture": ".png"
+    },
+    "StoryPPT_2":{
+        "audio": ".wav"
+    },
+    "StoryPPT_3":{
+        "pptx": ".pptx"
+    },
+    "HTML_1":{
+        "html": ".html"
+    },
+    "HTML_2":{
+        "html": ".html"
+    },
+    "LogoSVG_1":{
+        "logo_pic": ".png"
+    },
+    "Podcast_1":{
+        "podcast": ".wav"
+    },
+    "Podcast_2":{
+        "podcast": ".wav"
+    },
+    "Podcast_3":{
+        "podcast": ".wav"
+    },
+    "Creation_2":{
+        "cover": ".png"
+    },
+    "Creation_3":{
+        "cover": ".png"
+    },
+    "Copywriting_3":{
+        "picture": ".png"
+    }
+}

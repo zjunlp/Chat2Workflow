@@ -1,0 +1,105 @@
+char ***ans;
+char **path;
+int ansTop, pathTop;
+void copyPath(int n) {
+    char **tempPath = (char**)malloc(sizeof(char*) * pathTop);
+    int i;
+    for(i = 0; i < pathTop; ++i) {
+        tempPath[i] = (char*)malloc(sizeof(char) * n + 1);
+        int j;
+        for(j = 0; j < n; ++j)
+            tempPath[i][j] = path[i][j];
+        tempPath[i][j] = '\0';
+
+    }
+    ans[ansTop++] = tempPath;
+}
+
+int isValid(int x, int y, int n) {
+    int i, j;
+
+    for(i = 0; i < n; ++i) {
+        if(path[y][i] == 'Q' || path[i][x] == 'Q')
+            return 0;
+    }
+
+    i = y - 1;
+    j = x - 1;
+    while(i >= 0 && j >= 0) {
+        if(path[i][j] == 'Q')
+            return 0;
+        --i, --j;
+    }
+
+    i = y + 1;
+    j = x + 1;
+    while(i < n && j < n) {
+        if(path[i][j] == 'Q')
+            return 0;
+        ++i, ++j;
+    }
+
+    i = y - 1;
+    j = x + 1;
+    while(i >= 0 && j < n) {
+        if(path[i][j] == 'Q')
+            return 0;
+        --i, ++j;
+    }
+
+    i = y + 1;
+    j = x -1;
+    while(j >= 0 && i < n) {
+        if(path[i][j] == 'Q')
+            return 0;
+        ++i, --j;
+    }
+    return 1;
+}
+
+void backTracking(int n, int depth) {
+    if(pathTop == n) {
+        copyPath(n);
+        return;
+    }
+
+
+    int i;
+    for(i = 0; i < n; ++i) {
+        if(isValid(i, depth, n)) {
+            path[depth][i] = 'Q';
+            ++pathTop;
+
+            backTracking(n, depth + 1);
+            path[depth][i] = '.';
+            --pathTop;
+        }
+    }
+}
+
+void initPath(int n) {
+    int i, j;
+    for(i = 0; i < n; i++) {
+        path[i] = (char*)malloc(sizeof(char) * n + 1);
+        for(j = 0; j < n; j++)
+            path[i][j] = '.';
+        path[i][j] = '\0';
+    }
+}
+
+char *** solveNQueens(int n, int* returnSize, int** returnColumnSizes){
+    ans = (char***)malloc(sizeof(char**) * 400);
+    path = (char**)malloc(sizeof(char*) * n);
+    ansTop = pathTop = 0;
+
+    initPath(n);
+    backTracking(n, 0);
+    
+    *returnSize = ansTop;
+    int i; 
+    *returnColumnSizes = (int*)malloc(sizeof(int) * ansTop);
+    for(i = 0; i < ansTop; ++i) {
+        (*returnColumnSizes)[i] = n;
+    }
+    return ans;
+}

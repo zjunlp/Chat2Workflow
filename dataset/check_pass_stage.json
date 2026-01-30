@@ -1,0 +1,2001 @@
+{
+    "PaperDeepReader_1": {
+        "input_var": ["paper", "language"],
+        "output_var": ["summary"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Large Language Diffusion Models.pdf"
+                },
+            "language": "Chinese"
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                },
+            "language": "Japanese"
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "LIMO: Less is More for Reasoning.pdf"
+                },
+            "language": "French"
+        }
+    },
+    "PaperDeepReader_2": {
+        "input_var": ["paper", "language"],
+        "output_var": ["summary", "methodology_analysis"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Large Language Diffusion Models.pdf"
+                },
+            "language": "Chinese"
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                },
+            "language": "Japanese"
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "LIMO: Less is More for Reasoning.pdf"
+                },
+            "language": "French"
+        }
+    },
+    "PaperDeepReader_3": {
+        "input_var": ["paper", "language"],
+        "output_var": ["summary", "methodology_analysis", "evaluation"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Large Language Diffusion Models.pdf"
+                },
+            "language": "Chinese"
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                },
+            "language": "Japanese"
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "LIMO: Less is More for Reasoning.pdf"
+                },
+            "language": "French"
+        }
+    },
+    "PaperDeepReader_4": {
+        "input_var": ["paper", "language"],
+        "output_var": ["result", "md"],
+        "related_nodes": ["llm", "document-extractor", "markdown-exporter"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Large Language Diffusion Models.pdf"
+                },
+            "language": "Chinese"
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                },
+            "language": "Japanese"
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "LIMO: Less is More for Reasoning.pdf"
+                },
+            "language": "French"
+        }
+    },
+    "PaperQA_1": {
+        "input_var": ["paper", "question"],
+        "output_var": ["answer"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Minimally Supervised Learning of Affective Events Using Discourse Relations.pdf"
+                },
+            "question": "What is the seed lexicon?",
+            "ground_truth": "A vocabulary of positive and negative predicates that helps determine the polarity score of an event."
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Community Identity and User Engagement in a Multi-Community Landscape.pdf"
+                },
+            "question": "How do the various social phenomena examined manifest in different types of communities?",
+            "ground_truth": "Dynamic communities have substantially higher rates of monthly user retention than more stable communities. More distinctive communities exhibit moderately higher monthly retention rates than more generic communities. There is also a strong positive relationship between a community's dynamicity and the average number of months that a user will stay in that community - a short-term trend observed for monthly retention translates into longer-term engagement and suggests that long-term user retention might be strongly driven by the extent to which a community continually provides novel content."
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Question Answering based Clinical Text Structuring Using Pre-trained Language Model.pdf"
+                },
+            "question": "What data is the language model pretrained on?",
+            "ground_truth": "Chinese general corpus."
+        }
+    },
+    "PaperQA_2": {
+        "input_var": ["paper", "question"],
+        "output_var": ["answer"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Progress and Tradeoffs in Neural Language Models.pdf"
+                },
+            "question": "What aspects have been compared between various language models?",
+            "ground_truth": "Answer: Quality measures using perplexity and recall, and performance measured using latency and energy usage.\n Evidence: For each model, we examined word-level perplexity, R@3 in next-word prediction, latency (ms/q), and energy usage (mJ/q). To explore the perplexity–recall relationship, we collected individual perplexity and recall statistics for each sentence in the test set."
+        },
+        "test2":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "Stay On-Topic: Generating Context-specific Fake Restaurant Reviews.pdf"
+                },
+            "question": "Which dataset do they use a starting point in generating fake reviews?",
+            "ground_truth": "Answer: The Yelp Challenge dataset.\n Evidence: We use the Yelp Challenge dataset BIBREF2 for our fake review generation."
+        },
+        "test3":{
+            "paper": {
+                "mime_type": "document/pdf",
+                "value": "LAXARY: A Trustworthy Explainable Twitter Analysis Model for Post-Traumatic Stress Disorder Assessment.pdf"
+                },
+            "question": "How is the intensity of the PTSD established?",
+            "ground_truth": "Answer: Given we have four intensity, No PTSD, Low Risk PTSD, Moderate Risk PTSD and High Risk PTSD with a score of 0, 1, 2 and 3 respectively, the estimated intensity is established as mean squared error.\n Evidence: Our final survey based classification results showed an accuracy of 96% in detecting PTSD and mean squared error of 1.2 in estimating its intensity given we have four intensity, No PTSD, Low Risk PTSD, Moderate Risk PTSD and High Risk PTSD with a score of 0, 1, 2 and 3 respectively."
+        }
+    },
+    "PaperQA_3": {
+        "input_var": ["paper", "question_1", "question_2"],
+        "output_var": ["answer"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "paper":{
+                "mime_type": "document/pdf",
+                "value": "Duality Regularization for Unsupervised Bilingual Lexicon Induction.pdf"
+            },
+            "question_1": "What regularizers were used to encourage consistency in back translation cycles?",
+            "question_2": "What are new best results on standard benchmark?",
+            "ground_truth": "Question1: What regularizers were used to encourage consistency in back translation cycles?\n Answer1: ['an adversarial loss ($\\ell _{adv}$) for each model as in the baseline','a cycle consistency loss ($\\ell _{cycle}$) on each side']\n Evidence1: We train $\\mathcal {F}$ and $\\mathcal {G}$ jointly and introduce two regularizers. Formally, we hope that $\\mathcal {G}(\\mathcal {F}(X))$ is similar to $X$ and $\\mathcal {F}(\\mathcal {G}(Y))$ is similar to $Y$. We implement this constraint as a cycle consistency loss. As a result, the proposed model has two learning objectives: i) an adversarial loss ($\\ell _{adv}$) for each model as in the baseline. ii) a cycle consistency loss ($\\ell _{cycle}$) on each side to avoid $\\mathcal {F}$ and $\\mathcal {G}$ from contradicting each other.\n\n Question2: What are new best results on standard benchmark? \n Answer2: New best results of accuracy (P@1) on Vecmap:\nOurs-GeoMMsemi: EN-IT 50.00 IT-EN 42.67 EN-DE 51.60 DE-EN 47.22 FI-EN 39.62 EN-ES 39.47 ES-EN 36.43 \n Evidence2: ['Table TABREF15 shows the final results on Vecmap.', 'FLOAT SELECTED: Table 4: Accuracy (P@1) on Vecmap. The best results are bolded. †Results as reported in the original paper. For unsupervised methods, we report the average accuracy across 10 runs.']"
+        },
+        "test2":{
+            "paper":{
+                "mime_type": "document/pdf",
+                "value": "Controlling the Output Length of Neural Machine Translation.pdf"
+            },
+            "question_1": "Do they conduct any human evaluation?",
+            "question_2": "What dataset do they use for experiments?",
+            "ground_truth": "Question1: Do they conduct any human evaluation?\n Answer1: Yes\n Evidence1: We also run a manual evaluation which shows for the En-It task a slight quality degradation in exchange of a statistically significant reduction in the average length ratio, from 1.05 to 1.01.\n\n Question2: What dataset do they use for experiments? \n Answer2: ['English$\\rightarrow $Italian/German portions of the MuST-C corpus', 'As additional data, we use a mix of public and proprietary data for about 16 million sentence pairs for English-Italian (En-It) and $4.4$ million WMT14 sentence pairs for the English-German (En-De)'] \n Evidence2: Our experiments are run using the English$\\rightarrow $Italian/German portions of the MuST-C corpus BIBREF25, which is extracted from TED talks, using the same train/validation/test split as provided with the corpus (see Table TABREF18). As additional data, we use a mix of public and proprietary data for about 16 million sentence pairs for English-Italian (En-It) and $4.4$ million WMT14 sentence pairs for the English-German (En-De)."
+        },
+        "test3":{
+            "paper":{
+                "mime_type": "document/pdf",
+                "value": "CommonGen: A Constrained Text Generation Dataset Towards Generative Commonsense Reasoning.pdf"
+            },
+            "question_1": "What measures were used for human evaluation?",
+            "question_2": "What automatic metrics are used for this task?",
+            "ground_truth": "Question1: What measures were used for human evaluation? \n Answer1: To have an estimation about human performance in each metric, we iteratively treat every reference sentence in dev/test data as the prediction to be compared with all references (including itself). \n Evidence1: To have an estimation about human performance in each metric, we iteratively treat every reference sentence in dev/test data as the prediction to be compared with all references (including itself). That is, if a model has the same reasoning ability with average performance of our crowd workers, its results should exceed this “human bound”\n\n Question2: What automatic metrics are used for this task? \n Answer2: ['BLEU-3/4', 'ROUGE-2/L', 'CIDEr', 'SPICE', 'BERTScore']\n Evidence2: For automatically evaluating our methods, we propose to use widely used metric for image/video captioning. This is because the proposed CommonGen task can be regarded as also a caption task where the context are incomplete scenes with given concept-sets. Therefore, we choose BLEU-3/4 BIBREF28, ROUGE-2/L BIBREF29, CIDEr BIBREF30, and SPICE BIBREF31 as the main metrics. Apart from these classic metrics, we also include a novel embedding-based metric named BERTScore BIBREF32. To make the comparisons more clear, we show the delta of BERTScore results by subtracting the score of merely using input concept-sets as target sentences, named $\\triangle $BERTS."
+        }
+    },
+    "SciencePopularization_1": {
+        "input_var": ["requirement"],
+        "output_var": ["text", "picture"],
+        "related_nodes": ["llm", "text2image"],
+        "test1":{
+            "requirement": "Can quantum computers really break all current encryption? What is the principle behind it?"
+        },
+        "test2":{
+            "requirement": "How do language models like ChatGPT 'learn' to speak? Explain the Transformer architecture in layman's terms."
+        },
+        "test3":{
+            "requirement": "Why does the soil have a unique 'earthy fragrance' after it rains?"
+        }
+    },
+    "SciencePopularization_2": {
+        "input_var": ["requirement"],
+        "output_var": ["audio"],
+        "related_nodes": ["llm", "tts"],
+        "test1":{
+            "requirement": "Can quantum computers really break all current encryption? What is the principle behind it?"
+        },
+        "test2":{
+            "requirement": "How do language models like ChatGPT 'learn' to speak? Explain the Transformer architecture in layman's terms."
+        },
+        "test3":{
+            "requirement": "Why does the soil have a unique 'earthy fragrance' after it rains?"
+        }
+    },
+    "BookCharacter_1": {
+        "input_var": ["book", "author"],
+        "output_var": ["result"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "book": "The Three-Body Problem",
+            "author": "Liu Cixin"
+        },
+        "test2":{
+            "book": "One Hundred Years of Solitude",
+            "author": "Gabriel García Márquez"
+        },
+        "test3":{
+            "book": "Demi-Gods and Semi-Devils",
+            "author": "Jin Yong"
+        }
+    },
+    "BookCharacter_2": {
+        "input_var": ["book", "author"],
+        "output_var": ["biography"],
+        "related_nodes": ["llm", "markdown-exporter"],
+        "test1":{
+            "book": "The Three-Body Problem",
+            "author": "Liu Cixin"
+        },
+        "test2":{
+            "book": "One Hundred Years of Solitude",
+            "author": "Gabriel García Márquez"
+        },
+        "test3":{
+            "book": "Demi-Gods and Semi-Devils",
+            "author": "Jin Yong"
+        }
+    },
+    "BookCharacter_3": {
+        "input_var": ["book", "author"],
+        "output_var": ["illustration"],
+        "related_nodes": ["llm", "text2image"],
+        "test1":{
+            "book": "The Three-Body Problem",
+            "author": "Liu Cixin"
+        },
+        "test2":{
+            "book": "One Hundred Years of Solitude",
+            "author": "Gabriel García Márquez"
+        },
+        "test3":{
+            "book": "Demi-Gods and Semi-Devils",
+            "author": "Jin Yong"
+        }
+    },
+    "DeepResearch_1": {
+        "input_var": ["title"],
+        "output_var": ["report"],
+        "related_nodes": ["llm", "google-search", "iteration", "template-transform"],
+        "test1":{
+            "title": "Physiological Mechanisms and Systematic Training Pathways of Mixed Voice: A Vocal Science Perspective"
+        },
+        "test2":{
+            "title": "RAG vs. Long Context Windows in Enterprise Knowledge Bases: Comparative Analysis and Integration Trends"
+        },
+        "test3":{
+            "title": "The Evolution of Visual Symbols in Cyberpunk Aesthetics within 2020s Popular Culture and Its Influence on Contemporary UI Design Trends"
+        }
+    },
+    "DeepResearch_2": {
+        "input_var": ["title"],
+        "output_var": ["report", "mermaid_pic"],
+        "related_nodes": ["llm", "google-search", "iteration", "template-transform", "mermaid-converter"],
+        "test1":{
+            "title": "Physiological Mechanisms and Systematic Training Pathways of Mixed Voice: A Vocal Science Perspective"
+        },
+        "test2":{
+            "title": "RAG vs. Long Context Windows in Enterprise Knowledge Bases: Comparative Analysis and Integration Trends"
+        },
+        "test3":{
+            "title": "The Evolution of Visual Symbols in Cyberpunk Aesthetics within 2020s Popular Culture and Its Influence on Contemporary UI Design Trends"
+        }
+    },
+    "DeepResearch_3": {
+        "input_var": ["title"],
+        "output_var": ["report_file"],
+        "related_nodes": ["llm", "google-search", "iteration", "template-transform", "markdown-exporter"],
+        "test1":{
+            "title": "Physiological Mechanisms and Systematic Training Pathways of Mixed Voice: A Vocal Science Perspective"
+        },
+        "test2":{
+            "title": "RAG vs. Long Context Windows in Enterprise Knowledge Bases: Comparative Analysis and Integration Trends"
+        },
+        "test3":{
+            "title": "The Evolution of Visual Symbols in Cyberpunk Aesthetics within 2020s Popular Culture and Its Influence on Contemporary UI Design Trends"
+        }
+    },
+    "BatchFiles_1": {
+        "input_var": ["doc_list"],
+        "output_var": ["summary", "docx_file"],
+        "related_nodes": ["llm", "iteration", "template-transform", "markdown-exporter", "document-extractor"],
+        "test1":{
+            "doc_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test1_1.txt"
+                },
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test1_2.txt"
+                }
+            ]
+        },
+        "test2":{
+            "doc_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test2_1.txt"
+                },
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test2_2.txt"
+                },
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test2_3.txt"
+                }
+            ]
+        },
+        "test3":{
+            "doc_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test3_1.txt"
+                },
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test3_2.txt"
+                },
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_1_test3_3.txt"
+                }
+            ]
+        }
+    },
+    "BatchFiles_2": {
+        "input_var": ["pic_list"],
+        "output_var": ["summary", "docx_file"],
+        "related_nodes": ["llm", "iteration", "template-transform", "markdown-exporter"],
+        "test1":{
+            "pic_list": [
+                {
+                    "mime_type": "image/png",
+                    "value": "A Fast and Provable Algorithm for Sparse Phase Retrieval.png"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "DiffDock-Pocket: Diffusion for Pocket-Level Docking with Sidechain Flexibility.png"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Grounding Code Generation with Input-Output Specifications.png"
+                }
+            ]
+        },
+        "test2":{
+            "pic_list": [
+                {
+                    "mime_type": "image/png",
+                    "value": "Layer-Aware Analysis of Catastrophic Overfitting: Revealing the Pseudo-Robust Shortcut Dependency.png"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Learning GFlowNets From Partial Episodes For Improved Convergence And Stability.png"
+                }
+            ]
+        },
+        "test3":{
+            "pic_list": [
+                {
+                    "mime_type": "image/png",
+                    "value": "Local Optimization Achieves Global Optimality in Multi-Agent Reinforcement Learning.png"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "REFACTOR: Learning to Extract Theorems from Proofs.png"
+                }
+            ]
+        }
+    },
+    "BatchFiles_3": {
+        "input_var": ["file_list"],
+        "output_var": ["summary", "docx_file"],
+        "related_nodes": ["llm", "iteration", "template-transform", "markdown-exporter", "document-extractor", "list-operator"],
+        "test1":{
+            "file_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_3_test1_1.txt"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Regularized Behavior Cloning for Blocking the Leakage of Past Action Information.png"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Towards Model Agnostic Federated Learning Using Knowledge Distillation.png"
+                }
+            ]
+        },
+        "test2":{
+            "file_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_3_test2_1.txt"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Understanding Embodied Reference with Touch-Line Transformer.png"
+                }
+            ]
+        },
+        "test3":{
+            "file_list": [
+                {
+                    "mime_type": "document/txt",
+                    "value": "batchfiles_3_test3_1.txt"
+                },
+                {
+                    "mime_type": "image/png",
+                    "value": "Viewing Transformers Through the Lens of Long Convolutions Layers.png"
+                }
+            ]
+        }
+    },
+    "InvoiceParsing_1": {
+        "input_var": ["invoice"],
+        "output_var": ["result"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "vat_0001.jpg"
+            },
+            "ground_truth": "{'Machine No.': '','Invoice Code': '1100171320','Invoice No.': '12356976','Invoicing Date': '2017年04月25日','Check Code': '68290 47116 26099 52523','Purchaser Name': '中国科学院自动化研究所','Goods or Taxable Services': '会费','Specification/Model': '','Unit': '', 'Quantity': '1','Unit Price': '','Amount': '566.04','Tax Rate': '6%','Tax Amount': '33.96','Total Amount (Words)': 'ⓧ 陆佰圆整','Total Amount (Figures)': '￥600.00','Seller Name': '北京科学技术期刊学会','Seller Taxpayer ID': '110105500300720','Seller Address & Phone': '北京市朝阳区德胜门外北沙滩1号综合楼614室 010-64882249','Seller Bank & Account': '中国光大银行股份有限公司北京花园路支行083510120100304035741','Payee': '管理员1','Reviewer': '管理员1','Issuer': '管理员1'}"
+        },
+        "test2":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "vat_0002.jpg"
+            },
+            "ground_truth": "{'Machine No.': '','Invoice Code': '1100153350','Invoice No.': '03159334','Invoicing Date': '2017年03月16日','Check Code': '67398 70651 25849 52290','Purchaser Name': '中国科学院自动化研究所','Goods or Taxable Services': '智能语音交互软件V1.0','Specification/Model': '','Unit': '个','Quantity': '5','Unit Price': '85.47008547','Amount': '427.35','Tax Rate': '17%','Tax Amount': '72.65','Total Amount (Words)': 'ⓧ 伍佰圆整','Total Amount (Figures)': '￥500.00','Seller Name': '北京宇音天下科技有限公司','Seller Taxpayer ID': '110108689226244','Seller Address & Phone': '北京市海淀区清河三街72号2号楼1层119室 010-62986600','Seller Bank & Account': '中国民生银行股份有限公司北京上地支行 0110014170032555','Payee': '熊栋','Reviewer': '杨晶晶','Issuer': '张红英'}"
+        },
+        "test3":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "vat_0003.jpg"
+            },
+            "ground_truth": "{'Machine No.': '','Invoice Code': '3400154350','Invoice No.': '04592937','Invoicing Date': '2017年03月03日','Check Code': '62702 57376 09705 18419','Purchaser Name': '中国科学院自动化研究所','Goods or Taxable Services': '讯飞录音降噪模块系统V1.0','Specification/Model': 'XFMT101EVB','Unit': '片','Quantity': '1','Unit Price': '1708.55','Amount': '1708.55','Tax Rate': '17%','Tax Amount': '290.45','Total Amount (Words)': 'ⓧ 壹仟玖佰玖拾玖圆整','Total Amount (Figures)': '￥1999.00','Seller Name': '科大讯飞股份有限公司','Seller Taxpayer ID': '91340000711771143J','Seller Address & Phone': '合肥市高新开发区望江西路666号 0551-65331511','Seller Bank & Account': '交通银行合肥分行高新区支行 341313000010141000483','Payee': '钱永伟','Reviewer': '刘栋瑜','Issuer': '刘桂林'}"
+        }
+    },
+    "InvoiceParsing_2": {
+        "input_var": ["invoice", "instruction"],
+        "output_var": ["result"],
+        "related_nodes": ["llm", "question-classifier", "variable-aggregator"],
+        "test1": {
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "vat_0001.jpg"
+            },
+            "instruction": "Please help me handle this value-added tax invoice.",
+            "ground_truth": "{'Machine No.': '','Invoice Code': '1100171320','Invoice No.': '12356976','Invoicing Date': '2017年04月25日','Check Code': '68290 47116 26099 52523','Purchaser Name': '中国科学院自动化研究所','Goods or Taxable Services': '会费','Specification/Model': '','Unit': '', 'Quantity': '1','Unit Price': '','Amount': '566.04','Tax Rate': '6%','Tax Amount': '33.96','Total Amount (Words)': 'ⓧ 陆佰圆整','Total Amount (Figures)': '￥600.00','Seller Name': '北京科学技术期刊学会','Seller Taxpayer ID': '110105500300720','Seller Address & Phone': '北京市朝阳区德胜门外北沙滩1号综合楼614室 010-64882249','Seller Bank & Account': '中国光大银行股份有限公司北京花园路支行083510120100304035741','Payee': '管理员1','Reviewer': '管理员1','Issuer': '管理员1'}"
+        },
+        "test2": {
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "taxi_0001.jpg"
+            },
+            "instruction": "Could you please check the invoice for my taxi ride?",
+            "ground_truth": "{'Invoice Code': '111001681009','Invoice Number': '57896661','Unit': '0101','Car Number': '京B-Q6469','Certificate Number': '179969','Date': '2017-01-19','Time': '07:54-08:21','Unit Price': '2.30','Mileage': '11.7','Waiting Time': '00:09:21'}"
+        },
+        "test3": {
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "taxi_0002.jpg"
+            },
+            "instruction": "Extract all field information of the taxi invoice.",
+            "ground_truth": "{'Invoice Code': '111001681007','Invoice Number': '88697776','Unit': '0657','Car Number': '京B-N8417','Certificate Number': '318792','Date': '2016-12-12','Time': '14:14-14:21','Unit Price': '2.30','Mileage': '4.4','Waiting Time': '00:00:23'}"
+        }
+    },
+    "InvoiceParsing_3": {
+        "input_var": ["invoice", "instruction"],
+        "output_var": ["result"],
+        "related_nodes": ["llm", "question-classifier", "variable-aggregator"],
+        "test1":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "taxi_0001.jpg"
+            },
+            "instruction": "Extract all field information of the taxi invoice.",
+            "ground_truth": "{'Invoice Code': '111001681009','Invoice Number': '57896661','Unit': '0101','Car Number': '京B-Q6469','Certificate Number': '179969','Date': '2017-01-19','Time': '07:54-08:21','Unit Price': '2.30','Mileage': '11.7','Waiting Time': '00:09:21'}"
+        },
+        "test2":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "train_0001.jpg"
+            },
+            "instruction": "This is a train ticket.",
+            "ground_truth": "{'departure_station': '天津站','arrival_station': '北京南站','train_no': 'C2038','departure_time': '2019年09月28日 12:33','ticket_price': '￥54.5元','id_number': '2024231998****156X','name': '赵'}"
+        },
+        "test3":{
+            "invoice": {
+                "mime_type": "image/jpg",
+                "value": "train_0002.jpg"
+            },
+            "instruction": "What information is there in the train ticket?",
+            "ground_truth": "{'departure_station': '银川站','arrival_station': '北京站','train_no': 'K1178','departure_time': '2019年10月06日 16:05','ticket_price': '￥280.5元','id_number': '3424231998****1540','name': '裴'}"
+        }
+    },
+    "ExcelExtract_1": {
+        "input_var": ["excel_file"],
+        "output_var": ["result"],
+        "related_nodes": ["document-extractor"],
+        "test1":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Superstore_Sales_0001.xlsx"
+            },
+            "ground_truth": "Product \tUnits Sold\t Manufacturing Price \t Sale Price \tDate\tMonth Number\t Month Name \tYear\nCarretera \t1618.5\t $3.00 \t $20.00 \t2014/1/1\t1\t January \t2014\nCarretera \t1321\t $3.00 \t $20.00 \t2014/1/1\t1\t January \t2014\nCarretera \t2178\t $3.00 \t $15.00 \t2014/6/1\t6\t June \t2014\nCarretera \t888\t $3.00 \t $15.00 \t2014/6/1\t6\t June \t2014\nCarretera \t2470\t $3.00 \t $15.00 \t2014/6/1\t6\t June \t2014\nCarretera \t1513\t $3.00 \t $350.00 \t2014/12/1\t12\t December \t2014\nMontana \t921\t $5.00 \t $15.00 \t2014/3/1\t3\t March \t2014\nMontana \t2518\t $5.00 \t $12.00 \t2014/6/1\t6\t June \t2014\nMontana \t1899\t $5.00 \t $20.00 \t2014/6/1\t6\t June \t2014\nMontana \t1545\t $5.00 \t $12.00 \t2014/6/1\t6\t June \t2014\nMontana \t2470\t $5.00 \t $15.00 \t2014/6/1\t6\t June \t2014\nMontana \t2665.5\t $5.00 \t $125.00 \t2014/7/1\t7\t July \t2014\nMontana \t958\t $5.00 \t $300.00 \t2014/8/1\t8\t August \t2014\nMontana \t2146\t $5.00 \t $7.00 \t2014/9/1\t9\t September \t2014\nMontana \t345\t $5.00 \t $125.00 \t2013/10/1\t10\t October \t2013\nMontana \t615\t $5.00 \t $15.00 \t2014/12/1\t12\t December \t2014\nPaseo \t292\t $10.00 \t $20.00 \t2014/2/1\t2\t February \t2014\nPaseo \t974\t $10.00 \t $15.00 \t2014/2/1\t2\t February \t2014\nPaseo \t2518\t $10.00 \t $12.00 \t2014/6/1\t6\t June \t2014\nPaseo \t1006\t $10.00 \t $350.00 \t2014/6/1\t6\t June \t2014\nPaseo \t367\t $10.00 \t $12.00 \t2014/7/1\t7\t July \t2014\nPaseo \t883\t $10.00 \t $7.00 \t2014/8/1\t8\t August \t2014\nPaseo \t549\t $10.00 \t $15.00 \t2013/9/1\t9\t September \t2013\nPaseo \t788\t $10.00 \t $300.00 \t2013/9/1\t9\t September \t2013\nPaseo \t2472\t $10.00 \t $15.00 \t2014/9/1\t9\t September \t2014\nPaseo \t1143\t $10.00 \t $7.00 \t2014/10/1\t10\t October \t2014\nPaseo \t1725\t $10.00 \t $350.00 \t2013/11/1\t11\t November \t2013\nPaseo \t912\t $10.00 \t $12.00 \t2013/11/1\t11\t November \t2013\nPaseo \t2152\t $10.00 \t $15.00 \t2013/12/1\t12\t December \t2013\nPaseo \t1817\t $10.00 \t $20.00 \t2014/12/1\t12\t December \t2014\nPaseo \t1513\t $10.00 \t $350.00 \t2014/12/1\t12\t December \t2014"
+        },
+        "test2":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Financial_statements_0001.xlsx"
+            },
+            "ground_truth": "季度,部门,收入(万元),支出(万元),利润(万元)\nQ1,研发部,500,300,200\nQ1,市场部,800,400,400\nQ1,销售部,1200,500,700\nQ2,研发部,550,320,230\nQ2,市场部,750,450,300\nQ2,销售部,1300,550,750"
+        },
+        "test3":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Analysis_UserSources_0001.xlsx"
+            },
+            "ground_truth": "渠道来源,访问量,转化率\n搜索引擎,5000,0.05\n社交媒体,3000,0.08\n直接访问,2000,0.15\n邮件营销,1000,0.12\n外部链接,1500,0.06"
+        }
+    },
+    "ExcelExtract_2": {
+        "input_var": ["excel_file", "chart_type"],
+        "output_var": ["result"],
+        "related_nodes": ["document-extractor", "echarts", "variable-aggregator", "if-else"],
+        "test1":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Superstore_Sales_0001.xlsx"
+            },
+            "chart_type": "bar"
+        },
+        "test2":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Analysis_UserSources_0002.xlsx"
+            },
+            "chart_type": "pie"
+        },
+        "test3":{
+            "excel_file": {
+                "mime_type": "document/xlsx",
+                "value": "Analysis_UserSources_0001.xlsx"
+            },
+            "chart_type": "",
+            "ground_truth": "渠道来源,访问量,转化率\n搜索引擎,5000,0.05\n社交媒体,3000,0.08\n直接访问,2000,0.15\n邮件营销,1000,0.12\n外部链接,1500,0.06"
+        }
+    },
+    "FormulaOCR_1": {
+        "input_var": ["formula"],
+        "output_var": ["latex"],
+        "related_nodes": ["llm"],
+        "test1": {
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0001.jpg"
+            },
+            "ground_truth": "\\widetilde \\gamma _ { \\mathrm { h o p f } } \\simeq \\sum _ { n > 0 } \\widetilde { G } _ { n } { \\frac { ( - a ) ^ { n } } { 2 ^ { 2 n - 1 } } }"
+        },
+        "test2": {
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0002.jpg"
+            },
+            "ground_truth": "( { \\cal L } _ { a } g ) _ { i j } = 0 , \\ \\ \\ \\ ( { \\cal L } _ { a } H ) _ { i j k } = 0 ,"
+        },
+        "test3": {
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0003.jpg"
+            },
+            "ground_truth": "S _ { s t a t } = 2 \\pi \\sqrt { N _ { 5 } ^ { ( 1 ) } N _ { 5 } ^ { ( 2 ) } N _ { 5 } ^ { ( 3 ) } } \\left( \\sqrt { n } + \\sqrt { \\bar { n } } \\right)"
+        }
+    },
+    "FormulaOCR_2": {
+        "input_var": ["formula"],
+        "output_var": ["text", "markdown"],
+        "related_nodes": ["llm", "markdown-exporter"],
+        "test1":{
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0004.jpg"
+            },
+            "ground_truth": "$\\hat { N } _ { 3 } = \\sum \\sp f _ { j = 1 } a _ { j } \\sp { \\dagger } a _ { j } \\, .$"
+        },
+        "test2":{
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0005.jpg"
+            },
+            "ground_truth": "$\\, ^ { * } d \\, ^ { * } H = \\kappa \\, ^ { * } d \\phi = J _ { B } .$"
+        },
+        "test3":{
+            "formula": {
+                "mime_type": "image/jpg",
+                "value": "formula_0006.jpg"
+            },
+            "ground_truth": "$\\partial _ { \\mu } ( F ^ { \\mu \nu } - e j ^ { \\mu } x ^ { \\nu } ) = 0 .$"
+        }
+    },
+    "FormulaOCR_3": {
+        "input_var": ["formula"],
+        "output_var": ["text", "markdown"],
+        "related_nodes": ["llm", "markdown-exporter", "iteration", "template-transform"],
+        "test1":{
+            "formula":[
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0007.jpg"
+                },
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0008.jpg"
+                },
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0009.jpg"
+                }
+            ],
+            "ground_truth": "$\\rho _ { L } ( q ) = \\sum _ { m = 1 } ^ { L } \\ P _ { L } ( m ) \\ { \\frac { 1 } { q ^ { m - 1 } } } \\ \\ .$ \n $e x p \\left( - \\frac { \\partial } { \\partial \\alpha _ { j } } \\theta ^ { j k } \\frac { \\partial } { \\partial \\alpha _ { k } } \\right)$ \n $ L _ { 0 } = \\Phi ( w ) = \\bigtriangleup \\Phi ( w ) , $"
+        },
+        "test2":{
+            "formula":[
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0010.jpg"
+                },
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0011.jpg"
+                }
+            ],
+            "ground_truth": "$ \\left( D ^ { * } D ^ { * } + m ^ { 2 } \\right) { \\cal H } = 0 $ \n $ \\alpha _ { 1 } ^ { r } \\gamma _ { 1 } + \\dots + \\alpha _ { N } ^ { r } \\gamma _ { N } = 0 \\quad ( r = 1 , . . . , R ) \\; , $"
+        },
+        "test3":{
+            "formula":[
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0012.jpg"
+                },
+                {
+                    "mime_type": "image/jpg",
+                    "value": "formula_0013.jpg"
+                }
+            ],
+            "ground_truth": "$ \\Gamma ( z + 1 ) = \\int _ { 0 } ^ { \\infty } \\, \\, d x \\, \\, e ^ { - x } x ^ { z } . $ \n $ \\frac { d } { d s } { \\bf C } _ { i } = \\frac { 1 } { 2 } \\epsilon _ { i j k } { \\bf C } _ { j } \\times { \\bf C } _ { k } \\, . $"
+        }
+    },
+    "Translation_1": {
+        "input_var": ["document", "language"],
+        "output_var": ["text"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "the-three-little-pigs.pdf"
+            },
+            "language": "Chinese"
+        },
+        "test2":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "The-Lion-and-the-Mouse.pdf"
+            },
+            "language": "German"
+        },
+        "test3":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "Sample_research_report.pdf"
+            },
+            "language": "Japanese"
+        }
+    },
+    "Translation_2": {
+        "input_var": ["document", "language"],
+        "output_var": ["text", "pdf_file"],
+        "related_nodes": ["llm", "document-extractor", "markdown-exporter"],
+        "test1":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "the-three-little-pigs.pdf"
+            },
+            "language": "Chinese"
+        },
+        "test2":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "The-Lion-and-the-Mouse.pdf"
+            },
+            "language": "German"
+        },
+        "test3":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "Sample_research_report.pdf"
+            },
+            "language": "Japanese"
+        }
+    },
+    "Translation_3": {
+        "input_var": ["document", "language", "url"],
+        "output_var": ["text"],
+        "related_nodes": ["llm", "document-extractor", "if-else", "variable-aggregator", "http-request", "code"],
+        "test1":{
+            "document": "",
+            "language": "Chinese",
+            "url": "https://docs.python.org/3/tutorial/classes.html"
+        },
+        "test2":{
+            "document": "",
+            "language": "French",
+            "url": "https://docs.python.org/3/whatsnew/3.14.html"
+        },
+        "test3":{
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "the-three-little-pigs.pdf"
+            },
+            "language": "Chinese",
+            "url": ""
+        }
+    },
+    "Translation_4": {
+        "input_var": ["document", "language", "url", "instruction"],
+        "output_var": ["text"],
+        "related_nodes": ["llm", "document-extractor", "if-else", "variable-aggregator", "http-request", "code"],
+        "test1": {
+            "document": {
+                "mime_type": "document/pdf",
+                "value": "the-three-little-pigs.pdf"
+            },
+            "language": "Chinese",
+            "url": "",
+            "instruction": "Only translate the second paragraph"
+        },
+        "test2": {
+            "document": "",
+            "language": "Chinese",
+            "url": "https://docs.python.org/3/tutorial/classes.html",
+            "instruction": "Only translate Chapter 9.2"
+        },
+        "test3": {
+            "document": "",
+            "language": "French",
+            "url": "https://docs.python.org/3/whatsnew/3.14.html",
+            "instruction": "Only translate Chapter 'Summary – Release highlights'"
+        }
+    },
+    "ContractReview_1": {
+        "input_var": ["contract", "apart", "workfiled", "attention"],
+        "output_var": ["result"],
+        "related_nodes": ["llm", "document-extractor", "template-transform"],
+        "test1":{
+            "contract": {
+                "mime_type": "document/docx",
+                "value": "residential-lease-agreement.docx"
+            },
+            "apart": "Tenant",
+            "workfiled": "House Rental",
+            "attention": "Security Deposit Return"
+        },
+        "test2":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "Mutual_Disclosure.pdf"
+            },
+            "apart": "Recipient",
+            "workfiled": "Confidentiality Agreement",
+            "attention": "Duration of Confidentiality"
+        },
+        "test3":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "sponsorship-agreement-foundation.pdf"
+            },
+            "apart": "Sponsor",
+            "workfiled": "Brand Marketing & Sponsorship",
+            "attention": "Given the significant capital commitment, we require strict assurance of our rights. Primary areas for due diligence include: 1. Refund policy in the event of cancellation due to Force Majeure. 2. Exclusivity provisions prohibiting sponsorship by direct competitors."
+        }
+    },
+    "ContractReview_2": {
+        "input_var": ["contract", "apart", "workfiled", "attention"],
+        "output_var": ["pdf_file"],
+        "related_nodes": ["llm", "document-extractor", "template-transform", "markdown-exporter"],
+        "test1":{
+            "contract": {
+                "mime_type": "document/docx",
+                "value": "residential-lease-agreement.docx"
+            },
+            "apart": "Tenant",
+            "workfiled": "House Rental",
+            "attention": "Security Deposit Return"
+        },
+        "test2":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "Mutual_Disclosure.pdf"
+            },
+            "apart": "Recipient",
+            "workfiled": "Confidentiality Agreement",
+            "attention": "Duration of Confidentiality"
+        },
+        "test3":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "sponsorship-agreement-foundation.pdf"
+            },
+            "apart": "Sponsor",
+            "workfiled": "Brand Marketing & Sponsorship",
+            "attention": "Given the significant capital commitment, we require strict assurance of our rights. Primary areas for due diligence include: 1. Refund policy in the event of cancellation due to Force Majeure. 2. Exclusivity provisions prohibiting sponsorship by direct competitors."
+        }
+    },
+    "ContractReview_3": {
+        "input_var": ["contract", "apart", "workfiled", "attention"],
+        "output_var": ["pdf_file", "docx_file"],
+        "related_nodes": ["llm", "document-extractor", "template-transform", "markdown-exporter"],
+        "test1":{
+            "contract": {
+                "mime_type": "document/docx",
+                "value": "residential-lease-agreement.docx"
+            },
+            "apart": "Tenant",
+            "workfiled": "House Rental",
+            "attention": "Security Deposit Return"
+        },
+        "test2":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "Mutual_Disclosure.pdf"
+            },
+            "apart": "Recipient",
+            "workfiled": "Confidentiality Agreement",
+            "attention": "Duration of Confidentiality"
+        },
+        "test3":{
+            "contract": {
+                "mime_type": "document/pdf",
+                "value": "sponsorship-agreement-foundation.pdf"
+            },
+            "apart": "Sponsor",
+            "workfiled": "Brand Marketing & Sponsorship",
+            "attention": "Given the significant capital commitment, we require strict assurance of our rights. Primary areas for due diligence include: 1. Refund policy in the event of cancellation due to Force Majeure. 2. Exclusivity provisions prohibiting sponsorship by direct competitors."
+        }
+    },
+    "ResumeScreening_1": {
+        "input_var": ["resume_files"],
+        "output_var": ["accountant_resumes", "arts_resumes", "sales_resumes", "teacher_resumes"],
+        "related_nodes": ["document-extractor", "iteration", "code"],
+        "test1":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_5.pdf"
+                }
+            ]
+        },
+        "test2":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_5.pdf"
+                }
+            ]
+        },
+        "test3":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_5.pdf"
+                }
+            ]
+        }
+    },
+    "ResumeScreening_2": {
+        "input_var": ["resume_files"],
+        "output_var": ["pie_chart"],
+        "related_nodes": ["document-extractor", "iteration", "code", "echarts"],
+        "test1":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_5.pdf"
+                }
+            ]
+        },
+        "test2":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_5.pdf"
+                }
+            ]
+        },
+        "test3":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_5.pdf"
+                }
+            ]
+        }
+    },
+    "ResumeScreening_3": {
+        "input_var": ["resume_files"],
+        "output_var": ["best_resumes", "reason"],
+        "related_nodes": ["llm", "document-extractor", "iteration", "code", "template-transform"],
+        "test1":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_5.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_5.pdf"
+                }
+            ]
+        },
+        "test2":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_5.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_5.pdf"
+                }
+            ]
+        },
+        "test3":{
+            "resume_files": [
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_2.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_1.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_3.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_1_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_4.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_2_5.pdf"
+                },
+                {
+                    "mime_type": "document/pdf",
+                    "value": "resume_3_5.pdf"
+                }
+            ]
+        }
+    },
+    "MeetingSummary_1": {
+        "input_var": ["dialogue"],
+        "output_var": ["result", "file"],
+        "related_nodes": ["llm", "markdown-exporter"],
+        "test1": {
+            "dialogue": "User Interface: {gap} Project Manager: {vocalsound} User Interface: {vocalsound} How do you wear this thing? Project Manager: Hmm. Mm mm mm. {vocalsound} User Interface: Not too many cables and stuff. Marketing: {gap} User Interface: {vocalsound} {vocalsound} Project Manager: {vocalsound} User Interface: {vocalsound} Original. {vocalsound} Project Manager: {vocalsound} Is recorded? Okay? Okay so welcome everyone. So we are here for the kickoff meeting of uh the process of designing a new remote control. So I will first start with a warm welcome opening {vocalsound} stuff, User Interface: {vocalsound} Project Manager: then uh we will uh see what will be uh our product and what will be the different step we will have to design it. And uh then we will uh discuss if we have few ideas and we will uh end uh by uh dispatching the different task you will be {disfmarker} you will have to fulfil to complete this process. So {disfmarker} User Interface: Uh. Just one thing. Uh, you said twenty-five minutes, but I have something else to do uh, so gotta have another meeting uh soon, Project Manager: {vocalsound} User Interface: so maybe you could hurry up a bit {disfmarker} Project Manager: {vocalsound} sorry? User Interface: It's true. I have another meeting so if you could uh {disfmarker} Project Manager: You have another meeting soon? User Interface: Yeah. Project Manager: So you have to be quick. Industrial Designer: {vocalsound} User Interface: Yeah, for the lawnmower project. Project Manager: Okay. User Interface: Okay. Project Manager: So the the goal is to have a remote control so to have an advantage over our competitors we have to be original, we have to be trendy and we have to also try to be user-friendly. User Interface: {vocalsound} Project Manager: So uh the design step will be divided in three uh main points. First it will be the functional design. Third is the conceptual design and then is the desired design. So the functional design is to identify the main user needs, the technical function the remote control should fulfil. And then we will move to f conceptual design where we'll specify the different component involved, what kind of user interf interface we want and what are the different uh trend in user interface and stuff like that. Industrial Designer: {vocalsound} Project Manager: And then the desired devi design will consist in uh specifically implementing {vocalsound} and detailing the choice we've uh made in the second point. So I will now ask you which is very important for the design of a new remote control for to uh each of us to to draw uh your favourite animal on the white board. User Interface: {vocalsound} What an original idea. Project Manager: {vocalsound} Do you have any idea of which animal you want to show us? {vocalsound} User Interface: Orangutan. Project Manager: Okay {vocalsound} that's good. Industrial Designer: {vocalsound} User Interface: {vocalsound} Industrial Designer: No no n Project Manager: {vocalsound} n n {gap} User Interface: Can I give you the Project Manager: You should {disfmarker} User Interface: {disfmarker} no? But I don't have to say anything. When I'm drawing the orangutan. Project Manager: {vocalsound} {vocalsound} If you want to react uh about this wonderful drawing uh {vocalsound} I'll let you uh comment. User Interface: {vocalsound} {vocalsound} Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: It's an abstract drawing of an orangutan. Project Manager: Okay it's an abstract drawing. User Interface: Yes. Project Manager: I think it's nice and original. {vocalsound} Industrial Designer: {vocalsound} You should write y the name I think. {vocalsound} Marketing: {vocalsound} User Interface: I don't have a red colour. Usually orangutans have red hair so this is a very important but I don't have red pen, so {disfmarker} Project Manager: Okay. User Interface: {vocalsound} Yes. Project Manager: You want to draw something Christine? {vocalsound} Marketing: {vocalsound} {vocalsound} User Interface: {vocalsound} Marketing: Okay uh sorry. You have to imagine a little bit {vocalsound} um. Project Manager: {vocalsound} Marketing: This {disfmarker} Project Manager: Of course your animal is recorded so it's not lost. {vocalsound} Marketing: {vocalsound} Sorry too {vocalsound} uh. User Interface: Yes. I know. Project Manager: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} Project Manager: Is this uh {disfmarker} User Interface: Wha what is this strange beast? Marketing: Is it beautiful? {vocalsound} Project Manager: {vocalsound} Industrial Designer: {vocalsound} User Interface: Is it a monster? Project Manager: {vocalsound} Marketing: Do you know? It's a cat. User Interface: It's a cat? Industrial Designer: {vocalsound} Marketing: {vocalsound} Isn't it? {vocalsound} User Interface: I thought these things did not exist. Project Manager: {vocalsound} Marketing: {vocalsound} Yes yes Industrial Designer: Me {vocalsound} Marketing: is it {disfmarker} like that. User Interface: Ah yeah {vocalsound} Industrial Designer: Ah yeah. Yeah. Marketing: Is it better? Project Manager: Ah okay it's pretty. {vocalsound} Marketing: {vocalsound} Okay. Project Manager: {vocalsound} Okay it's your cat. {vocalsound} Marketing: {vocalsound} It's my cat. User Interface: Does have a name? Marketing: {vocalsound} Yeah. {vocalsound} Industrial Designer: {vocalsound} Marketing: The name is Caramel. User Interface: Caramel. Ah-ha. Industrial Designer: Caramel. Marketing: Yeah. {vocalsound} Project Manager: Okay. Olivier, do you want to {vocalsound} Industrial Designer: {vocalsound} And you {vocalsound} {vocalsound} I think I'm too short for the cables. {vocalsound} Marketing: {vocalsound} Project Manager: {vocalsound} Okay I go, but next time you'll do something I'm sure. {vocalsound} {vocalsound} I'm a bit short on cable. User Interface: Next time I concentrate. Industrial Designer: {vocalsound} Project Manager: Okay. So what could I draw? {vocalsound} Maybe I can draw like a very simplified cow. {vocalsound} I don't know if it looks like a cow {vocalsound} User Interface: He looks like a bong. Marketing: {vocalsound} Industrial Designer: {vocalsound} Project Manager: Like a what? {vocalsound} User Interface: Okay. Sorry. No. Industrial Designer: Quite squarey. User Interface: Scary? Project Manager: {gap} {vocalsound} Industrial Designer: He also. {vocalsound} Marketing: {vocalsound} Project Manager: I dunno it it looks more like a donkey in fact {vocalsound} I would say. User Interface: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} I I think we will be finished this uh {disfmarker} Industrial Designer: Mm. Project Manager: Okay so I hope that it helps you uh in the process of designing a remote control. User Interface: Is it for uh for putting a {disfmarker} for logos, no. Project Manager: {vocalsound} Okay. User Interface: {vocalsound} That's {disfmarker} Project Manager: Let's move on. So {disfmarker} Here the uh financial objective of our project. That is to say to to have a production cost lower than twelve point five Euros and have a selling price of twice that price t in order to target a profe profit of uh fifty uh million Euros. User Interface: I is there a matter for a new remote control? Project Manager: {vocalsound} Yeah if it's trendy, original I d fulfil the user needs. User Interface: Is it uh a single device remote control or is it a multi-device remote control? Project Manager: We have to discuss that point. User Interface: Ah Project Manager: On {disfmarker} User Interface: this is not defined at all? Project Manager: yeah you you can suggest points like this. So what what {disfmarker} User Interface: Ah, okay. Project Manager: so we have to decide for example if it can control one device or multiple. So what's {disfmarker} what are your ideas about that? User Interface: {vocalsound} Project Manager: Maybe I can have the {disfmarker} your opinion from the marketing side? User Interface: Well uh do we sell other stuff? Uh if if we bundle the remote control with something uh to sell then it could be a single device, otherwise it could be programmable one otherwise who would buy a remote control from us. Project Manager: Okay, so if it selled uh by its own i it it would rather be for multiple device. User Interface: Yeah. Project Manager: {vocalsound} Do you agree? Industrial Designer: Mm-hmm. Project Manager: Yeah. So maybe it should be for multiple devices. And uh do you have any ideas um of uh design ideas or any uh uh technical requirement we we should uh fulfil? Industrial Designer: {vocalsound} I think we shouldn't have too many b for my part. I think {disfmarker} User Interface: No, I couldn I cannot fi think of any requirements right now. {vocalsound} Industrial Designer: If we don't have so many buttons could be nice. Project Manager: {vocalsound} Few buttons. Okay. User Interface: {vocalsound} Project Manager: And do you have it also to be {disfmarker} to be lighted in order to be used in the dark? Might be a good idea. Industrial Designer: {vocalsound} Yeah. Project Manager: Okay. And do you have any um any uh idea of the trend {disfmarker} the trend in domain, what it shouldn't {disfmarker} it should look like, or things like that? Industrial Designer: {vocalsound} Something which is not squarey maybe uh, not a box. User Interface: Mm. Project Manager: With rou okay. Like for {disfmarker} okay. User Interface: Something like that, least fits in your hand. Project Manager: Okay. User Interface: {vocalsound} Yeah. Industrial Designer: Yeah. User Interface: The basic requirement. Project Manager: So. Fit in your hand, yeah. User Interface: {vocalsound} Only a buck. Project Manager: And also it have, i it may be {vocalsound} it may be important for the remote control to be uh {disfmarker} To, to resist to various shocks that can happen if it fall. User Interface: {vocalsound} Industrial Designer: Mm-hmm. User Interface: Waterproof. {vocalsound} Project Manager: {vocalsound} Water-proof as well. Industrial Designer: {vocalsound} And I think we should have a device {disfmarker} Project Manager: Maybe it is original because you can uh use it in your uh {disfmarker} in your bath whereas the others can't. User Interface: {vocalsound} Marketing: {vocalsound} Project Manager: Maybe water-proof would be very original. Industrial Designer: Sorry. {gap} Marketing: {vocalsound} Project Manager: Havin having a water-proof remote control so that the people can uh use it in their bath. User Interface: Mm. Project Manager: That could be uh {disfmarker} User Interface: B it seems uh so, but uh if you don't have an waterproof remote control it means you can just cover it with some plastic and you can sort of f Project Manager: Yeah but, it is still something uh you have to buy and that is um not maybe very {disfmarker} User Interface: And, and that's one of the {disfmarker} that's one of the shock {disfmarker} I mean there are people that have a remote control and they are worried that it's going to break and they put some extra plastic around it. Project Manager: Yeah, mayb B User Interface: That's people {gap} they actually do it themselves. Project Manager: But maybe we can bulk it with uh already this plastic thing and uh the waterproof uh stuff as well. Industrial Designer: Yeah. {gap} directly. User Interface: I it will look a bulky in that case. Project Manager: Yeah. Maybe we can sell uh all that together, so so plastic protection and uh and a waterproof box as well. Industrial Designer: Yeah. Project Manager: That might be good uh track to follow. User Interface: Like as an optional thing. Project Manager: Optional or selled with it? Industrial Designer: {vocalsound} And I I think we should have something, most of the time I I lose my remote control. Project Manager: Yeah. Industrial Designer: We should have s uh special bu button on the T_V_ to make the remote control beeping. Project Manager: Maybe we can have uh {disfmarker} But we don't design the T_V_. Marketing: {vocalsound} Project Manager: Maybe we can have uh something you whistle and uh the remote control uh beep. Industrial Designer: Ah yeah. Marketing: {vocalsound} User Interface: Barks. Industrial Designer: Yeah. {vocalsound} Project Manager: Yeah, barks, yeah. Industrial Designer: {vocalsound} Barks. Project Manager: So we can uh have a whistle uh remote control? Industrial Designer: Yeah. Yeah whistle. Project Manager: I don't know, whistle-able? {vocalsound} Th Industrial Designer: Whistle tracking. {vocalsound} Project Manager: {vocalsound} Whistle tracking yeah. Whistle tracking remote control. That's a good idea, that's very original and that's can uh improve. User Interface: {vocalsound} That's that's quite cool, but uh of course we {disfmarker} you don't normally need uh any audio uh recording stuff on your remote control right? Project Manager: Yeah d d uh. User Interface: So i it's just going to add t to the cost. Project Manager: Yeah but s still we have to mm we have to {vocalsound} have an advantage over our competitors. I think this is a good advantage. User Interface: {vocalsound} It's cool. I think I like the idea, but I'm not sure about the what you, Project Manager: Yeah. We have to ask {disfmarker} User Interface: who is giving {disfmarker} who's giving who's giving our budget. Who's {disfmarker} Project Manager: Yeah. We have to ask the quest of that's uh design to the uh Industrial um Designer. User Interface: Yeah. Yeah. Industrial Designer: Yeah. {vocalsound} yeah {vocalsound} Project Manager: {vocalsound} Which is you. User Interface:'Kay. {vocalsound} Project Manager: {vocalsound} Okay so try to find that for next meeting. {vocalsound} Industrial Designer: Okay. {vocalsound} Project Manager: Okay. So next meeting is in thirty minutes or so uh. {vocalsound} Don't pani. Industrial Designer: {vocalsound} Don't panic. {vocalsound} Project Manager: So so I will ask the Industrial Designer to find out more about this industrial design so any working {disfmarker} any working function we have discussed. Industrial Designer: Mm-hmm. Project Manager: So then I will ask the User Interf Interface Designer to to think about the point we discussed like the number of buttons, the the fact that is lighted or not, things like that, and what would be convenient for the user. User Interface: Mm-hmm. Project Manager: And also um {vocalsound} I will ask the Market Expert to uh try to find out what are the absolute requirements, what is absolutely needed in a remote control uh for the user. So. And then uh I will uh just ask you to think about that and uh look at your mail because you will receive uh some good advice soon. {vocalsound} User Interface: Mm. Project Manager: So. Thank you I think that's all for this point. User Interface: Good. Industrial Designer: Mm-hmm. User Interface: {vocalsound} Marketing: Thank you {vocalsound} User Interface: Uh, so we come back in five minutes? Half an hour. Project Manager: Anyway you will receive some messages. {vocalsound} Be careful. You eat it? Does it move uh? Okay, but I don't know if it uh is still correctly uh {disfmarker} We'll see. Industrial Designer: Ah. {gap}"
+        },
+        "test2": {
+            "dialogue": "Project Manager: Okay, good morning. This is our first team meeting. User Interface: Good day. Marketing: Morning. Industrial Designer: Morning. Project Manager: I'll be your Project Manager for today, for this project. My name is Mark {gap} will be giving this presentation for you to kick the project off. {vocalsound} That's my uh that's the agenda for today. Well, of course we're new to each other, so I'd like to get acquainted first. So let's do that first, I mean {disfmarker} Let's start with you, can you introduce yourself? You're our Marketing Expert. Marketing: Yes. {vocalsound} Um my name is Dirk, Dirk Meinfeld. Um I will be uh {gap} Pr Project {disfmarker} the Marketing Expert. And I will see what the user wants and uh what we can do uh with the new produ project {disfmarker} product. {vocalsound} Project Manager: Okay, excellent. And you are User Interface {disfmarker} User Interface: Nick Broer, Project Manager: Yeah. User Interface: User Interface Designer. I'm going to uh look at the technical design from the uh user point of view. Project Manager: Excellent. Okay. Industrial Designer: My name is Xavier Juergens, I'm the Industrial Designer, and there are three main questions that I have to find an answer to today. First one is uh what happens inside the apparatus, second is what is uh the apparatus made of, Marketing: Hmm. Industrial Designer: and the third is what should it look like. Project Manager: What should it look like? Okay. Marketing: Hmm. Project Manager: Oh, let's kick it off. Oh, there we go. So, our new project is about {disfmarker} we need design a remote control for television set, so, which has to be original, trendy and user-friendly. I took this off our corporate website. {disfmarker} I think well it sums up what we need to do. It's We're inspired by latest fashion, not only electronics, but also the latest trends in clothes and interior design. That's why our product will always fit in your home. So apparently we need to {vocalsound} um be very at um very open to what's currently hot in the market. So that's what you need to do to bring us the latest info and what people want. Marketing: Yeah. Yeah. Project Manager: So {disfmarker} So we put the fashion in electronics. So that's what we need to go for. Anyway, we'll take this project in three steps, three pha uh three phase of design. First step will be the functional design. Marketing: Yeah. Project Manager: And that's basically what we're gonna do. Everybody has uh a piece of individual work and a meeting afterwards, so we can share information about {disfmarker} So I'm gonna keep this short, since we had a technical problem. So skip through this. Uh. Okay. Every meeting we {disfmarker} everybody can present their uh their views and everything, so to help with these, you have {disfmarker} we have the SMARTboards here. We can use a regular PowerPoint presentation. I'm supposed to give you an introduction on this doodling board, so it's {disfmarker} actually it's very easy. Like it says, very simple, you just take out the pen. Like you see here, I'll just take the {disfmarker} take {gap} here. That's it, you just put it on the board. You see a pen here. You go here, just like using a pen. You can just draw whatever you want. It's like the eraser, can erase whatever you want. And so it will be easy just to illustrate your views, if you wanna change the format, you just {vocalsound} either take out jus just like the pen, and whatever you want, your current colour, your line width, just to make the line bigger. So it should be really easy. Marketing: Okay. Project Manager: This is to take the {disfmarker} just take a new slide and back again. We're just gonna keep using this board all the time, so I think it will be {disfmarker} it's very clear for everyone, I suppose. So I'll take this out. {vocalsound} Okay. We'll use that later. Anyway. Yeah, just just just stuff that you wanna share, just put it in the in the project folder, like I put my presentation now. I'll put the the minutes of every meeting, I'll put them there too, so everybody can read up if they have to leave early or whatever. So next, been here. {vocalsound} Well, {gap} gonna give the electronic white-board uh a shot. So basic idea is we have a blank sheet. Just try whatever you want, and like it says, draw your favourite animal. I think the creative genius should go first. {vocalsound} User Interface: {vocalsound} The creative genius? Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: Thank you very much. Project Manager: So, draw us your favourite animal. User Interface: {vocalsound} Well, I'm more into the technical aspects of drawing, Industrial Designer: {vocalsound} User Interface: so I'm not really good at drawing animals, Project Manager: Draw us a technical animal. User Interface: but uh the animal which I {gap} {disfmarker} Oh. Project Manager: Yeah, it's still erasing. User Interface: {vocalsound} Pen. Marketing: {vocalsound} User Interface: Uh format. Else my animal will be like king-size. I pretty much like {vocalsound} a dolphin, because of its uh its freedom basically. Let's see. A head. {gap} actually worked with this. It's like uh it's a very {disfmarker} Uh high-tech. Industrial Designer: {vocalsound} {vocalsound} Marketing: {vocalsound} User Interface: Bit low-responsive though. Project Manager: {vocalsound} So that's what we don't want. User Interface: Prefer pen and paper. Project Manager: We want a high-responsive product. So {disfmarker} It looks more like nuclear bomb. Marketing: {vocalsound} Very nice dolphin. User Interface: It {vocalsound} {vocalsound} doesn't look like a nuclear bomb. Industrial Designer: {vocalsound} {vocalsound} Project Manager: {vocalsound} User Interface: This thing isn't doing what I'm {disfmarker} What I want. Marketing: {vocalsound} Project Manager: Let's go easy on it. User Interface: So {disfmarker} {vocalsound} Yeah, well it does look like a nuclear bomb. Project Manager: {vocalsound} Marketing: {vocalsound} User Interface: I'll just finish up real soon, because I'm {disfmarker} Marketing: {vocalsound} User Interface: So it doesn't really look like a dolphin, Project Manager: {vocalsound} Anyway, User Interface: but then again, this is all new for me. Project Manager: it should {disfmarker} It {disfmarker} It's supposed to be a dolphin, you like the freedom that it {disfmarker} that it represents. Industrial Designer: Uh-huh. User Interface: Like the ocean, like swimming. Do that in my spare time, so that's basically an {disfmarker} Project Manager: What do you like? Okay. Well, User Interface: Now we can forget this ever happened. Project Manager: our Marketing Expert. Show us an animal. Marketing: Um an animal. Project Manager: {gap} Pick a {disfmarker} pick a {disfmarker} Marketing: I like the elephant. {vocalsound} Project Manager: pick a clean sheet. Oh. Take a clean sheet first. Marketing: What? Yeah. Um {disfmarker} Project Manager: Just press next. That's it. Marketing: Oh yeah. Oh, a blank. Okay, next. Free, I like the elephant. It's big, it's strong, so uh uh {disfmarker} Oh, it's a little bit {disfmarker} User Interface: It's not really that responsive, no. {vocalsound} Marketing: You have to hold it, right? Project Manager: {vocalsound} Industrial Designer: Mm. Marketing: Hmm. Project Manager: {vocalsound} Marketing: {gap} It's a beautiful animal. Project Manager: {vocalsound} Marketing: Oh, you have to p press it pretty hard. With a smile on it, Project Manager: {vocalsound} It's a cute elephant. User Interface: {vocalsound} Marketing: it's very important. Yeah. Project Manager: {vocalsound} Marketing: And uh not to forget its tail. Oh. Project Manager: It's a nice beard. Marketing: Yeah, it's okay. Yes. {vocalsound} Project Manager: {vocalsound} User Interface: And you was making comments on my dolphin. {vocalsound} Project Manager: {vocalsound} Marketing: {vocalsound} I will beat the dolphin. {vocalsound} No. Project Manager: Okay, so it's just a bee. Marketing: Yeah. Project Manager: So I suggest you make us the elephant in the market. The big and strong player in the market. This would be good. Marketing: Yeah. Yeah. Project Manager: Okay, excellent. On to the next one. Industrial Designer: {vocalsound} Okay. Marketing: Uh yeah. Industrial Designer: Okay, you should press next. Marketing: {vocalsound} Yeah. Project Manager: Press next. Yeah, it's up there. Industrial Designer: {vocalsound} Okay. Project Manager: That's it. Industrial Designer: Okay, well the animal I'd like to draw is a tiger. Project Manager: {vocalsound} User Interface: You picked a hard one, didn't you? {vocalsound} Industrial Designer: My drawing skills are really bad, so. Marketing: Experience with the tiger. Project Manager: {vocalsound} Marketing: What? They are {disfmarker} Industrial Designer: They are really bad, my drawing skills. Project Manager: {vocalsound} Marketing: Okay uh-huh. Project Manager: Sure looks smooth. Marketing: Oh. Industrial Designer: I'm not sure how the legs should go, but {disfmarker} Project Manager: {vocalsound} Industrial Designer: Uh these are stripes. User Interface: Got it. {vocalsound} Industrial Designer: I've picked this animal because it's very fast. It is uh it knows exactly what it wants. Uh it hardly ever wastes any resources. Project Manager: What does it want? Industrial Designer: Uh well, basically uh it hunts for prey, but it does it always in a very well-thought way. Uh it knows exactly what it wants. It never kills an animal uh just for the killing, so it's very efficient. And it tries to do everything as fast as possible. Project Manager: Okay. Industrial Designer: And it always goes for uh security, in seeking uh uh a hide spot and uh and doing everything, Marketing: Mm. Industrial Designer: security, speed and efficiency is important. And I think uh those things we can use. Project Manager: I agree. Industrial Designer: {vocalsound} Marketing: Okay. Project Manager: , I'm supposed to draw the animal next. Yay I introduce to the world the amazing ant. User Interface: {vocalsound} Marketing: {vocalsound} Uh hard worker. Project Manager: Great team-workers. User Interface: {vocalsound} Industrial Designer: Yeah. Marketing: Yeah. Project Manager: Do everything to Uh really small, but together they're really strong. So I'm gonna give it a smiley face. Industrial Designer: {vocalsound} Oh. Marketing: Yeah, yeah. Project Manager: Not sure where the p {gap}. Just put'em here. Whatever. {vocalsound} Marketing: {vocalsound} Project Manager: Think it need shoes. So {disfmarker} Marketing: {vocalsound} Project Manager: {vocalsound} I'm just too lazy to draw it all black, so {disfmarker} {vocalsound} That's the coolest ant ever. User Interface: You've done this before, haven't you? {vocalsound} Industrial Designer: {vocalsound} Project Manager: I love to draw ants. It's my hobby. Marketing: {vocalsound} Project Manager: Anyway {disfmarker} Nah. {vocalsound} Just {disfmarker} I think it's very representative what we drew, I guess. Like you take {disfmarker} just take your freedom and use a a trendy interface that you design for us. Marketing: Yeah. Project Manager: Just {disfmarker} Yeah. You're supposed to make i make it different from uh from what other people have, and just make it a little distinct. Anyway. {gap} another beep to stop the meeting. See. Warning. Finish meeting now. Uh put this down. Examples. Well I guess we have a little little time extra, but {disfmarker} Just a little quick discussion to to open open our work. So what do you guys think about {disfmarker} The first idea is just very short. I'll start with you. What are y What are your first ideas for the new product? What {disfmarker} User Interface: Well, I basically had a question. Do {vocalsound} uh {disfmarker} Are we going to introduce a multi remote control? Is it just the T_V_ or do we want to in Project Manager: The project I got was just for a T_V_ remote control. Marketing: Uh {vocalsound} {disfmarker} User Interface: Just for T_V_ remote control. Project Manager: Yeah, I guess so. Marketing: Yeah. User Interface: Okay. Well, I was thinking about design remote control, with our uh motto and all. Marketing: But {disfmarker} User Interface: Uh thing to keep in mind is that we need to stick to what people are familiar with. Marketing: Yeah. User Interface: No rational changes or whatever,'cause it {disfmarker} revolutionary changes, Project Manager: Okay, so very intuitive design, I guess. User Interface: yes. {vocalsound} Uh we might have to consider other design aspects of our product. So that was something I wanted to add, Project Manager: {gap} User Interface: and perhaps some usability aspect. T_V_ is becoming central in most homes. Do we want people who are disabled in any way to uh, yeah, to be able to use it as well? Project Manager: Yeah, we want {disfmarker} I suppose we want almost everyone to be using it. So {vocalsound} I think {disfmarker} I mean, really disabled people, yeah, {vocalsound} might be a problem, but I think it's a little {gap} take it into consideration. Um yeah. I think we really need to cut the meeting short. You have anything you wanna share quickly? Industrial Designer: Hmm. Marketing: Uh. Industrial Designer: Only one thing uh that has to be added according to me is uh the the material it is made of, it should be something light. User Interface: Yeah. Industrial Designer: That's {disfmarker} it speaks for itself, Project Manager: It should be light, okay. Industrial Designer: but some uh {disfmarker} Yeah. Project Manager: Um, let's see, Marketing: Yeah. Project Manager: where did I {disfmarker} Let's skip that. Oh, this is it. Sorry, I skipped this sheet. Marketing: Selling price. Project Manager: What do we {disfmarker} This {disfmarker} Quick {gap} {disfmarker} What we're going to {disfmarker} Selling price, twenty five Euros. That's for you. The production price, twelve and a half Euros, approximately. Industrial Designer: {vocalsound} Okay. Project Manager: Just go go for that. We'll reach the uh reach that profit. Industrial Designer: Okay. User Interface: Okay, well that's not that much to work with. {vocalsound} Marketing: {gap} international. Project Manager: No, it's not much to work on. I'm sorry, I skipped it. {vocalsound} Anyways, that's {disfmarker} Yeah, this is it. Do you have anything you you came up with yet? About uh marketing transfer, whatever? Marketing: Um about what? Marketing? Project Manager: Marketing {gap} I'm not sure what you what you came up with yet. You have anything to share? Or else we'll cut the meeting just cut the meeting short Marketing: {vocalsound} Um no, not really yet, Project Manager: since we're supposed to stop. Marketing: but I've some ideas Project Manager: Okay. Marketing: and I will uh say it uh {disfmarker} Project Manager: Anyways, the the personal coach will give you the your p your personal assignments and everything. So we'll just meet back in here thirty minutes. Industrial Designer: Okay. Marketing: Okay. Project Manager: I'm sure we have that. Industrial Designer: Good luck everyone. Project Manager: Yeah, thanks for attending. User Interface: Mm, good luck. Marketing: {vocalsound} Project Manager: I'll see you back here in thirty minutes. Marketing: Okay. Yes. Industrial Designer: {vocalsound}"
+        },
+        "test3":{
+            "dialogue": "Project Manager: Okay. {vocalsound} Je croix que c'est dommage de le {disfmarker} it will be sad to destroy this prototype. It really looks like a banana. User Interface: {vocalsound} It is a banana. Project Manager: It is a banana. {vocalsound} User Interface: It is the essence of bananas. I would be confused with this thing. Project Manager: {vocalsound} User Interface: {vocalsound} Project Manager: {vocalsound} Mm. Industrial Designer: {vocalsound} User Interface: S Project Manager: Okay. Marketing: Mm-hmm. {vocalsound} User Interface: How is everyone? Project Manager: Hi. Industrial Designer: Hi. Project Manager: So we are here for the detailed design meeting. Marketing: {vocalsound} Project Manager: {vocalsound} So {vocalsound} User Interface: Mm-hmm. Project Manager: we will uh {disfmarker} I will first present what we are going to do in this meeting. Then uh I've {disfmarker} I will also take notes during this meeting and I will send you uh a summary then as usual. We will then look at the evaluation criteria of the prototype presented by uh our two colleagues that make good work. Industrial Designer: {vocalsound} Marketing: {vocalsound} Project Manager: {vocalsound} And uh then we will see the financial aspects and the cost of the product. Then we will uh evaluate the product. And uh end with the conclusion of this project and see whether it fits with {disfmarker} it fulf if it fulfil the requirement or not. So Industrial Designer: Mm-hmm. Project Manager: d let's start with the cost aspect so so I look at the aspect discussed last time, that is to say uh to have a standard battery, {vocalsound} to have a yellow banana shaped uh case with uh a rubber material around it Industrial Designer: {vocalsound} Project Manager: to be uh to feel spongy, User Interface: Like a banana. Project Manager: {vocalsound} and uh also at the different aspect like having a wheel etcetera. Marketing: {vocalsound} Industrial Designer: Mm-hmm. Project Manager: And the cost ended to be ten point seven Euros. So which is uh good, because we had a price gap of twelve point five Euros. Industrial Designer: Mm-hmm. Project Manager: So for the financial aspect it's okay, we can uh {disfmarker} we can continue with this product uh as if, Marketing: {vocalsound} Project Manager: {vocalsound} and we are now going to see the project evaluation with uh our marketing expert. Marketing: {vocalsound} Yeah. Okay. So uh you can have my project in {disfmarker} Project Manager: Yeah. You have a presentation? Marketing: Uh yeah just a {disfmarker} Project Manager: Participant four, yes. Marketing: {vocalsound} Four. Evaluation. Project Manager: Okay. Okay. Marketing: Okay. So you can go. We can go through. Project Manager: Okay. Marketing: So I made an evaluation and the the evaluation criteria is made according to {vocalsound} the users'requirements and the market trends we talked about uh during the previous uh meetings. So you can go through and {disfmarker} Project Manager: Okay. Marketing: okay so uh we have uh six points. We we talked about before. Project Manager: Okay. Marketing: So we we want to have a product fancy look and feel, technologically innovative, easy to use, fashion, {vocalsound} easy to find in a room, and robust, Project Manager: Yeah. Industrial Designer: Mm-hmm. Marketing: uh and uh uh I have a scale of uh seven points. Project Manager: Yeah. Marketing: Okay. So I go through all the uh all the points here, Project Manager: Yeah. Marketing: and uh according to what you think about the this project you can uh mm make a one point, two point or seven point. Okay? Project Manager: Okay. Marketing: And after we ha we have an an average, and uh we see. Project Manager: Okay. Industrial Designer: Mm-hmm. Marketing: The {disfmarker} okay? {vocalsound} Uh so uh fancy look and feel, what do you think? Project Manager: Okay. Maybe you can presen {vocalsound} Marketing: F between o one and seven. Project Manager: okay. Maybe {disfmarker} {vocalsound} hold it. Marketing: {vocalsound} Project Manager: {vocalsound} So I think it's uh very uh very nice. What do you think? User Interface: I give it a {disfmarker} I give it a five. Project Manager: Yeah. So it's between one and seven? Seven is the highest uh? Marketing: Yeah. {vocalsound} Seven is the {disfmarker} Project Manager: I will give a six. Industrial Designer: I will give a a five. Marketing: {vocalsound} Mm-hmm. User Interface: {vocalsound} And you? Marketing: {gap} sorry. User Interface: Do you vote uh Christine? Marketing: {gap} eh? User Interface: Do you also vote? Marketing: {vocalsound} No, I just want to see something {disfmarker} Project Manager: Maybe we all have to agree on a common {disfmarker} User Interface: Well, we can {gap} very easily {vocalsound}. Project Manager: Yeah. Marketing: Mm-hmm. Industrial Designer: {vocalsound} Project Manager: {vocalsound} Marketing: Uh I think uh {gap} {vocalsound} and need to {gap} as well {vocalsound}. Project Manager: No problem. So User Interface: {vocalsound} Marketing: Need to {disfmarker} Project Manager: this is your {disfmarker} Marketing: uh I don't know if you {disfmarker} we ha we have to put uh one uh f If it's better or {disfmarker} Project Manager: One is most {gap}. User Interface: I {disfmarker} Marketing: Uh-uh. Project Manager: Well, we can choose what we want. Marketing: Um. Yeah. Project Manager: Okay, let's say that seven is the best. Marketing: Or maybe we can say s seven is the best mm {vocalsound}. Project Manager: Okay. So so do note the grade we have five, six for me, Industrial Designer: Five. Project Manager: five. And what what's your choice? Marketing: Oh sorry. {vocalsound} Project Manager: How much would you give on the fancy aspect, on the fashionable aspect? Marketing: Six {disfmarker} Uh s you can {disfmarker} how much what? Project Manager: How much would you {disfmarker} you don't answer to this uh questionnaire? Marketing: Oh yes I mm I dunno mm, I think six, it's a good uh {disfmarker} User Interface: So it will have five point five average. Project Manager: Five point five average. Marketing: Yeah. Project Manager: Okay. User Interface: Mm. Marketing: Wa can {gap}. {vocalsound} Industrial Designer: {vocalsound} Marketing: Okay. Project Manager: Well, does it {disfmarker} Marketing: {vocalsound} I sorry. User Interface: {vocalsound} Marketing: Okay. So after, the technological aspect? Project Manager: Okay, techne technological aspect. Marketing: So we we said uh we have uh a new technological uh thing with a wheel. Project Manager: Yeah, we have the wheel. We also have the rubber material, Marketing: Uh. Project Manager: which make it uh like new also. I think I would give a five. User Interface: It's {gap} four. Project Manager: Four? Industrial Designer: A four also, because, except for the wheel, we don't have so much innovation. User Interface: Yeah. Industrial Designer: The rubber is {disfmarker} Project Manager: Okay. Industrial Designer: Uh a four. I I {disfmarker} User Interface: D are we including the voice {disfmarker} are you glu are we including the voice in the end or not? Huh? Project Manager: No. User Interface: No. Okay. Project Manager: So Marketing: No. Project Manager: what's your uh grade? Marketing: Four. Project Manager: Four? So we have four, four f and five? Marketing: We can put four? User Interface: Yeah. Project Manager: Yeah, four. Four, yeah, let's put four. User Interface: For twenty five. Marketing: Everyone is okay or {disfmarker} four poin Four. User Interface: Yeah. Marketing: Okay. Project Manager: Doesn't it {disfmarker} {vocalsound} Marketing: Very easy to use. Do you think it's easy to use? Project Manager: Yeah, I think so. Yeah. Industrial Designer: Yeah. User Interface: I give a seven, I think. Industrial Designer: Six. Project Manager: I would give a {disfmarker} I would give a seven as well. It's very easy to use. Industrial Designer: Six. Marketing: Mm, six for me also. Project Manager: So User Interface:'Kay. Marketing: Six point five. {vocalsound} Project Manager: six point five. Industrial Designer: Six six six point five. Project Manager: Okay. Marketing: Okay. {vocalsound} Is it fashion? {vocalsound} Project Manager: Oh yeah, User Interface: {vocalsound} Project Manager: its its f its fruit fruit shape. Marketing: Seven? {vocalsound} Project Manager: I would say seven. And is very very nice design. Marketing: Yeah it's fashion, because it's a fruit, User Interface: Yeah, we can we can put a seven here. Marketing: and we say that the {disfmarker} Industrial Designer: Yeah, seven. User Interface: Yeah. Marketing: yeah, seven. Project Manager: Yeah. Seven, okay. User Interface: Yeah. Well, we hope. Industrial Designer: {vocalsound} Easy to find. Marketing: {vocalsound} Uh easy to find in a room? {vocalsound} Project Manager: {vocalsound} Industrial Designer: {vocalsound} I lost my banana. {vocalsound} User Interface: {vocalsound} {vocalsound} Project Manager: I think you can't miss it. User Interface: {vocalsound} Yeah. Project Manager: Okay. Marketing: Yeah? Industrial Designer: Uh. User Interface: Yeah, I think it's cool. I think we can put a six here. Marketing: We have the lightning, or {disfmarker} Project Manager: Yeah, we have {vocalsound} the {vocalsound} Marketing: The lighting. Project Manager: we don't sesh especially have the lightning User Interface: {vocalsound} So you'll make the material transparent Project Manager: but {disfmarker} Marketing: {vocalsound} User Interface: so that it uh lights up completely, or {disfmarker} Project Manager: So it's yellow. It's okay. Marketing: {vocalsound} Yeah. {gap} Project Manager: I think it's very easy to {vocalsound} {disfmarker} Marketing: Seven? Project Manager: I would say seven. It's hard to miss it. Industrial Designer: {vocalsound} Six. Yeah, okay. User Interface: Yeah. Marketing: Is it {disfmarker} is it robust? Project Manager: Yeah, it's rubber, made of rubber, Industrial Designer: Uh f yeah, it's ru it's rubber. Project Manager: I think it's m it's uh more rubber than uh other remote control. Industrial Designer: Yeah. {vocalsound} User Interface: Yeah the only problem there might be {disfmarker} which {gap} know, i if it's very sensitive, Project Manager: Yeah. User Interface: they will, Industrial Designer: Yeah. User Interface: I don't know {disfmarker} Project Manager: But it is uh {disfmarker} it is surrounded by rubber material. Industrial Designer: Yeah. User Interface: Yeah, okay. Project Manager: So maybe we can put a six. Industrial Designer: Yeah. User Interface: Mm. Marketing: {vocalsound} Everybody is okay, six. Industrial Designer: Six or five. Five {vocalsound} Project Manager: Six is okay? User Interface: Six, yeah, for me. Industrial Designer: Six. Marketing: Yeah. {vocalsound} Okay. Project Manager: Yeah. User Interface: Yeah. Marketing: S now {vocalsound} um so. Project Manager: Tadada. We have to sum up everything. User Interface: Twenty. Marketing: Thirteen uh, twenty, twenty six point five, uh seven, thirty two, thirty six {gap}. User Interface: Thirty. Thir Marketing: That's that's okay? Six. Project Manager: {vocalsound} Six is a good {disfmarker} User Interface: Okay. Marketing: Good. Uh if we say that seven it's uh it's the better, Project Manager: Yeah, the be. Industrial Designer: {gap} User Interface: Yeah, the top {disfmarker} Marketing: and when uh s six sit six are good {disfmarker} it's a good uh p product, I think. Project Manager: Okay, so six is a {disfmarker} User Interface: Mm. So will become eight soon? Project Manager: So it's a good evaluation, I think. It's very promising. User Interface: Yeah, well it's a bit biased. {vocalsound} Project Manager: Huh. Marketing: We have a good price and uh {vocalsound}. Industrial Designer: Yeah. Project Manager: So this prototype is quite nice. {vocalsound} User Interface: Okay. Marketing: Good. User Interface: Because I saw uh some phones that were banana shaped, uh wireless phones not mobile ones, wireless for the house, Marketing: {vocalsound} Project Manager: Yeah. Okay. User Interface: uh quite big also, Marketing: {vocalsound} User Interface: and they were selling {gap} something like a hundred Euros, two hundred Euros. Project Manager: {vocalsound} User Interface: Just a {vocalsound} just a phone, wireless. Project Manager: So having this at twenty five Euros is uh quite attractive, I think. Industrial Designer: Mm-hmm. User Interface: Yeah. Project Manager: I think the {disfmarker} Industrial Designer: But almo also the complexity between a phone and a remote control is not {disfmarker} cannot compare. User Interface: Yeah. Yeah, Project Manager: Yeah. User Interface: it's much more complex, but {disfmarker} Project Manager: So, I think, we can summarise. So we have seen the prototype. It's very nice according to the work of our two designer. Industrial Designer: {vocalsound} Project Manager: The the the financial aspect were okay. We we have the cost below uh our threshold and so we could sell at twenty five Euros and make i make profit. The the evaluation give satisfying result as well. So I think we can move to the last part of the meeting. Marketing: {vocalsound} Project Manager: So the cost is in the budget, the evaluation is okay, so I th I think we can now uh open champagne and make a huge party. Industrial Designer: {vocalsound} Start to eat banana. {vocalsound} User Interface: {vocalsound} Project Manager: I don't know if it's provided by uh by the meeting staff. User Interface: {vocalsound} Marketing: Mm-hmm. User Interface: Okay. Project Manager: {vocalsound} Okay so congratulation. {vocalsound} Nice product. Industrial Designer: Yeah. User Interface: {vocalsound} Congratulations to the team. Uh very well, we worked together fantastically. Marketing: {vocalsound} Project Manager: Yeah. Industrial Designer: {vocalsound} Project Manager: I think it was a good collaboration uh. Aspect. User Interface: {vocalsound} So what does the management say? Project Manager: Sorry? User Interface: What does the management say? Project Manager: I think we will have um much bigger project next time and a much bigger salary as well. User Interface: Ah. Industrial Designer: {vocalsound} Marketing: {vocalsound} Project Manager: All it depends on who watch this meeting. Industrial Designer: {vocalsound} User Interface: {vocalsound} Industrial Designer: {vocalsound} Yeah. {vocalsound} Project Manager: {vocalsound} We don't know. {vocalsound} User Interface: Yeah. Project Manager: Okay, so User Interface: Okay. Project Manager: good guys {vocalsound}, Marketing: {vocalsound} Project Manager: so see you for next uh successful project. {vocalsound} Industrial Designer: Okay. Yeah. Fruits. Marketing: Mm'kay. User Interface: Mm."
+        }
+    },
+    "MeetingSummary_2": {
+        "input_var": ["dialogue", "instruction"],
+        "output_var": ["result", "file"],
+        "related_nodes": ["llm", "markdown-exporter", "question-classifier", "variable-aggregator"],
+        "test1": {
+            "dialogue": "User Interface: {gap} Project Manager: {vocalsound} User Interface: {vocalsound} How do you wear this thing? Project Manager: Hmm. Mm mm mm. {vocalsound} User Interface: Not too many cables and stuff. Marketing: {gap} User Interface: {vocalsound} {vocalsound} Project Manager: {vocalsound} User Interface: {vocalsound} Original. {vocalsound} Project Manager: {vocalsound} Is recorded? Okay? Okay so welcome everyone. So we are here for the kickoff meeting of uh the process of designing a new remote control. So I will first start with a warm welcome opening {vocalsound} stuff, User Interface: {vocalsound} Project Manager: then uh we will uh see what will be uh our product and what will be the different step we will have to design it. And uh then we will uh discuss if we have few ideas and we will uh end uh by uh dispatching the different task you will be {disfmarker} you will have to fulfil to complete this process. So {disfmarker} User Interface: Uh. Just one thing. Uh, you said twenty-five minutes, but I have something else to do uh, so gotta have another meeting uh soon, Project Manager: {vocalsound} User Interface: so maybe you could hurry up a bit {disfmarker} Project Manager: {vocalsound} sorry? User Interface: It's true. I have another meeting so if you could uh {disfmarker} Project Manager: You have another meeting soon? User Interface: Yeah. Project Manager: So you have to be quick. Industrial Designer: {vocalsound} User Interface: Yeah, for the lawnmower project. Project Manager: Okay. User Interface: Okay. Project Manager: So the the goal is to have a remote control so to have an advantage over our competitors we have to be original, we have to be trendy and we have to also try to be user-friendly. User Interface: {vocalsound} Project Manager: So uh the design step will be divided in three uh main points. First it will be the functional design. Third is the conceptual design and then is the desired design. So the functional design is to identify the main user needs, the technical function the remote control should fulfil. And then we will move to f conceptual design where we'll specify the different component involved, what kind of user interf interface we want and what are the different uh trend in user interface and stuff like that. Industrial Designer: {vocalsound} Project Manager: And then the desired devi design will consist in uh specifically implementing {vocalsound} and detailing the choice we've uh made in the second point. So I will now ask you which is very important for the design of a new remote control for to uh each of us to to draw uh your favourite animal on the white board. User Interface: {vocalsound} What an original idea. Project Manager: {vocalsound} Do you have any idea of which animal you want to show us? {vocalsound} User Interface: Orangutan. Project Manager: Okay {vocalsound} that's good. Industrial Designer: {vocalsound} User Interface: {vocalsound} Industrial Designer: No no n Project Manager: {vocalsound} n n {gap} User Interface: Can I give you the Project Manager: You should {disfmarker} User Interface: {disfmarker} no? But I don't have to say anything. When I'm drawing the orangutan. Project Manager: {vocalsound} {vocalsound} If you want to react uh about this wonderful drawing uh {vocalsound} I'll let you uh comment. User Interface: {vocalsound} {vocalsound} Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: It's an abstract drawing of an orangutan. Project Manager: Okay it's an abstract drawing. User Interface: Yes. Project Manager: I think it's nice and original. {vocalsound} Industrial Designer: {vocalsound} You should write y the name I think. {vocalsound} Marketing: {vocalsound} User Interface: I don't have a red colour. Usually orangutans have red hair so this is a very important but I don't have red pen, so {disfmarker} Project Manager: Okay. User Interface: {vocalsound} Yes. Project Manager: You want to draw something Christine? {vocalsound} Marketing: {vocalsound} {vocalsound} User Interface: {vocalsound} Marketing: Okay uh sorry. You have to imagine a little bit {vocalsound} um. Project Manager: {vocalsound} Marketing: This {disfmarker} Project Manager: Of course your animal is recorded so it's not lost. {vocalsound} Marketing: {vocalsound} Sorry too {vocalsound} uh. User Interface: Yes. I know. Project Manager: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} Project Manager: Is this uh {disfmarker} User Interface: Wha what is this strange beast? Marketing: Is it beautiful? {vocalsound} Project Manager: {vocalsound} Industrial Designer: {vocalsound} User Interface: Is it a monster? Project Manager: {vocalsound} Marketing: Do you know? It's a cat. User Interface: It's a cat? Industrial Designer: {vocalsound} Marketing: {vocalsound} Isn't it? {vocalsound} User Interface: I thought these things did not exist. Project Manager: {vocalsound} Marketing: {vocalsound} Yes yes Industrial Designer: Me {vocalsound} Marketing: is it {disfmarker} like that. User Interface: Ah yeah {vocalsound} Industrial Designer: Ah yeah. Yeah. Marketing: Is it better? Project Manager: Ah okay it's pretty. {vocalsound} Marketing: {vocalsound} Okay. Project Manager: {vocalsound} Okay it's your cat. {vocalsound} Marketing: {vocalsound} It's my cat. User Interface: Does have a name? Marketing: {vocalsound} Yeah. {vocalsound} Industrial Designer: {vocalsound} Marketing: The name is Caramel. User Interface: Caramel. Ah-ha. Industrial Designer: Caramel. Marketing: Yeah. {vocalsound} Project Manager: Okay. Olivier, do you want to {vocalsound} Industrial Designer: {vocalsound} And you {vocalsound} {vocalsound} I think I'm too short for the cables. {vocalsound} Marketing: {vocalsound} Project Manager: {vocalsound} Okay I go, but next time you'll do something I'm sure. {vocalsound} {vocalsound} I'm a bit short on cable. User Interface: Next time I concentrate. Industrial Designer: {vocalsound} Project Manager: Okay. So what could I draw? {vocalsound} Maybe I can draw like a very simplified cow. {vocalsound} I don't know if it looks like a cow {vocalsound} User Interface: He looks like a bong. Marketing: {vocalsound} Industrial Designer: {vocalsound} Project Manager: Like a what? {vocalsound} User Interface: Okay. Sorry. No. Industrial Designer: Quite squarey. User Interface: Scary? Project Manager: {gap} {vocalsound} Industrial Designer: He also. {vocalsound} Marketing: {vocalsound} Project Manager: I dunno it it looks more like a donkey in fact {vocalsound} I would say. User Interface: {vocalsound} Marketing: {vocalsound} User Interface: {vocalsound} I I think we will be finished this uh {disfmarker} Industrial Designer: Mm. Project Manager: Okay so I hope that it helps you uh in the process of designing a remote control. User Interface: Is it for uh for putting a {disfmarker} for logos, no. Project Manager: {vocalsound} Okay. User Interface: {vocalsound} That's {disfmarker} Project Manager: Let's move on. So {disfmarker} Here the uh financial objective of our project. That is to say to to have a production cost lower than twelve point five Euros and have a selling price of twice that price t in order to target a profe profit of uh fifty uh million Euros. User Interface: I is there a matter for a new remote control? Project Manager: {vocalsound} Yeah if it's trendy, original I d fulfil the user needs. User Interface: Is it uh a single device remote control or is it a multi-device remote control? Project Manager: We have to discuss that point. User Interface: Ah Project Manager: On {disfmarker} User Interface: this is not defined at all? Project Manager: yeah you you can suggest points like this. So what what {disfmarker} User Interface: Ah, okay. Project Manager: so we have to decide for example if it can control one device or multiple. So what's {disfmarker} what are your ideas about that? User Interface: {vocalsound} Project Manager: Maybe I can have the {disfmarker} your opinion from the marketing side? User Interface: Well uh do we sell other stuff? Uh if if we bundle the remote control with something uh to sell then it could be a single device, otherwise it could be programmable one otherwise who would buy a remote control from us. Project Manager: Okay, so if it selled uh by its own i it it would rather be for multiple device. User Interface: Yeah. Project Manager: {vocalsound} Do you agree? Industrial Designer: Mm-hmm. Project Manager: Yeah. So maybe it should be for multiple devices. And uh do you have any ideas um of uh design ideas or any uh uh technical requirement we we should uh fulfil? Industrial Designer: {vocalsound} I think we shouldn't have too many b for my part. I think {disfmarker} User Interface: No, I couldn I cannot fi think of any requirements right now. {vocalsound} Industrial Designer: If we don't have so many buttons could be nice. Project Manager: {vocalsound} Few buttons. Okay. User Interface: {vocalsound} Project Manager: And do you have it also to be {disfmarker} to be lighted in order to be used in the dark? Might be a good idea. Industrial Designer: {vocalsound} Yeah. Project Manager: Okay. And do you have any um any uh idea of the trend {disfmarker} the trend in domain, what it shouldn't {disfmarker} it should look like, or things like that? Industrial Designer: {vocalsound} Something which is not squarey maybe uh, not a box. User Interface: Mm. Project Manager: With rou okay. Like for {disfmarker} okay. User Interface: Something like that, least fits in your hand. Project Manager: Okay. User Interface: {vocalsound} Yeah. Industrial Designer: Yeah. User Interface: The basic requirement. Project Manager: So. Fit in your hand, yeah. User Interface: {vocalsound} Only a buck. Project Manager: And also it have, i it may be {vocalsound} it may be important for the remote control to be uh {disfmarker} To, to resist to various shocks that can happen if it fall. User Interface: {vocalsound} Industrial Designer: Mm-hmm. User Interface: Waterproof. {vocalsound} Project Manager: {vocalsound} Water-proof as well. Industrial Designer: {vocalsound} And I think we should have a device {disfmarker} Project Manager: Maybe it is original because you can uh use it in your uh {disfmarker} in your bath whereas the others can't. User Interface: {vocalsound} Marketing: {vocalsound} Project Manager: Maybe water-proof would be very original. Industrial Designer: Sorry. {gap} Marketing: {vocalsound} Project Manager: Havin having a water-proof remote control so that the people can uh use it in their bath. User Interface: Mm. Project Manager: That could be uh {disfmarker} User Interface: B it seems uh so, but uh if you don't have an waterproof remote control it means you can just cover it with some plastic and you can sort of f Project Manager: Yeah but, it is still something uh you have to buy and that is um not maybe very {disfmarker} User Interface: And, and that's one of the {disfmarker} that's one of the shock {disfmarker} I mean there are people that have a remote control and they are worried that it's going to break and they put some extra plastic around it. Project Manager: Yeah, mayb B User Interface: That's people {gap} they actually do it themselves. Project Manager: But maybe we can bulk it with uh already this plastic thing and uh the waterproof uh stuff as well. Industrial Designer: Yeah. {gap} directly. User Interface: I it will look a bulky in that case. Project Manager: Yeah. Maybe we can sell uh all that together, so so plastic protection and uh and a waterproof box as well. Industrial Designer: Yeah. Project Manager: That might be good uh track to follow. User Interface: Like as an optional thing. Project Manager: Optional or selled with it? Industrial Designer: {vocalsound} And I I think we should have something, most of the time I I lose my remote control. Project Manager: Yeah. Industrial Designer: We should have s uh special bu button on the T_V_ to make the remote control beeping. Project Manager: Maybe we can have uh {disfmarker} But we don't design the T_V_. Marketing: {vocalsound} Project Manager: Maybe we can have uh something you whistle and uh the remote control uh beep. Industrial Designer: Ah yeah. Marketing: {vocalsound} User Interface: Barks. Industrial Designer: Yeah. {vocalsound} Project Manager: Yeah, barks, yeah. Industrial Designer: {vocalsound} Barks. Project Manager: So we can uh have a whistle uh remote control? Industrial Designer: Yeah. Yeah whistle. Project Manager: I don't know, whistle-able? {vocalsound} Th Industrial Designer: Whistle tracking. {vocalsound} Project Manager: {vocalsound} Whistle tracking yeah. Whistle tracking remote control. That's a good idea, that's very original and that's can uh improve. User Interface: {vocalsound} That's that's quite cool, but uh of course we {disfmarker} you don't normally need uh any audio uh recording stuff on your remote control right? Project Manager: Yeah d d uh. User Interface: So i it's just going to add t to the cost. Project Manager: Yeah but s still we have to mm we have to {vocalsound} have an advantage over our competitors. I think this is a good advantage. User Interface: {vocalsound} It's cool. I think I like the idea, but I'm not sure about the what you, Project Manager: Yeah. We have to ask {disfmarker} User Interface: who is giving {disfmarker} who's giving who's giving our budget. Who's {disfmarker} Project Manager: Yeah. We have to ask the quest of that's uh design to the uh Industrial um Designer. User Interface: Yeah. Yeah. Industrial Designer: Yeah. {vocalsound} yeah {vocalsound} Project Manager: {vocalsound} Which is you. User Interface:'Kay. {vocalsound} Project Manager: {vocalsound} Okay so try to find that for next meeting. {vocalsound} Industrial Designer: Okay. {vocalsound} Project Manager: Okay. So next meeting is in thirty minutes or so uh. {vocalsound} Don't pani. Industrial Designer: {vocalsound} Don't panic. {vocalsound} Project Manager: So so I will ask the Industrial Designer to find out more about this industrial design so any working {disfmarker} any working function we have discussed. Industrial Designer: Mm-hmm. Project Manager: So then I will ask the User Interf Interface Designer to to think about the point we discussed like the number of buttons, the the fact that is lighted or not, things like that, and what would be convenient for the user. User Interface: Mm-hmm. Project Manager: And also um {vocalsound} I will ask the Market Expert to uh try to find out what are the absolute requirements, what is absolutely needed in a remote control uh for the user. So. And then uh I will uh just ask you to think about that and uh look at your mail because you will receive uh some good advice soon. {vocalsound} User Interface: Mm. Project Manager: So. Thank you I think that's all for this point. User Interface: Good. Industrial Designer: Mm-hmm. User Interface: {vocalsound} Marketing: Thank you {vocalsound} User Interface: Uh, so we come back in five minutes? Half an hour. Project Manager: Anyway you will receive some messages. {vocalsound} Be careful. You eat it? Does it move uh? Okay, but I don't know if it uh is still correctly uh {disfmarker} We'll see. Industrial Designer: Ah. {gap}",
+            "instruction": "Please prepare a speech for me"
+        },
+        "test2": {
+            "dialogue": "Project Manager: Okay, good morning. This is our first team meeting. User Interface: Good day. Marketing: Morning. Industrial Designer: Morning. Project Manager: I'll be your Project Manager for today, for this project. My name is Mark {gap} will be giving this presentation for you to kick the project off. {vocalsound} That's my uh that's the agenda for today. Well, of course we're new to each other, so I'd like to get acquainted first. So let's do that first, I mean {disfmarker} Let's start with you, can you introduce yourself? You're our Marketing Expert. Marketing: Yes. {vocalsound} Um my name is Dirk, Dirk Meinfeld. Um I will be uh {gap} Pr Project {disfmarker} the Marketing Expert. And I will see what the user wants and uh what we can do uh with the new produ project {disfmarker} product. {vocalsound} Project Manager: Okay, excellent. And you are User Interface {disfmarker} User Interface: Nick Broer, Project Manager: Yeah. User Interface: User Interface Designer. I'm going to uh look at the technical design from the uh user point of view. Project Manager: Excellent. Okay. Industrial Designer: My name is Xavier Juergens, I'm the Industrial Designer, and there are three main questions that I have to find an answer to today. First one is uh what happens inside the apparatus, second is what is uh the apparatus made of, Marketing: Hmm. Industrial Designer: and the third is what should it look like. Project Manager: What should it look like? Okay. Marketing: Hmm. Project Manager: Oh, let's kick it off. Oh, there we go. So, our new project is about {disfmarker} we need design a remote control for television set, so, which has to be original, trendy and user-friendly. I took this off our corporate website. {disfmarker} I think well it sums up what we need to do. It's We're inspired by latest fashion, not only electronics, but also the latest trends in clothes and interior design. That's why our product will always fit in your home. So apparently we need to {vocalsound} um be very at um very open to what's currently hot in the market. So that's what you need to do to bring us the latest info and what people want. Marketing: Yeah. Yeah. Project Manager: So {disfmarker} So we put the fashion in electronics. So that's what we need to go for. Anyway, we'll take this project in three steps, three pha uh three phase of design. First step will be the functional design. Marketing: Yeah. Project Manager: And that's basically what we're gonna do. Everybody has uh a piece of individual work and a meeting afterwards, so we can share information about {disfmarker} So I'm gonna keep this short, since we had a technical problem. So skip through this. Uh. Okay. Every meeting we {disfmarker} everybody can present their uh their views and everything, so to help with these, you have {disfmarker} we have the SMARTboards here. We can use a regular PowerPoint presentation. I'm supposed to give you an introduction on this doodling board, so it's {disfmarker} actually it's very easy. Like it says, very simple, you just take out the pen. Like you see here, I'll just take the {disfmarker} take {gap} here. That's it, you just put it on the board. You see a pen here. You go here, just like using a pen. You can just draw whatever you want. It's like the eraser, can erase whatever you want. And so it will be easy just to illustrate your views, if you wanna change the format, you just {vocalsound} either take out jus just like the pen, and whatever you want, your current colour, your line width, just to make the line bigger. So it should be really easy. Marketing: Okay. Project Manager: This is to take the {disfmarker} just take a new slide and back again. We're just gonna keep using this board all the time, so I think it will be {disfmarker} it's very clear for everyone, I suppose. So I'll take this out. {vocalsound} Okay. We'll use that later. Anyway. Yeah, just just just stuff that you wanna share, just put it in the in the project folder, like I put my presentation now. I'll put the the minutes of every meeting, I'll put them there too, so everybody can read up if they have to leave early or whatever. So next, been here. {vocalsound} Well, {gap} gonna give the electronic white-board uh a shot. So basic idea is we have a blank sheet. Just try whatever you want, and like it says, draw your favourite animal. I think the creative genius should go first. {vocalsound} User Interface: {vocalsound} The creative genius? Industrial Designer: {vocalsound} Marketing: {vocalsound} User Interface: Thank you very much. Project Manager: So, draw us your favourite animal. User Interface: {vocalsound} Well, I'm more into the technical aspects of drawing, Industrial Designer: {vocalsound} User Interface: so I'm not really good at drawing animals, Project Manager: Draw us a technical animal. User Interface: but uh the animal which I {gap} {disfmarker} Oh. Project Manager: Yeah, it's still erasing. User Interface: {vocalsound} Pen. Marketing: {vocalsound} User Interface: Uh format. Else my animal will be like king-size. I pretty much like {vocalsound} a dolphin, because of its uh its freedom basically. Let's see. A head. {gap} actually worked with this. It's like uh it's a very {disfmarker} Uh high-tech. Industrial Designer: {vocalsound} {vocalsound} Marketing: {vocalsound} User Interface: Bit low-responsive though. Project Manager: {vocalsound} So that's what we don't want. User Interface: Prefer pen and paper. Project Manager: We want a high-responsive product. So {disfmarker} It looks more like nuclear bomb. Marketing: {vocalsound} Very nice dolphin. User Interface: It {vocalsound} {vocalsound} doesn't look like a nuclear bomb. Industrial Designer: {vocalsound} {vocalsound} Project Manager: {vocalsound} User Interface: This thing isn't doing what I'm {disfmarker} What I want. Marketing: {vocalsound} Project Manager: Let's go easy on it. User Interface: So {disfmarker} {vocalsound} Yeah, well it does look like a nuclear bomb. Project Manager: {vocalsound} Marketing: {vocalsound} User Interface: I'll just finish up real soon, because I'm {disfmarker} Marketing: {vocalsound} User Interface: So it doesn't really look like a dolphin, Project Manager: {vocalsound} Anyway, User Interface: but then again, this is all new for me. Project Manager: it should {disfmarker} It {disfmarker} It's supposed to be a dolphin, you like the freedom that it {disfmarker} that it represents. Industrial Designer: Uh-huh. User Interface: Like the ocean, like swimming. Do that in my spare time, so that's basically an {disfmarker} Project Manager: What do you like? Okay. Well, User Interface: Now we can forget this ever happened. Project Manager: our Marketing Expert. Show us an animal. Marketing: Um an animal. Project Manager: {gap} Pick a {disfmarker} pick a {disfmarker} Marketing: I like the elephant. {vocalsound} Project Manager: pick a clean sheet. Oh. Take a clean sheet first. Marketing: What? Yeah. Um {disfmarker} Project Manager: Just press next. That's it. Marketing: Oh yeah. Oh, a blank. Okay, next. Free, I like the elephant. It's big, it's strong, so uh uh {disfmarker} Oh, it's a little bit {disfmarker} User Interface: It's not really that responsive, no. {vocalsound} Marketing: You have to hold it, right? Project Manager: {vocalsound} Industrial Designer: Mm. Marketing: Hmm. Project Manager: {vocalsound} Marketing: {gap} It's a beautiful animal. Project Manager: {vocalsound} Marketing: Oh, you have to p press it pretty hard. With a smile on it, Project Manager: {vocalsound} It's a cute elephant. User Interface: {vocalsound} Marketing: it's very important. Yeah. Project Manager: {vocalsound} Marketing: And uh not to forget its tail. Oh. Project Manager: It's a nice beard. Marketing: Yeah, it's okay. Yes. {vocalsound} Project Manager: {vocalsound} User Interface: And you was making comments on my dolphin. {vocalsound} Project Manager: {vocalsound} Marketing: {vocalsound} I will beat the dolphin. {vocalsound} No. Project Manager: Okay, so it's just a bee. Marketing: Yeah. Project Manager: So I suggest you make us the elephant in the market. The big and strong player in the market. This would be good. Marketing: Yeah. Yeah. Project Manager: Okay, excellent. On to the next one. Industrial Designer: {vocalsound} Okay. Marketing: Uh yeah. Industrial Designer: Okay, you should press next. Marketing: {vocalsound} Yeah. Project Manager: Press next. Yeah, it's up there. Industrial Designer: {vocalsound} Okay. Project Manager: That's it. Industrial Designer: Okay, well the animal I'd like to draw is a tiger. Project Manager: {vocalsound} User Interface: You picked a hard one, didn't you? {vocalsound} Industrial Designer: My drawing skills are really bad, so. Marketing: Experience with the tiger. Project Manager: {vocalsound} Marketing: What? They are {disfmarker} Industrial Designer: They are really bad, my drawing skills. Project Manager: {vocalsound} Marketing: Okay uh-huh. Project Manager: Sure looks smooth. Marketing: Oh. Industrial Designer: I'm not sure how the legs should go, but {disfmarker} Project Manager: {vocalsound} Industrial Designer: Uh these are stripes. User Interface: Got it. {vocalsound} Industrial Designer: I've picked this animal because it's very fast. It is uh it knows exactly what it wants. Uh it hardly ever wastes any resources. Project Manager: What does it want? Industrial Designer: Uh well, basically uh it hunts for prey, but it does it always in a very well-thought way. Uh it knows exactly what it wants. It never kills an animal uh just for the killing, so it's very efficient. And it tries to do everything as fast as possible. Project Manager: Okay. Industrial Designer: And it always goes for uh security, in seeking uh uh a hide spot and uh and doing everything, Marketing: Mm. Industrial Designer: security, speed and efficiency is important. And I think uh those things we can use. Project Manager: I agree. Industrial Designer: {vocalsound} Marketing: Okay. Project Manager: , I'm supposed to draw the animal next. Yay I introduce to the world the amazing ant. User Interface: {vocalsound} Marketing: {vocalsound} Uh hard worker. Project Manager: Great team-workers. User Interface: {vocalsound} Industrial Designer: Yeah. Marketing: Yeah. Project Manager: Do everything to Uh really small, but together they're really strong. So I'm gonna give it a smiley face. Industrial Designer: {vocalsound} Oh. Marketing: Yeah, yeah. Project Manager: Not sure where the p {gap}. Just put'em here. Whatever. {vocalsound} Marketing: {vocalsound} Project Manager: Think it need shoes. So {disfmarker} Marketing: {vocalsound} Project Manager: {vocalsound} I'm just too lazy to draw it all black, so {disfmarker} {vocalsound} That's the coolest ant ever. User Interface: You've done this before, haven't you? {vocalsound} Industrial Designer: {vocalsound} Project Manager: I love to draw ants. It's my hobby. Marketing: {vocalsound} Project Manager: Anyway {disfmarker} Nah. {vocalsound} Just {disfmarker} I think it's very representative what we drew, I guess. Like you take {disfmarker} just take your freedom and use a a trendy interface that you design for us. Marketing: Yeah. Project Manager: Just {disfmarker} Yeah. You're supposed to make i make it different from uh from what other people have, and just make it a little distinct. Anyway. {gap} another beep to stop the meeting. See. Warning. Finish meeting now. Uh put this down. Examples. Well I guess we have a little little time extra, but {disfmarker} Just a little quick discussion to to open open our work. So what do you guys think about {disfmarker} The first idea is just very short. I'll start with you. What are y What are your first ideas for the new product? What {disfmarker} User Interface: Well, I basically had a question. Do {vocalsound} uh {disfmarker} Are we going to introduce a multi remote control? Is it just the T_V_ or do we want to in Project Manager: The project I got was just for a T_V_ remote control. Marketing: Uh {vocalsound} {disfmarker} User Interface: Just for T_V_ remote control. Project Manager: Yeah, I guess so. Marketing: Yeah. User Interface: Okay. Well, I was thinking about design remote control, with our uh motto and all. Marketing: But {disfmarker} User Interface: Uh thing to keep in mind is that we need to stick to what people are familiar with. Marketing: Yeah. User Interface: No rational changes or whatever,'cause it {disfmarker} revolutionary changes, Project Manager: Okay, so very intuitive design, I guess. User Interface: yes. {vocalsound} Uh we might have to consider other design aspects of our product. So that was something I wanted to add, Project Manager: {gap} User Interface: and perhaps some usability aspect. T_V_ is becoming central in most homes. Do we want people who are disabled in any way to uh, yeah, to be able to use it as well? Project Manager: Yeah, we want {disfmarker} I suppose we want almost everyone to be using it. So {vocalsound} I think {disfmarker} I mean, really disabled people, yeah, {vocalsound} might be a problem, but I think it's a little {gap} take it into consideration. Um yeah. I think we really need to cut the meeting short. You have anything you wanna share quickly? Industrial Designer: Hmm. Marketing: Uh. Industrial Designer: Only one thing uh that has to be added according to me is uh the the material it is made of, it should be something light. User Interface: Yeah. Industrial Designer: That's {disfmarker} it speaks for itself, Project Manager: It should be light, okay. Industrial Designer: but some uh {disfmarker} Yeah. Project Manager: Um, let's see, Marketing: Yeah. Project Manager: where did I {disfmarker} Let's skip that. Oh, this is it. Sorry, I skipped this sheet. Marketing: Selling price. Project Manager: What do we {disfmarker} This {disfmarker} Quick {gap} {disfmarker} What we're going to {disfmarker} Selling price, twenty five Euros. That's for you. The production price, twelve and a half Euros, approximately. Industrial Designer: {vocalsound} Okay. Project Manager: Just go go for that. We'll reach the uh reach that profit. Industrial Designer: Okay. User Interface: Okay, well that's not that much to work with. {vocalsound} Marketing: {gap} international. Project Manager: No, it's not much to work on. I'm sorry, I skipped it. {vocalsound} Anyways, that's {disfmarker} Yeah, this is it. Do you have anything you you came up with yet? About uh marketing transfer, whatever? Marketing: Um about what? Marketing? Project Manager: Marketing {gap} I'm not sure what you what you came up with yet. You have anything to share? Or else we'll cut the meeting just cut the meeting short Marketing: {vocalsound} Um no, not really yet, Project Manager: since we're supposed to stop. Marketing: but I've some ideas Project Manager: Okay. Marketing: and I will uh say it uh {disfmarker} Project Manager: Anyways, the the personal coach will give you the your p your personal assignments and everything. So we'll just meet back in here thirty minutes. Industrial Designer: Okay. Marketing: Okay. Project Manager: I'm sure we have that. Industrial Designer: Good luck everyone. Project Manager: Yeah, thanks for attending. User Interface: Mm, good luck. Marketing: {vocalsound} Project Manager: I'll see you back here in thirty minutes. Marketing: Okay. Yes. Industrial Designer: {vocalsound}",
+            "instruction": "I need to know what was covered at the meeting"
+        },
+        "test3":{
+            "dialogue": "Project Manager: Okay. {vocalsound} Je croix que c'est dommage de le {disfmarker} it will be sad to destroy this prototype. It really looks like a banana. User Interface: {vocalsound} It is a banana. Project Manager: It is a banana. {vocalsound} User Interface: It is the essence of bananas. I would be confused with this thing. Project Manager: {vocalsound} User Interface: {vocalsound} Project Manager: {vocalsound} Mm. Industrial Designer: {vocalsound} User Interface: S Project Manager: Okay. Marketing: Mm-hmm. {vocalsound} User Interface: How is everyone? Project Manager: Hi. Industrial Designer: Hi. Project Manager: So we are here for the detailed design meeting. Marketing: {vocalsound} Project Manager: {vocalsound} So {vocalsound} User Interface: Mm-hmm. Project Manager: we will uh {disfmarker} I will first present what we are going to do in this meeting. Then uh I've {disfmarker} I will also take notes during this meeting and I will send you uh a summary then as usual. We will then look at the evaluation criteria of the prototype presented by uh our two colleagues that make good work. Industrial Designer: {vocalsound} Marketing: {vocalsound} Project Manager: {vocalsound} And uh then we will see the financial aspects and the cost of the product. Then we will uh evaluate the product. And uh end with the conclusion of this project and see whether it fits with {disfmarker} it fulf if it fulfil the requirement or not. So Industrial Designer: Mm-hmm. Project Manager: d let's start with the cost aspect so so I look at the aspect discussed last time, that is to say uh to have a standard battery, {vocalsound} to have a yellow banana shaped uh case with uh a rubber material around it Industrial Designer: {vocalsound} Project Manager: to be uh to feel spongy, User Interface: Like a banana. Project Manager: {vocalsound} and uh also at the different aspect like having a wheel etcetera. Marketing: {vocalsound} Industrial Designer: Mm-hmm. Project Manager: And the cost ended to be ten point seven Euros. So which is uh good, because we had a price gap of twelve point five Euros. Industrial Designer: Mm-hmm. Project Manager: So for the financial aspect it's okay, we can uh {disfmarker} we can continue with this product uh as if, Marketing: {vocalsound} Project Manager: {vocalsound} and we are now going to see the project evaluation with uh our marketing expert. Marketing: {vocalsound} Yeah. Okay. So uh you can have my project in {disfmarker} Project Manager: Yeah. You have a presentation? Marketing: Uh yeah just a {disfmarker} Project Manager: Participant four, yes. Marketing: {vocalsound} Four. Evaluation. Project Manager: Okay. Okay. Marketing: Okay. So you can go. We can go through. Project Manager: Okay. Marketing: So I made an evaluation and the the evaluation criteria is made according to {vocalsound} the users'requirements and the market trends we talked about uh during the previous uh meetings. So you can go through and {disfmarker} Project Manager: Okay. Marketing: okay so uh we have uh six points. We we talked about before. Project Manager: Okay. Marketing: So we we want to have a product fancy look and feel, technologically innovative, easy to use, fashion, {vocalsound} easy to find in a room, and robust, Project Manager: Yeah. Industrial Designer: Mm-hmm. Marketing: uh and uh uh I have a scale of uh seven points. Project Manager: Yeah. Marketing: Okay. So I go through all the uh all the points here, Project Manager: Yeah. Marketing: and uh according to what you think about the this project you can uh mm make a one point, two point or seven point. Okay? Project Manager: Okay. Marketing: And after we ha we have an an average, and uh we see. Project Manager: Okay. Industrial Designer: Mm-hmm. Marketing: The {disfmarker} okay? {vocalsound} Uh so uh fancy look and feel, what do you think? Project Manager: Okay. Maybe you can presen {vocalsound} Marketing: F between o one and seven. Project Manager: okay. Maybe {disfmarker} {vocalsound} hold it. Marketing: {vocalsound} Project Manager: {vocalsound} So I think it's uh very uh very nice. What do you think? User Interface: I give it a {disfmarker} I give it a five. Project Manager: Yeah. So it's between one and seven? Seven is the highest uh? Marketing: Yeah. {vocalsound} Seven is the {disfmarker} Project Manager: I will give a six. Industrial Designer: I will give a a five. Marketing: {vocalsound} Mm-hmm. User Interface: {vocalsound} And you? Marketing: {gap} sorry. User Interface: Do you vote uh Christine? Marketing: {gap} eh? User Interface: Do you also vote? Marketing: {vocalsound} No, I just want to see something {disfmarker} Project Manager: Maybe we all have to agree on a common {disfmarker} User Interface: Well, we can {gap} very easily {vocalsound}. Project Manager: Yeah. Marketing: Mm-hmm. Industrial Designer: {vocalsound} Project Manager: {vocalsound} Marketing: Uh I think uh {gap} {vocalsound} and need to {gap} as well {vocalsound}. Project Manager: No problem. So User Interface: {vocalsound} Marketing: Need to {disfmarker} Project Manager: this is your {disfmarker} Marketing: uh I don't know if you {disfmarker} we ha we have to put uh one uh f If it's better or {disfmarker} Project Manager: One is most {gap}. User Interface: I {disfmarker} Marketing: Uh-uh. Project Manager: Well, we can choose what we want. Marketing: Um. Yeah. Project Manager: Okay, let's say that seven is the best. Marketing: Or maybe we can say s seven is the best mm {vocalsound}. Project Manager: Okay. So so do note the grade we have five, six for me, Industrial Designer: Five. Project Manager: five. And what what's your choice? Marketing: Oh sorry. {vocalsound} Project Manager: How much would you give on the fancy aspect, on the fashionable aspect? Marketing: Six {disfmarker} Uh s you can {disfmarker} how much what? Project Manager: How much would you {disfmarker} you don't answer to this uh questionnaire? Marketing: Oh yes I mm I dunno mm, I think six, it's a good uh {disfmarker} User Interface: So it will have five point five average. Project Manager: Five point five average. Marketing: Yeah. Project Manager: Okay. User Interface: Mm. Marketing: Wa can {gap}. {vocalsound} Industrial Designer: {vocalsound} Marketing: Okay. Project Manager: Well, does it {disfmarker} Marketing: {vocalsound} I sorry. User Interface: {vocalsound} Marketing: Okay. So after, the technological aspect? Project Manager: Okay, techne technological aspect. Marketing: So we we said uh we have uh a new technological uh thing with a wheel. Project Manager: Yeah, we have the wheel. We also have the rubber material, Marketing: Uh. Project Manager: which make it uh like new also. I think I would give a five. User Interface: It's {gap} four. Project Manager: Four? Industrial Designer: A four also, because, except for the wheel, we don't have so much innovation. User Interface: Yeah. Industrial Designer: The rubber is {disfmarker} Project Manager: Okay. Industrial Designer: Uh a four. I I {disfmarker} User Interface: D are we including the voice {disfmarker} are you glu are we including the voice in the end or not? Huh? Project Manager: No. User Interface: No. Okay. Project Manager: So Marketing: No. Project Manager: what's your uh grade? Marketing: Four. Project Manager: Four? So we have four, four f and five? Marketing: We can put four? User Interface: Yeah. Project Manager: Yeah, four. Four, yeah, let's put four. User Interface: For twenty five. Marketing: Everyone is okay or {disfmarker} four poin Four. User Interface: Yeah. Marketing: Okay. Project Manager: Doesn't it {disfmarker} {vocalsound} Marketing: Very easy to use. Do you think it's easy to use? Project Manager: Yeah, I think so. Yeah. Industrial Designer: Yeah. User Interface: I give a seven, I think. Industrial Designer: Six. Project Manager: I would give a {disfmarker} I would give a seven as well. It's very easy to use. Industrial Designer: Six. Marketing: Mm, six for me also. Project Manager: So User Interface:'Kay. Marketing: Six point five. {vocalsound} Project Manager: six point five. Industrial Designer: Six six six point five. Project Manager: Okay. Marketing: Okay. {vocalsound} Is it fashion? {vocalsound} Project Manager: Oh yeah, User Interface: {vocalsound} Project Manager: its its f its fruit fruit shape. Marketing: Seven? {vocalsound} Project Manager: I would say seven. And is very very nice design. Marketing: Yeah it's fashion, because it's a fruit, User Interface: Yeah, we can we can put a seven here. Marketing: and we say that the {disfmarker} Industrial Designer: Yeah, seven. User Interface: Yeah. Marketing: yeah, seven. Project Manager: Yeah. Seven, okay. User Interface: Yeah. Well, we hope. Industrial Designer: {vocalsound} Easy to find. Marketing: {vocalsound} Uh easy to find in a room? {vocalsound} Project Manager: {vocalsound} Industrial Designer: {vocalsound} I lost my banana. {vocalsound} User Interface: {vocalsound} {vocalsound} Project Manager: I think you can't miss it. User Interface: {vocalsound} Yeah. Project Manager: Okay. Marketing: Yeah? Industrial Designer: Uh. User Interface: Yeah, I think it's cool. I think we can put a six here. Marketing: We have the lightning, or {disfmarker} Project Manager: Yeah, we have {vocalsound} the {vocalsound} Marketing: The lighting. Project Manager: we don't sesh especially have the lightning User Interface: {vocalsound} So you'll make the material transparent Project Manager: but {disfmarker} Marketing: {vocalsound} User Interface: so that it uh lights up completely, or {disfmarker} Project Manager: So it's yellow. It's okay. Marketing: {vocalsound} Yeah. {gap} Project Manager: I think it's very easy to {vocalsound} {disfmarker} Marketing: Seven? Project Manager: I would say seven. It's hard to miss it. Industrial Designer: {vocalsound} Six. Yeah, okay. User Interface: Yeah. Marketing: Is it {disfmarker} is it robust? Project Manager: Yeah, it's rubber, made of rubber, Industrial Designer: Uh f yeah, it's ru it's rubber. Project Manager: I think it's m it's uh more rubber than uh other remote control. Industrial Designer: Yeah. {vocalsound} User Interface: Yeah the only problem there might be {disfmarker} which {gap} know, i if it's very sensitive, Project Manager: Yeah. User Interface: they will, Industrial Designer: Yeah. User Interface: I don't know {disfmarker} Project Manager: But it is uh {disfmarker} it is surrounded by rubber material. Industrial Designer: Yeah. User Interface: Yeah, okay. Project Manager: So maybe we can put a six. Industrial Designer: Yeah. User Interface: Mm. Marketing: {vocalsound} Everybody is okay, six. Industrial Designer: Six or five. Five {vocalsound} Project Manager: Six is okay? User Interface: Six, yeah, for me. Industrial Designer: Six. Marketing: Yeah. {vocalsound} Okay. Project Manager: Yeah. User Interface: Yeah. Marketing: S now {vocalsound} um so. Project Manager: Tadada. We have to sum up everything. User Interface: Twenty. Marketing: Thirteen uh, twenty, twenty six point five, uh seven, thirty two, thirty six {gap}. User Interface: Thirty. Thir Marketing: That's that's okay? Six. Project Manager: {vocalsound} Six is a good {disfmarker} User Interface: Okay. Marketing: Good. Uh if we say that seven it's uh it's the better, Project Manager: Yeah, the be. Industrial Designer: {gap} User Interface: Yeah, the top {disfmarker} Marketing: and when uh s six sit six are good {disfmarker} it's a good uh p product, I think. Project Manager: Okay, so six is a {disfmarker} User Interface: Mm. So will become eight soon? Project Manager: So it's a good evaluation, I think. It's very promising. User Interface: Yeah, well it's a bit biased. {vocalsound} Project Manager: Huh. Marketing: We have a good price and uh {vocalsound}. Industrial Designer: Yeah. Project Manager: So this prototype is quite nice. {vocalsound} User Interface: Okay. Marketing: Good. User Interface: Because I saw uh some phones that were banana shaped, uh wireless phones not mobile ones, wireless for the house, Marketing: {vocalsound} Project Manager: Yeah. Okay. User Interface: uh quite big also, Marketing: {vocalsound} User Interface: and they were selling {gap} something like a hundred Euros, two hundred Euros. Project Manager: {vocalsound} User Interface: Just a {vocalsound} just a phone, wireless. Project Manager: So having this at twenty five Euros is uh quite attractive, I think. Industrial Designer: Mm-hmm. User Interface: Yeah. Project Manager: I think the {disfmarker} Industrial Designer: But almo also the complexity between a phone and a remote control is not {disfmarker} cannot compare. User Interface: Yeah. Yeah, Project Manager: Yeah. User Interface: it's much more complex, but {disfmarker} Project Manager: So, I think, we can summarise. So we have seen the prototype. It's very nice according to the work of our two designer. Industrial Designer: {vocalsound} Project Manager: The the the financial aspect were okay. We we have the cost below uh our threshold and so we could sell at twenty five Euros and make i make profit. The the evaluation give satisfying result as well. So I think we can move to the last part of the meeting. Marketing: {vocalsound} Project Manager: So the cost is in the budget, the evaluation is okay, so I th I think we can now uh open champagne and make a huge party. Industrial Designer: {vocalsound} Start to eat banana. {vocalsound} User Interface: {vocalsound} Project Manager: I don't know if it's provided by uh by the meeting staff. User Interface: {vocalsound} Marketing: Mm-hmm. User Interface: Okay. Project Manager: {vocalsound} Okay so congratulation. {vocalsound} Nice product. Industrial Designer: Yeah. User Interface: {vocalsound} Congratulations to the team. Uh very well, we worked together fantastically. Marketing: {vocalsound} Project Manager: Yeah. Industrial Designer: {vocalsound} Project Manager: I think it was a good collaboration uh. Aspect. User Interface: {vocalsound} So what does the management say? Project Manager: Sorry? User Interface: What does the management say? Project Manager: I think we will have um much bigger project next time and a much bigger salary as well. User Interface: Ah. Industrial Designer: {vocalsound} Marketing: {vocalsound} Project Manager: All it depends on who watch this meeting. Industrial Designer: {vocalsound} User Interface: {vocalsound} Industrial Designer: {vocalsound} Yeah. {vocalsound} Project Manager: {vocalsound} We don't know. {vocalsound} User Interface: Yeah. Project Manager: Okay, so User Interface: Okay. Project Manager: good guys {vocalsound}, Marketing: {vocalsound} Project Manager: so see you for next uh successful project. {vocalsound} Industrial Designer: Okay. Yeah. Fruits. Marketing: Mm'kay. User Interface: Mm.",
+            "instruction": "Based on this, write a brief speech"
+        }
+    },
+    "PerformanceChart_1": {
+        "input_var": ["sales_file"],
+        "output_var": ["chart"],
+        "related_nodes": ["document-extractor", "echarts", "parameter-extractor"],
+        "test1":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0001.xlsx"
+            }
+        },
+        "test2":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0002.xlsx"
+            }
+        },
+        "test3":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0003.xlsx"
+            }
+        }
+    },
+    "PerformanceChart_2": {
+        "input_var": ["sales_file"],
+        "output_var": ["chart", "pie_chart"],
+        "related_nodes": ["document-extractor", "echarts", "parameter-extractor"],
+        "test1":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0001.xlsx"
+            }
+        },
+        "test2":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0002.xlsx"
+            }
+        },
+        "test3":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0003.xlsx"
+            }
+        }
+    },    
+    "PerformanceChart_3": {
+        "input_var": ["sales_file"],
+        "output_var": ["line_chart", "pie_chart"],
+        "related_nodes": ["document-extractor", "echarts", "parameter-extractor", "code"],
+        "test1":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0001.xlsx"
+            }
+        },
+        "test2":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0002.xlsx"
+            }
+        },
+        "test3":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0003.xlsx"
+            }
+        }
+    }, 
+    "PerformanceChart_4": {
+        "input_var": ["sales_file"],
+        "output_var": ["line_chart", "pie_chart", "analysis"],
+        "related_nodes": ["document-extractor", "echarts", "parameter-extractor", "code", "llm", "template-transform"],
+        "test1":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0001.xlsx"
+            }
+        },
+        "test2":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0002.xlsx"
+            }
+        },
+        "test3":{
+            "sales_file": {
+                "mime_type": "document/xlsx",
+                "value": "PerformanceChart_0003.xlsx"
+            }
+        }
+    }, 
+    "GithubSummary_1": {
+        "input_var": ["url"],
+        "output_var": ["file_structure"],
+        "related_nodes": ["http-request"],
+        "test1":{
+            "url": "https://github.com/chikawa11/nanoGPT"
+        },
+        "test2":{
+            "url": "https://github.com/chikawa11/requests"
+        },
+        "test3":{
+            "url": "https://github.com/chikawa11/bottle"
+        }
+    }, 
+    "GithubSummary_2": {
+        "input_var": ["url"],
+        "output_var": ["file_structure"],
+        "related_nodes": ["http-request"],
+        "test1":{
+            "url": "https://github.com/chikawa11/nanoGPT"
+        },
+        "test2":{
+            "url": "https://github.com/chikawa11/requests"
+        },
+        "test3":{
+            "url": "https://github.com/chikawa11/bottle"
+        }
+    }, 
+    "GithubSummary_3": {
+        "input_var": ["url"],
+        "output_var": ["summary"],
+        "related_nodes": ["http-request", "llm"],
+        "test1":{
+            "url": "https://github.com/chikawa11/nanoGPT"
+        },
+        "test2":{
+            "url": "https://github.com/chikawa11/requests"
+        },
+        "test3":{
+            "url": "https://github.com/chikawa11/bottle"
+        }
+    }, 
+    "Mermaid_1": {
+        "input_var": ["code"],
+        "output_var": ["mermaid_code", "mermaid_pic"],
+        "related_nodes": ["llm", "mermaid-converter"],
+        "test1": {
+            "code": {
+                "mime_type": "document/txt",
+                "value": "E-commerce order system.txt"
+            }
+        },
+        "test2": {
+            "code": {
+                "mime_type": "document/txt",
+                "value": "User login authentication process.txt"
+            }
+        },
+        "test3": {
+            "code": {
+                "mime_type": "document/txt",
+                "value": "Order status machine.txt"
+            }
+        }
+    },
+    "Mermaid_2": {
+        "input_var": ["code", "knowledge_url"],
+        "output_var": [["mermaid_code", "mermaid_pic"],["mermaid_code", "mermaid_pic", "summary"]],
+        "related_nodes": ["llm", "mermaid-converter", "if-else", "http-request", "code", "variable-aggregator", "iteration"],
+        "test1":{
+            "code": "",
+            "knowledge_url": "https://docs.python.org/3/tutorial/inputoutput.html"
+        },
+        "test2": {
+            "code": "",
+            "knowledge_url": "https://docs.python.org/3/tutorial/classes.html"
+        },
+        "test3": {
+            "code": "",
+            "knowledge_url": "https://docs.python.org/3/whatsnew/3.14.html"
+        }
+    }, 
+    "Code_1": {
+        "input_var": ["source_code", "source_language", "target_language"],
+        "output_var": ["target_code"],
+        "related_nodes": ["llm", "document-extractor"],
+        "test1":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "N_queen.txt"
+            },
+            "source_language": "C",
+            "target_language": "python"
+        },
+        "test2": {
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "N_queen.txt"
+            },
+            "source_language": "C",
+            "target_language": "Go"
+        },
+        "test3": {
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "N_queen.txt"
+            },
+            "source_language": "C",
+            "target_language": "JavaScript"
+        }
+    }, 
+    "Code_2": {
+        "input_var": ["source_code", "source_language", "case_input"],
+        "output_var": ["result", "python_code"],
+        "related_nodes": ["llm", "document-extractor", "code"],
+        "test1":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "N_queen.txt"
+            },
+            "source_language": "C",
+            "case_input": "n = 4",
+            "ground_truth": "[['.Q..','...Q','Q...','..Q.'],['..Q.','Q...','...Q','.Q..']]"
+        },
+        "test2":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "Solve_Sudoku.txt"
+            },
+            "source_language": "JavaScript",
+            "case_input": "board = [['5','3','.','.','7','.','.','.','.'],['6','.','.','1','9','5','.','.','.'],['.','9','8','.','.','.','.','6','.'],['8','.','.','.','6','.','.','.','3'],['4','.','.','8','.','3','.','.','1'],['7','.','.','.','2','.','.','.','6'],['.','6','.','.','.','.','2','8','.'],['.','.','.','4','1','9','.','.','5'],['.','.','.','.','8','.','.','7','9']]",
+            "ground_truth": "[['5','3','4','6','7','8','9','1','2'],['6','7','2','1','9','5','3','4','8'],['1','9','8','3','4','2','5','6','7'],['8','5','9','7','6','1','4','2','3'],['4','2','6','8','5','3','7','9','1'],['7','1','3','9','2','4','8','5','6'],['9','6','1','5','3','7','2','8','4'],['2','8','7','4','1','9','6','3','5'],['3','4','5','2','8','6','1','7','9']]"
+        },
+        "test3":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "Floyd.txt"
+            },
+            "source_language": "Java",
+            "case_input": "7 3\n2 3 4\n3 6 6\n4 7 8\n2\n2 3\n3 4",
+            "ground_truth": "4\n-1"
+        }
+    }, 
+    "Code_3": {
+        "input_var": ["source_code", "source_language"],
+        "output_var": ["explanation", "markdown"],
+        "related_nodes": ["llm", "document-extractor", "markdown-exporter"],
+        "test1":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "N_queen.txt"
+            },
+            "source_language": "C"
+        },
+        "test2":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "Solve_Sudoku.txt"
+            },
+            "source_language": "JavaScript"
+        },
+        "test3":{
+            "source_code": {
+                "mime_type": "document/txt",
+                "value": "Floyd.txt"
+            },
+            "source_language": "Java"
+        }
+    }, 
+    "StudyPlanner_1": {
+        "input_var": ["instruction"],
+        "output_var": ["plan"],
+        "related_nodes": ["llm", "parameter-extractor"],
+        "test1":{
+            "instruction": "I'm preparing for the PMP exam and need to pass within three months. My preferred study method is drilling practice questions and reviewing written study guides, as I find videos too slow. I'm going to hunker down for the next few months and can guarantee 4 hours of high-intensity study every day."
+        },
+        "test2":{
+            "instruction": "I want to learn acoustic guitar for singing, just casually. My goal is to be able to play the song 'Chengdu' to consider myself a 'beginner.' I'm starting from scratch and can't read standard notation (it gives me a headache), so I'm looking for guitar TABs. I'm busy during the week but have plenty of time on weekends—I can practice for about 3 hours at a time."
+        },
+        "test3":{
+            "instruction": "I want to learn how to edit videos on my phone. I have a lot of travel footage that I want to turn into Vlogs for Xiaohongshu. I prefer learning by example because it sticks better. I can dedicate about 20 minutes every night before bed to practice."
+        }
+    }, 
+    "StudyPlanner_2": {
+        "input_var": ["instruction"],
+        "output_var": ["tutorial"],
+        "related_nodes": ["llm", "parameter-extractor", "iteration", "template-transform"],
+        "test1":{
+            "instruction": "I'm preparing for the PMP exam and need to pass within three months. My preferred study method is drilling practice questions and reviewing written study guides, as I find videos too slow. I'm going to hunker down for the next few months and can guarantee 4 hours of high-intensity study every day."
+        },
+        "test2":{
+            "instruction": "I want to learn acoustic guitar for singing, just casually. My goal is to be able to play the song 'Chengdu' to consider myself a 'beginner.' I'm starting from scratch and can't read standard notation (it gives me a headache), so I'm looking for guitar TABs. I'm busy during the week but have plenty of time on weekends—I can practice for about 3 hours at a time."
+        },
+        "test3":{
+            "instruction": "I want to learn how to edit videos on my phone. I have a lot of travel footage that I want to turn into Vlogs for Xiaohongshu. I prefer learning by example because it sticks better. I can dedicate about 20 minutes every night before bed to practice."
+        }
+    }, 
+    "StudyPlanner_3": {
+        "input_var": ["instruction"],
+        "output_var": ["ppt"],
+        "related_nodes": ["llm", "parameter-extractor", "iteration", "template-transform", "markdown-exporter"],
+        "test1":{
+            "instruction": "I'm preparing for the PMP exam and need to pass within three months. My preferred study method is drilling practice questions and reviewing written study guides, as I find videos too slow. I'm going to hunker down for the next few months and can guarantee 4 hours of high-intensity study every day."
+        },
+        "test2":{
+            "instruction": "I want to learn acoustic guitar for singing, just casually. My goal is to be able to play the song 'Chengdu' to consider myself a 'beginner.' I'm starting from scratch and can't read standard notation (it gives me a headache), so I'm looking for guitar TABs. I'm busy during the week but have plenty of time on weekends—I can practice for about 3 hours at a time."
+        },
+        "test3":{
+            "instruction": "I want to learn how to edit videos on my phone. I have a lot of travel footage that I want to turn into Vlogs for Xiaohongshu. I prefer learning by example because it sticks better. I can dedicate about 20 minutes every night before bed to practice."
+        }
+    }, 
+    "ExamQuestion_1": {
+        "input_var": ["teaching_plan", "num_choice", "num_tf", "num_blank"],
+        "output_var": ["result"],
+        "related_nodes": ["llm", "template-transform", "document-extractor"],
+        "test1":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_history.md"
+            },
+            "num_choice": 5,
+            "num_tf": 5,
+            "num_blank": 5
+        },
+        "test2":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_physics.md"
+            },
+            "num_choice": 3,
+            "num_tf": 3,
+            "num_blank": 4
+        },
+        "test3":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_literature.md"
+            },
+            "num_choice": 4,
+            "num_tf": 0,
+            "num_blank": 4
+        }
+    }, 
+    "ExamQuestion_2": {
+        "input_var": ["teaching_plan", "num_choice", "num_tf", "num_blank"],
+        "output_var": ["teacher_ver", "student_ver"],
+        "related_nodes": ["llm", "template-transform", "document-extractor"],
+        "test1":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_history.md"
+            },
+            "num_choice": 5,
+            "num_tf": 5,
+            "num_blank": 5
+        },
+        "test2":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_physics.md"
+            },
+            "num_choice": 3,
+            "num_tf": 3,
+            "num_blank": 4
+        },
+        "test3":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_literature.md"
+            },
+            "num_choice": 4,
+            "num_tf": 0,
+            "num_blank": 4
+        }
+    }, 
+    "ExamQuestion_3": {
+        "input_var": ["teaching_plan", "num_choice", "num_tf", "num_blank"],
+        "output_var": ["teacher_ver", "student_ver"],
+        "related_nodes": ["llm", "template-transform", "document-extractor", "markdown-exporter"],
+        "test1":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_history.md"
+            },
+            "num_choice": 5,
+            "num_tf": 5,
+            "num_blank": 5
+        },
+        "test2":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_physics.md"
+            },
+            "num_choice": 3,
+            "num_tf": 3,
+            "num_blank": 4
+        },
+        "test3":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_literature.md"
+            },
+            "num_choice": 4,
+            "num_tf": 0,
+            "num_blank": 4
+        }
+    }, 
+    "ExamQuestion_4": {
+        "input_var": ["teaching_plan", "num_choice", "num_tf", "num_blank"],
+        "output_var": ["teacher_ver", "student_ver"],
+        "related_nodes": ["llm", "template-transform", "document-extractor", "markdown-exporter"],
+        "test1":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_history.md"
+            },
+            "num_choice": 5,
+            "num_tf": 5,
+            "num_blank": 5
+        },
+        "test2":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_physics.md"
+            },
+            "num_choice": 3,
+            "num_tf": 3,
+            "num_blank": 4
+        },
+        "test3":{
+            "teaching_plan":{
+                "mime_type": "document/md" ,
+                "value": "teaching_plan_literature.md"
+            },
+            "num_choice": 4,
+            "num_tf": 0,
+            "num_blank": 4
+        }
+    }, 
+    "ErrorNotebook_1": {
+        "input_var": ["source"],
+        "output_var": ["result"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "source":{
+                "mime_type": "image/jpeg" ,
+                "value": "errornotebook_0001.png"
+            },
+            "ground_truth": "[{'question_text': '判断题 1：在描述路线时，参照点是不断变动的。','subject': '数学','question_type': '判断题','difficulty': '中等','answer': '√','user_answer': '×','explanation': '在描述长距离或多段路线时，通常每到达一个新的位置，该位置就会成为描述下一段路线的参照点，因此参照点是不断变动的。'},{'question_text': '判断题 4：因为 0.2 × 5 = 1，所以 0.2 和 5 互为倒数。','subject': '数学','question_type': '判断题','difficulty': '简单','answer': '√','user_answer': '×','explanation': '倒数的定义是乘积为 1 的两个数互为倒数。0.2 × 5 = 1 符合定义。'},{'question_text': '判断题 6：女生比男生少 1/5，那么男生比女生多 20%。','subject': '数学','question_type': '判断题','difficulty': '困难','answer': '×','user_answer': '√','explanation': '设男生为 1，则女生为 1 - 1/5 = 4/5。男生比女生多：(1 - 4/5) ÷ 4/5 = 1/5 ÷ 4/5 = 1/4 = 25%。题目说是 20%，故错误。'},{'question_text': '选择题 1：一种盐水的含盐率是 20%，盐与水的质量比是（ ）。 A. 1:4  B. 1:5  C. 1:6','subject': '数学','question_type': '单选题','difficulty': '中等','answer': 'A','user_answer': 'B','explanation': '含盐率 20% 意味着盐占 20，盐水总重 100。水 = 100 - 20 = 80。盐:水 = 20:80 = 1:4。'},{'question_text': '选择题 2：分数单位是 1/8 的最大真分数化成百分数是（ ）。 A. 12.5%  B. 62.5%  C. 87.5%','subject': '数学','question_type': '单选题','difficulty': '中等','answer': 'C','user_answer': 'A','explanation': '分数单位是 1/8 的最大真分数是 7/8。7 ÷ 8 = 0.875 = 87.5%。'}]"
+        },
+        "test2":{
+            "source":{
+                "mime_type": "image/png" ,
+                "value": "errornotebook_0002.png"
+            },
+            "ground_truth": "{'question_text': '13. (2015·河北衡水中学月考) 已知 $P$ 是椭圆 $\\frac{x^2}{4} + \\frac{y^2}{3} = 1$ 上的一动点，$F_1, F_2$ 是椭圆的左、右焦点，延长 $F_1P$ 到 $Q$，使得 $|PQ| = |PF_2|$，那么动点 $Q$ 的轨迹方程是 ______','subject': '数学','question_type': '填空题','difficulty': '中等','answer': '$(x-1)^2 + y^2 = 16$','user_answer': '$(x+1)^2 + y^2 = 16$','explanation': '因为 $|PQ| = |PF_2|$，所以 $|F_1Q| = |F_1P| + |PQ| = |F_1P| + |PF_2|$。由椭圆定义 $|F_1P| + |PF_2| = 2a = 4$。即 $Q$ 到定点 $F_1(-1, 0)$ 的距离恒为 4。轨迹是以 $F_1$ 为圆心，4 为半径的圆，方程为 $(x+1)^2 + y^2 = 16$。'}"
+        },
+        "test3":{
+            "source":{
+                "mime_type": "image/png" ,
+                "value": "errornotebook_0003.png"
+            },
+            "ground_truth": "{'question_text': '6. (2014·河南省郑州一中检测) 椭圆 x²/12 + y²/3 = 1 的一个焦点为 F₁，点 P 在椭圆上。如果线段 PF₁ 的中点 M 在 y 轴上，那么点 M 的纵坐标是','subject': '数学','question_type': '单选题','difficulty': '中等','answer': 'A','user_answer': 'B','explanation': '1. **求焦点坐标**：由方程知 $a^2=12, b^2=3$，则 $c^2=a^2-b^2=9$，所以 $c=3$。不妨设焦点 $F_1(-3, 0)$。\n2. **利用中点性质**：设点 $P(x_0, y_0)$，线段 $PF_1$ 的中点 $M$ 的坐标为 $(\\frac{x_0-3}{2}, \\frac{y_0}{2})$。\n3. **确定 P 点坐标**：因为 $M$ 在 $y$ 轴上，所以其横坐标为 0，即 $\\frac{x_0-3}{2}=0 \\Rightarrow x_0=3$。\n4. **代入椭圆方程**：将 $x_0=3$ 代入椭圆方程 $\\frac{3^2}{12} + \\frac{y_0^2}{3} = 1$，解得 $\\frac{3}{4} + \\frac{y_0^2}{3} = 1 \\Rightarrow \\frac{y_0^2}{3} = \\frac{1}{4} \\Rightarrow y_0 = \\pm\\frac{\\sqrt{3}}{2}$。\n5. **求 M 点纵坐标**：$y_M = \\frac{y_0}{2} = \\pm\\frac{\\sqrt{3}}{4}$。与选项 A 吻合。\n\n**错因分析**：用户选 B ($\\pm\\frac{\\sqrt{3}}{2}$) 是直接求出了点 P 的纵坐标，而忘记题目要求的是中点 M 的纵坐标（需除以 2）。试卷上的批注“求的谁？”也指出了这一审题错误。'}"
+        }
+    }, 
+    "ErrorNotebook_2": {
+        "input_var": ["source"],
+        "output_var": ["result"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "source":{
+                "mime_type": "image/jpeg" ,
+                "value": "errornotebook_0001.png"
+            }
+        },
+        "test2":{
+            "source":{
+                "mime_type": "image/png" ,
+                "value": "errornotebook_0002.png"
+            }
+        },
+        "test3":{
+            "source":{
+                "mime_type": "image/png" ,
+                "value": "errornotebook_0003.png"
+            }
+        }
+    }, 
+    "HomeworkGrading_1": {
+        "input_var": ["homework"],
+        "output_var": ["result"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0001.png"
+            }
+        },
+        "test2":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0002.png"
+            }
+        },
+        "test3":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0003.png"
+            }
+        }
+    },
+    "HomeworkGrading_2": {
+        "input_var": ["homework", "subject_type"],
+        "output_var": [["result"],["result","picture"]],
+        "related_nodes": ["llm", "question-classifier", "markdown-exporter", "template-transform", "variable-aggregator"],
+        "test1":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0004.png"
+            },
+            "subject_type": "history"
+        },
+        "test2":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0005.png"
+            },
+            "subject_type": "history"
+        },
+        "test3":{
+            "homework":{
+                "mime_type": "image/png",
+                "value": "homeworkgrading_0001.png"
+            },
+            "subject_type": "English"
+        }
+    }, 
+    "StoryPPT_1": {
+        "input_var": ["title"],
+        "output_var": ["story"],
+        "related_nodes": ["llm"],
+        "test1":{
+            "title": "The little sheep living on the clouds"
+        },
+        "test2":{
+            "title": "A giraffe without spots"
+        },
+        "test3":{
+            "title": "A Tyrannosaurus rex that wants to open a pizza shop"
+        }
+    }, 
+    "StoryPPT_2": {
+        "input_var": ["title"],
+        "output_var": ["audio"],
+        "related_nodes": ["llm", "tts"],
+        "test1":{
+            "title": "The little sheep living on the clouds"
+        },
+        "test2":{
+            "title": "A giraffe without spots"
+        },
+        "test3":{
+            "title": "A Tyrannosaurus rex that wants to open a pizza shop"
+        }
+    }, 
+    "StoryPPT_3": {
+        "input_var": ["title"],
+        "output_var": ["story", "pptx"],
+        "related_nodes": ["llm", "markdown-exporter"],
+        "test1":{
+            "title": "The little sheep living on the clouds"
+        },
+        "test2":{
+            "title": "A giraffe without spots"
+        },
+        "test3":{
+            "title": "A Tyrannosaurus rex that wants to open a pizza shop"
+        }
+    }, 
+    "HTML_1": {
+        "input_var": ["word"],
+        "output_var": ["result", "html"],
+        "related_nodes": ["llm", "markdown-exporter"],
+        "test1":{
+            "word": "manipulation"
+        },
+        "test2":{
+            "word": "overwhelming"
+        },
+        "test3":{
+            "word": "intelligence"
+        }
+    }, 
+    "HTML_2": {
+        "input_var": ["query"],
+        "output_var": ["result", "html"],
+        "related_nodes": ["llm", "markdown-exporter", "question-classifier", "variable-aggregator"],
+        "test1":{
+            "query": "humorous"
+        },
+        "test2":{
+            "query": "君不见黄河之水天上来，奔流到海不复回。\n君不见高堂明镜悲白发，朝如青丝暮成雪。\n人生得意须尽欢，莫使金樽空对月。\n天生我材必有用，千金散尽还复来。\n烹羊宰牛且为乐，会须一饮三百杯。\n岑夫子，丹丘生，将进酒，杯莫停。\n与君歌一曲，请君为我倾耳听。\n钟鼓馔玉不足贵，但愿长醉不愿醒。\n古来圣贤皆寂寞，惟有饮者留其名。\n陈王昔时宴平乐，斗酒十千恣欢谑。\n主人何为言少钱，径须沽取对君酌。\n五花马、千金裘，呼儿将出换美酒，与尔同销万古愁。"
+        },
+        "test3":{
+            "query": "海客谈瀛洲，烟涛微茫信难求；\n越人语天姥，云霞明灭或可睹。\n天姥连天向天横，势拔五岳掩赤城。\n天台四万八千丈，对此欲倒东南倾。\n\n我欲因之梦吴越，一夜飞度镜湖月。\n湖月照我影，送我至剡溪。\n谢公宿处今尚在，渌水荡漾清猿啼。\n脚著谢公屐，身登青云梯。\n半壁见海日，空中闻天鸡。\n千岩万转路不定，迷花倚石忽已暝。\n熊咆龙吟殷岩泉，栗深林兮惊层巅。\n云青青兮欲雨，水澹澹兮生烟。\n列缺霹雳，丘峦崩摧。\n洞天石扉，訇然中开。\n青冥浩荡不见底，日月照耀金银台。\n霓为衣兮风为马，云之君兮纷纷而来下。\n虎鼓瑟兮鸾回车，仙之人兮列如麻。\n忽魂悸以魄动，恍惊起而长嗟。\n惟觉时之枕席，失向来之烟霞。\n\n世间行乐亦如此，古来万事东流水。\n别君去兮何时还？且放白鹿青崖间，须行即骑访名山。\n安能摧眉折腰事权贵，使我不得开心颜？"
+        }
+    }, 
+    "HTML_3": {
+        "input_var": ["query"],
+        "output_var": [["result"],["result","html"]],
+        "related_nodes": ["llm", "markdown-exporter", "question-classifier", "variable-aggregator"],
+        "test1":{
+            "query": "你好，世界！",
+            "ground_truth": "Invalid"
+        },
+        "test2":{
+            "query": "ridiculous"
+        },
+        "test3":{
+            "query": "金樽清酒斗十千，玉盘珍羞直万钱。\n停杯投箸不能食，拔剑四顾心茫然。\n欲渡黄河冰塞川，将登太行雪满山。\n闲来垂钓碧溪上，忽复乘舟梦日边。\n行路难！行路难！多歧路，今安在？\n长风破浪会有时，直挂云帆济沧海。\n大道如青天，我独不得出。\n羞逐长安社中儿，赤鸡白雉赌梨栗。\n弹剑作歌奏苦声，曳裾王门不称情。\n淮阴市井笑韩信，汉朝公卿忌贾生。\n君不见昔时燕家重郭隗，拥簪折节无嫌猜。\n剧辛乐毅感恩分，输肝剖胆效英才。\n昭王白骨萦蔓草，谁人更扫黄金台？\n行路难，归去来！有耳莫洗颍川水，有口莫食首阳蕨。\n含光混世贵无名，何用孤高比云月？\n吾观自古贤达人，功成不退皆殒身。\n子胥既弃吴江上，屈原终投湘水滨。\n陆机雄才岂自保？李斯税驾苦不早。\n华亭鹤唳讵可闻？上蔡苍鹰何足道？\n君不见吴中张翰称达生，秋风忽忆江东行。\n且乐生前一杯酒，何须身后千载名？"
+        }
+    }, 
+    "LogoSVG_1": {
+        "input_var": ["logo_requirement"],
+        "output_var": ["prompt", "logo_pic"],
+        "related_nodes": ["llm", "text2image"],
+        "test1":{
+            "logo_requirement": "Help me design a logo for a breakfast shop called 'Morning Bagel'. The style should be warm, with a strong hand-drawn feel, and make people appetizing when they look at it. The main color tone should be warm yellow or orange. You can use elements like wheat, the sun, or a smiling face. The font should be round and cute, not too serious."
+        },
+        "test2":{
+            "logo_requirement": "Design a gym logo, the name is 'Iron Core'. It needs to embody a sense of strength and explosive power; the style must be tough. Use a black and red color combination. The icon can include a dumbbell, a shield, or the silhouette of a beast (like a lion or bull). The text needs to be bold and have a sense of speed."
+        },
+        "test3":{
+            "logo_requirement": "The brand name is 'AURUM', and it is for high-end custom jewelry. I need a black and gold Logo; the style needs to be elegant, classic, and have a premium feel. You can try using a Serif font to design a text logo, or design an abstract symbol with crown or diamond elements. The background needs to be clean."
+        }
+    }, 
+    "LogoSVG_2": {
+        "input_var": ["logo_requirement"],
+        "output_var": ["svg_logo"],
+        "related_nodes": ["llm", "text2image"],
+        "test1":{
+            "logo_requirement": "Help me design a logo for a breakfast shop called 'Morning Bagel'. The style should be warm, with a strong hand-drawn feel, and make people appetizing when they look at it. The main color tone should be warm yellow or orange. You can use elements like wheat, the sun, or a smiling face. The font should be round and cute, not too serious."
+        },
+        "test2":{
+            "logo_requirement": "Design a gym logo, the name is 'Iron Core'. It needs to embody a sense of strength and explosive power; the style must be tough. Use a black and red color combination. The icon can include a dumbbell, a shield, or the silhouette of a beast (like a lion or bull). The text needs to be bold and have a sense of speed."
+        },
+        "test3":{
+            "logo_requirement": "The brand name is 'AURUM', and it is for high-end custom jewelry. I need a black and gold Logo; the style needs to be elegant, classic, and have a premium feel. You can try using a Serif font to design a text logo, or design an abstract symbol with crown or diamond elements. The background needs to be clean."
+        }
+    },
+    "LogoSVG_3": {
+        "input_var": ["logo_requirement"],
+        "output_var": ["svg_logo"],
+        "related_nodes": ["llm", "text2image"],
+        "test1":{
+            "logo_requirement": "Help me design a logo for a breakfast shop called 'Morning Bagel'. The style should be warm, with a strong hand-drawn feel, and make people appetizing when they look at it. The main color tone should be warm yellow or orange. You can use elements like wheat, the sun, or a smiling face. The font should be round and cute, not too serious."
+        },
+        "test2":{
+            "logo_requirement": "Design a gym logo, the name is 'Iron Core'. It needs to embody a sense of strength and explosive power; the style must be tough. Use a black and red color combination. The icon can include a dumbbell, a shield, or the silhouette of a beast (like a lion or bull). The text needs to be bold and have a sense of speed."
+        },
+        "test3":{
+            "logo_requirement": "The brand name is 'AURUM', and it is for high-end custom jewelry. I need a black and gold Logo; the style needs to be elegant, classic, and have a premium feel. You can try using a Serif font to design a text logo, or design an abstract symbol with crown or diamond elements. The background needs to be clean."
+        }
+    },
+    "Podcast_1": {
+        "input_var": ["summary"],
+        "output_var": ["script", "podcast"],
+        "related_nodes": ["llm", "tts"],
+        "test1":{
+            "summary": "If you're planning to sit down to a big Thanksgiving meal, are you also ready for all those calories? Health and fitness guru Ravenna Brock talks about ways to keep your appetite in check and your calories low. Joining in are Beverly Arnold — a grandmother in Detroit who cooks a Thanksgiving meal she can't even eat — and Astrid Chinn, a new mother in Washington, D.C., who is determined to stay on the straight and narrow path to pre-pregnancy weight."
+        },
+        "test2":{
+            "summary": "Is it better to pay off your car or to put that money into savings? What about student loans? Madeleine Brand gets advice from personal finance contributor Michelle Singletary."
+        },
+        "test3":{
+            "summary": "Why is there something rather than nothing?  That's the question cosmologist Lawrence Krauss tackles in his new book, A Universe from Nothing.  In it, he surveys the discoveries that have led to scientists' current understanding of the universe, and explores what the future of the universe may be."
+        }
+    },
+    "Podcast_2": {
+        "input_var": ["summary", "subject", "style"],
+        "output_var": ["script", "podcast"],
+        "related_nodes": ["llm", "tts", "variable-aggregator", "if-else"],
+        "test1":{
+            "summary": "",
+            "subject": "The Rivalry between Chu and Han",
+            "style": "Light-hearted and humorous"
+        },
+        "test2":{
+            "summary": "",
+            "subject": "Zhang Juzheng, Senior Grand Secretary of the Ming Dynasty",
+            "style": "Serious"
+        },
+        "test3":{
+            "summary": "Why is there something rather than nothing?  That's the question cosmologist Lawrence Krauss tackles in his new book, A Universe from Nothing.  In it, he surveys the discoveries that have led to scientists' current understanding of the universe, and explores what the future of the universe may be.",
+            "subject": "",
+            "style": ""
+        }
+    },
+    "Podcast_3": {
+        "input_var": ["summary", "subject", "style", "requirements"],
+        "output_var": ["script", "podcast"],
+        "related_nodes": ["llm", "tts", "variable-aggregator", "if-else"],
+        "test1":{
+            "summary": "",
+            "subject": "The Rivalry between Chu and Han",
+            "style": "Light-hearted and humorous",
+            "requirements": ""
+        },
+        "test2":{
+            "summary": "",
+            "subject": "",
+            "style": "",
+            "requirements": "Write a bedtime story suitable for a 4-year-old child. The protagonist is a little dinosaur who doesn't like brushing his teeth. One day, his teeth run away from home, and he has to go to the Candy Forest to get them back. The ending needs to be heartwarming and help the child understand the importance of brushing teeth. The tone should be gentle and suitable for reading aloud."
+        },
+        "test3":{
+            "summary": "Why is there something rather than nothing?  That's the question cosmologist Lawrence Krauss tackles in his new book, A Universe from Nothing.  In it, he surveys the discoveries that have led to scientists' current understanding of the universe, and explores what the future of the universe may be.",
+            "subject": "",
+            "style": "",
+            "requirements": ""
+        }
+    },
+    "Creation_1": {
+        "input_var": ["instruction"],
+        "output_var": ["topic", "target_length", "style", "target_audience", "production"],
+        "related_nodes": ["llm", "parameter-extractor", "iteration", "template-transform"],
+        "test1":{
+            "instruction": "Write a travel essay about 'Viewing the red leaves alone in Arashiyama, Kyoto'. The word count is 600. The style should be artistic and poetic, with a touch of a faint sense of loneliness. The target readers are artistic young people who enjoy solitude and in-depth exploration.",
+            "ground_truth": "Topic: Viewing the red leaves alone in Arashiyama, Kyoto\n Target Length: 600\n Style: Artistic and poetic, with a touch of a faint sense of loneliness\n Target Audience: Artistic young people who enjoy solitude and in-depth exploration"
+        },
+        "test2":{
+            "instruction": "Please write an environmental description with the core theme of 'Cyberpunk Slum after the Rainstorm'. The word count should be controlled at around 400 words. The style demands a sense of oppression and coldness, making extensive use of visual and auditory sensory details. The target readers are adult readers who enjoy hardcore science fiction novels.",
+            "ground_truth": "Topic: Cyberpunk Slum after the Rainstorm\n Target Length: 400\n Style: Demands a sense of oppression and coldness, making extensive use of visual and auditory sensory details\n Target Audience: Adult readers who enjoy hardcore science fiction novels"
+        },
+        "test3":{
+            "instruction": "Draft an internal company email with the subject line 'Policy Explanation on Implementing Hybrid Working (2 Days from Home) Starting Next Week'. The word count is approximately 500. The style must be professional, clear and soothing to avoid misunderstandings. The target readers are all the employees of the company.",
+            "ground_truth": "Topic: Policy Explanation on Implementing Hybrid Working (2 Days from Home) Starting Next Week\n Target Length: 500\n Style: Professional, clear and soothing to avoid misunderstandings\n Target Audience: All the employees of the company"
+        }
+    },
+    "Creation_2": {
+        "input_var": ["instruction"],
+        "output_var": [["topic", "target_length", "style", "target_audience", "production"],["production", "cover"]],
+        "related_nodes": ["llm", "parameter-extractor", "iteration", "template-transform", "question-classifier", "text2image", "template-transform"],
+        "test1":{
+            "instruction": "Youth, Broken Sword, Floating Island, the Last Dragon, Oath"
+        },
+        "test2":{
+            "instruction": "Androids, memory chips, Neon Rain Night, Law No. 42, Awakening"
+        },
+        "test3":{
+            "instruction": "The core theme is 'Using the urban transportation system as an analogy to explain the human circulatory system.' The word count is 600. The style should be vivid and interesting, but the scientific principles must be accurate. The target readers are primary school students with no medical background at all.",
+            "ground_truth": "Topic: Using the urban transportation system as an analogy to explain the human circulatory system.\n Target Length: 600\n Style: Vivid and interesting, but the scientific principles must be accurate\n Target Audience: Primary school students with no medical background at all"
+        }
+    },
+    "Creation_3": {
+        "input_var": ["instruction"],
+        "output_var": [["production", "cover"], ["production", "cover", "style"]],
+        "related_nodes": ["llm", "parameter-extractor", "question-classifier", "text2image", "template-transform", "http-request"],
+        "test1":{
+            "instruction": "Broken swords, red plum blossoms, snow-capped mountains, warm wine, grudges"
+        },
+        "test2":{
+            "instruction": "Please read this article: https://paulgraham.com/ds.html. Please analyze its writing style and imitate it to write a short article about 'Why startups shouldn't pursue perfect code from the very beginning', within 500 words"
+        },
+        "test3":{
+            "instruction": "I really like the feel of this article: https://zenhabits.net/breathe/. Please extract its writing style and then imitate an article titled 'Organize Your Digital Desktop, Organize Your Heart', with a word limit of 500 words."
+        }
+    },
+    "Copywriting_1": {
+        "input_var": ["theme", "background", "tone"],
+        "output_var": ["output"],
+        "related_nodes": ["llm", "template-transform"],
+        "test1":{
+            "theme": "DeepSeek beginner's feeding tutorial",
+            "background": "Many people only use it for chatting. In fact, it can help you write weekly reports, make PPT Outlines, and even modify code. The key lies in how to write the Prompt. I have summarized a universal formula: role + task + constraint + example. With this formula, I only work for three hours every day. At the end of the article, I attach my private prompt word bank.",
+            "tone": "Full of valuable information, rational and calm, with a sense of urgency to 'make money' and 'improve efficiency'"
+        },
+        "test2":{
+            "theme": "Air fryer version of fat-reducing fried chicken",
+            "background": "Feeling hungry late at night but afraid of getting fat? This method doesn't use a single drop of oil! Peel the chicken legs and marinate them with minced garlic, light soy sauce and oyster sauce for 20 minutes. Air fryer at 180 degrees for 15 minutes, flipping it over in the middle. Crispy on the outside and tender on the inside, it bursts with juice when bitten into. Sisters on a fat loss diet can also eat it with peace of mind. The calorie content is only one third of that of KFC.",
+            "tone": "Extremely excited, exaggerated (YYDS, absolute), full of allure, with a drooling feeling"
+        },
+        "test3":{
+            "theme": "Challenge the 365-day savings method and refuse to be a spendthrift",
+            "background": "In the past, whenever I got my salary, I would go on a shopping spree. But by the end of the year, I found that my savings had dropped to zero. Start playing the 365 Savings method now: Save 1 yuan on the first day, save 2 yuan on the second day... Deposit 365 yuan on the 365th day. I can save over 60,000 yuan in a year! Just have one less cup of milk tea every day. I can't hold on alone, so I want to find a few sisters to check in together and supervise each other.",
+            "tone": "Motivated, pragmatic and seeking supervision"
+        }
+    },
+    "Copywriting_2": {
+        "input_var": ["url", "platform"],
+        "output_var": ["output"],
+        "related_nodes": ["llm", "code", "http-request", "question-classifier", "variable-aggregator"],
+        "test1":{
+            "url": "https://peps.python.org/pep-0020/",
+            "platform": "X"
+        },
+        "test2":{
+            "url": "https://www.rfc-editor.org/rfc/rfc1925.html",
+            "platform": "WeChat Official Account"
+        },
+        "test3":{
+            "url": "https://www.runoob.com/nlp/attention-mechanism.html",
+            "platform": "WeChat Official Account"
+        }
+    },
+    "Copywriting_3": {
+        "input_var": ["url", "platform"],
+        "output_var": ["output", "picture"],
+        "related_nodes": ["llm", "code", "http-request", "question-classifier", "variable-aggregator", "text2image"],
+        "test1":{
+            "url": "https://peps.python.org/pep-0020/",
+            "platform": "X"
+        },
+        "test2":{
+            "url": "https://www.rfc-editor.org/rfc/rfc1925.html",
+            "platform": "WeChat Official Account"
+        },
+        "test3":{
+            "url": "https://www.runoob.com/nlp/attention-mechanism.html",
+            "platform": "WeChat Official Account"
+        }
+    }
+}

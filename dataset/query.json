@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "category": "Research",
+        "task": "PaperDeepReader",
+        "query1": "Please create a workflow dedicated to the deep reading of academic papers. The user will provide the paper file (variable paper) and the target language (variable language) as inputs. The task is to extract key information from the given paper—including background, objectives, methods, findings, and implications—in the specified target language. The output must not exceed 800 words and should be presented to busy researchers in a structured, easy-to-understand XML format. The workflow needs to output the extracted key information (variable summary).",
+        "query2": "Add an additional task to the existing foundation. The task is to provide a clear, concise, and comprehensive analysis of the methodology used in the given paper, highlighting its innovative aspects, strengths, and potential limitations. The analysis must not exceed 600 words and must be in XML format. The workflow must also output the analysis results (variable methodology_analysis).",
+        "query3": "Add an additional task to the existing foundation. Based on the summary and methodology analysis from the previous two steps, conduct a critical evaluation of the paper (including research background, contributions, future directions, etc.). The output must not exceed 800 words and must be in XML format. The workflow must also output the evaluation result (variable evaluation).",
+        "query4": "Aggregate the results from the above three parts, convert them into a human-readable Markdown format, and generate the corresponding .md file. The workflow needs to output the final Markdown text (variable result) and the .md file (variable md)."
+    }
+]

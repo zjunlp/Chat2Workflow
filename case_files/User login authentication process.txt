@@ -1,0 +1,34 @@
+// 1. Controller Layer
+async function loginController(req, res) {
+    const { username, password } = req.body;
+    try {
+        const token = await authService.login(username, password);
+        res.json({ token });
+    } catch (error) {
+        res.status(401).send(error.message);
+    }
+}
+
+// 2. Service Layer
+const authService = {
+    async login(username, password) {
+
+        const user = await userRepository.findUser(username);
+        
+        if (!user) throw new Error("User not found");
+        
+
+        const isValid = await encryptionUtils.verify(password, user.passwordHash);
+        if (!isValid) throw new Error("Invalid password");
+        
+
+        return jwtProvider.generateToken(user.id);
+    }
+};
+
+// 3. Repository Layer
+const userRepository = {
+    async findUser(username) {
+        return db.query("SELECT * FROM users WHERE name = ?", [username]);
+    }
+};
