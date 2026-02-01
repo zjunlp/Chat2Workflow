@@ -1,30 +1,10 @@
-from kalm.agent import KalmAgent
+# from kalm.agent import KalmAgent
 from openai import OpenAI
-
-def kalm_agent_init(service_url, system_prompt, temerature, max_new_tokens):
-    agent = KalmAgent(
-        adams_business_name="xxxxxx",
-        adams_platform_user="xxxxxx",
-        adams_user_token="xxxxxx",
-        service_url = service_url, 
-        temperature = temerature, 
-        top_p=0.8,
-        top_k=20,
-        num_beams=1,
-        max_new_tokens=max_new_tokens,
-        repetition_penalty=1,
-        no_repeat_ngrams=0,
-        retries=3,
-        single_retry_timeout=300,
-        system_prompt= system_prompt
-    )
-    return agent
-
 
 class OpenAIAgent:
     def __init__(self, model_name, system_prompt, temperature, max_tokens):
-        self.api_key = "sk-xxxxxx"
-        self.base_url = "xxxxx"
+        self.api_key = "sk-ehMknH38RZvzA2qK6m4dstxtzSUD2TYZpJ7wJTaP0ZFbtjFJ"
+        self.base_url = "https://www.dmxapi.cn/v1"
         self.model_name = model_name
         self.system_prompt = system_prompt
         self.temperature = temperature
@@ -50,3 +30,22 @@ class OpenAIAgent:
         )
         
         return response.choices[0].message.content
+
+# def kalm_agent_init(service_url, system_prompt, temerature, max_new_tokens):
+#     agent = KalmAgent(
+#         adams_business_name="xxxxxx",
+#         adams_platform_user="xxxxxx",
+#         adams_user_token="xxxxxx",
+#         service_url = service_url, 
+#         temperature = temerature, 
+#         top_p=0.8,
+#         top_k=20,
+#         num_beams=1,
+#         max_new_tokens=max_new_tokens,
+#         repetition_penalty=1,
+#         no_repeat_ngrams=0,
+#         retries=3,
+#         single_retry_timeout=300,
+#         system_prompt= system_prompt
+#     )
+#     return agent

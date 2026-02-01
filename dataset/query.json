@@ -7,5 +7,210 @@
         "query2": "Add an additional task to the existing foundation. The task is to provide a clear, concise, and comprehensive analysis of the methodology used in the given paper, highlighting its innovative aspects, strengths, and potential limitations. The analysis must not exceed 600 words and must be in XML format. The workflow must also output the analysis results (variable methodology_analysis).",
         "query3": "Add an additional task to the existing foundation. Based on the summary and methodology analysis from the previous two steps, conduct a critical evaluation of the paper (including research background, contributions, future directions, etc.). The output must not exceed 800 words and must be in XML format. The workflow must also output the evaluation result (variable evaluation).",
         "query4": "Aggregate the results from the above three parts, convert them into a human-readable Markdown format, and generate the corresponding .md file. The workflow needs to output the final Markdown text (variable result) and the .md file (variable md)."
+    },
+    {
+        "id": 2,
+        "category": "Research",
+        "task": "PaperQA",
+        "query1": "Create a workflow that answers questions based on the content of a paper. The user will provide a paper document (variable paper) and a question (variable question) as input. The task is to fully understand the given paper and thereby answer questions closely related to it. The workflow only needs to output the answer (variable answer).",
+        "query2": "Based on the existing foundation, supplement the answer with the corresponding textual evidence from the original document. The workflow needs to output in JSON format, which must include 'answer' and 'evidence' fields.",
+        "query3": "Add an additional question based on the existing foundation. The user will provide two questions (variables question_1 and question_2) as input. The workflow must still output in JSON format and needs to additionally include the 'question' field."
+    },
+    {
+        "id": 3,
+        "category": "Research",
+        "task": "SciencePopularization",
+        "query1": "Create a popular science workflow. The user will provide a question or topic needing explanation (variable 'requirement') as input. The task is to provide a primer on related terminology and vividly explain the origin, essence, and development of the knowledge point. The workflow needs to generate explanatory text in Markdown format (variable 'text') and an exquisite illustration (variable 'picture').",
+        "query2": "Convert the popular science content into audio that is under two minutes long. The workflow only needs to output this audio file (variable 'audio')."
+    },
+    {
+        "id": 4,
+        "category": "Research",
+        "task": "BookCharacter",
+        "query1": "Create a 'Finish a Book in Three Minutes' workflow. Users will provide the book title (variable 'book') and author name (variable 'author') as input. The task is to generate a three-minute speed-read version of the book's content based on the input. The workflow needs to output this summary (variable 'result').",
+        "query2": "Building on the existing foundation, generate a character biography for the book's protagonist and convert it into a DOCX file. The workflow only needs to output the final file (variable 'biography').",
+        "query3": "Generate an illustration that aligns with the character and plot settings based on the character biography. The workflow only needs to output the illustration (variable 'illustration')."
+    },
+    {
+        "id": 5,
+        "category": "Research",
+        "task": "DeepResearch",
+        "query1": "Create a deep research workflow. The user will provide a research topic (variable title) as input. The task first requires providing 3 search engine queries related to the topic to conduct comprehensive research from different angles. Then, iteratively process each search engine query to obtain corresponding parts of the research report, which must be well-structured, informative, use Markdown syntax, and not exceed 600 words. Finally, integrate the parts of the research report in an orderly manner through template conversion, giving appropriate subheadings, and edit into the final version. The workflow needs to output the final research report (variable report).",
+        "query2": "Additionally provide a mind map in Mermaid format as output (variable mermaid_pic).",
+        "query3": "Convert the research report into PDF format. The workflow only needs to output the PDF file (variable report_file)."
+    },
+    {
+        "id": 6,
+        "category": "Document",
+        "task": "BatchFiles",
+        "query1": "The user will provide a list of documents (variable doc_list) as input. The task is to process the documents one by one: first comprehensively parse the article structure, then analyze the main content and function of each part, and finally summarize the article based on the parsing and analysis results. The summaries of all documents should be aggregated into a single text through template conversion, which is then converted into Markdown format and a corresponding DOCX file. The workflow needs to output the summary text (variable summary) and the DOCX file (variable docx_file).",
+        "query2": "Change the input to a list of images (variable pic_list). The task is to summarize the content of the images one by one.",
+        "query3": "The input can contain both documents and images (variable file_list). The task requires sorting the input first and processing it according to the category."
+    },
+    {
+        "id": 7,
+        "category": "Document",
+        "task": "InvoiceParsing",
+        "query1": "Please create a workflow dedicated to invoice parsing. The user will provide an image of a VAT ordinary invoice (variable invoice) as input. The task is to extract the content of this image, which must include the following fields: 'Machine No.', 'Invoice Code', 'Invoice No.', 'Invoicing Date', 'Check Code', 'Purchaser Name', 'Goods or Taxable Services', 'Specification/Model', 'Unit', 'Quantity', 'Unit Price', 'Amount', 'Tax Rate', 'Tax Amount', 'Total Amount (Words)', 'Total Amount (Figures)', 'Seller Name', 'Seller Taxpayer ID', 'Seller Address & Phone', 'Seller Bank & Account', 'Payee', 'Reviewer', and 'Issuer'. The workflow needs to output the result in JSON format (variable result).",
+        "query2": "Add an additional type based on the existing foundation—Taxi Invoice. The user will additionally provide a descriptive instruction for the invoice as input (variable instruction). Before invoice parsing, it is necessary to identify the invoice type according to the instruction, and then process it by category. For taxi invoices, the fields to be included are 'Invoice Code', 'Invoice Number', 'Unit', 'Car Number', 'Certificate Number', 'Date', 'Time', 'Unit Price', 'Mileage', 'Waiting Time', and 'Amount'. The results of the various branches should be aggregated before output.",
+        "query3": "Add an additional type based on the existing foundation: Train Tickets. The required fields are: 'Departure Station', 'Arrival Station', 'Train No.', 'Departure Time', 'Ticket Price', 'ID Number', and 'Name'."
+    },
+    {
+        "id": 8,
+        "category": "Document",
+        "task": "ExcelExtract",
+        "query1": "Create an Excel table extraction workflow. The user will provide an Excel file (variable excel_file) as input. The task requires extracting the data from the table and presenting it in JSON format. The workflow needs to output the extracted information (variable result).",
+        "query2": "Add chart code generation functionality based on the existing foundation. The user will additionally provide a target chart type (variable chart_type) as input. If the target chart type is not empty, the task requires generating ECharts code of the specified type based on the extracted information; otherwise, it still outputs JSON. The outputs of the branches should be aggregated and unified."
+    },
+    {
+        "id": 9,
+        "category": "Document",
+        "task": "FormulaOCR",
+        "query1": "Create a math formula recognition workflow. The user will provide a math formula image (variable formula) as input. The task is to recognize the math formula in the image and then convert it into LaTeX code format. The workflow needs to output the LaTeX code (variable latex).",
+        "query2": "Convert the math formula into Markdown format. The workflow needs to output the Markdown text (variable text) and the corresponding Markdown file (variable markdown).",
+        "query3": "Add a batch processing mechanism based on the existing foundation. The user will provide multiple math formula images as input; all of them need to undergo extraction and be processed into a structured output via template conversion. The workflow needs to output the converted Markdown text and the corresponding Markdown file."
+    },
+    {
+        "id": 10,
+        "category": "Document",
+        "task": "Translation",
+        "query1": "Create a document translation workflow. The user will provide the document to be translated (variable document) and the translation language (variable language) as input. The task requires completing the translation using the specified language. After the initial translation, a reflection check should be conducted, and a second translation performed based on the check results. The workflow needs to output the translated text (variable text).",
+        "query2": "Remove the reflection check mechanism, and add an item to the final output—the PDF file of the translation result (variable pdf_file).",
+        "query3": "Add a branch based on the existing foundation. The user can also provide a webpage URL (variable url) as input. The workflow needs to use regular expressions to extract the valid content part of the webpage, and then translate it into the specified target language. The outputs of the branches should be aggregated and unified; the workflow only needs to output the translated text.",
+        "query4": "Add user instructions (variable instruction) as an additional input based on the existing foundation, allowing users to set special requirements for the translation task. The workflow only needs to output the translated text."
+    },
+    {
+        "id": 11,
+        "category": "Enterprise",
+        "task": "ContractReview",
+        "query1": "Create a workflow specifically for contract risk review. The user will provide the contract file (variable contract), the reviewing party (variable apart), the work field (variable workfiled), and specific concerns (variable attention) as inputs. The task requires: 1. First, convert the user's concerns into specific contract review checkpoints. 2. Combine this with the industry characteristics of the work field. 3. Review and analyze the contract based on the principle of maximizing the interests of the reviewing party (apart) and provide improvement suggestions. The workflow needs to apply a template to the analysis results and improvement suggestions, and then output them in a structured format (variable result).",
+        "query2": "Convert the original output into Markdown format, and then convert it into a PDF file as the output. The workflow only needs to output the PDF file (variable pdf_file).",
+        "query3": "In addition to the PDF file, the workflow must also output a corresponding DOCX file (variable docx_file)."
+    },
+    {
+        "id": 12,
+        "category": "Enterprise",
+        "task": "ResumeScreening",
+        "query1": "Create a resume sorting workflow. The user will provide multiple resume files (variable resume_files) as input. The task is to categorize the resumes according to the job position. The available categories are 'ACCOUNTANT', 'ARTS', 'SALES', and 'TEACHER'. The workflow needs to output the list of resume files for each category (variables accountant_resumes, arts_resumes, sales_resumes, teacher_resumes).",
+        "query2": "Draw an ECharts pie chart based on the quantity of resumes in each job category. The workflow only needs to output the ECharts chart code (variable pie_chart).",
+        "query3": "Select the best resume from each job category and provide the reason for the selection. The reasons for all categories should be structured after template conversion. The workflow only needs to output the list of the best resume files (variable best_resumes) and the selection reasons (variable reason)."        
+    },
+    {
+        "id": 13,
+        "category": "Enterprise",
+        "task": "MeetingSummary",
+        "query1": "Create a workflow for generating meeting minutes. The user will provide a segment of raw meeting dialogue text (variable dialogue) as input. The task requires identifying the core themes and key information of the meeting, determining the content type and selecting an appropriate summary structure, extracting main plots, key figures, important events, and core viewpoints, and organizing the information in chronological order or logical relation. The summarized content should be controlled to be between 10-20% of the original content. The workflow needs to output the minutes in Markdown format (variable result) and the corresponding PDF file (variable file).",
+        "query2": "Add a branch based on the existing foundation. The user will also additionally provide an instruction (variable instruction) as input. The workflow needs to judge the user's intent based on the instruction to enter different task processing branches. The new branch can fully understand the meeting discussion content and transform it into a speech draft suitable for conveying the meeting spirit. The workflow needs to output the speech draft and the corresponding DOCX file. The outputs of various branches should be aggregated and unified."
+    },
+    {
+        "id": 14,
+        "category": "Enterprise",
+        "task": "PerformanceChart",
+        "query1": "Create a performance chart generation workflow. The user will provide an Excel file containing sales data (variable sales_file) as input. The task requires using a parameter extractor to extract information on 'Region' and 'Sales Amount', classify by region, and draw an ECharts bar chart based on the corresponding sales amounts. The workflow needs to output the bar chart (variable chart).",
+        "query2": "Add a branch based on the existing foundation. The new branch needs to extract 'Product Type' and 'Profit' information from the original file and draw an intuitive ECharts pie chart based on this. The workflow needs to additionally output this pie chart (variable pie_chart).",
+        "query3": "Delete the 'Region-Sales' branch and change it to analyze the changes in profit over time. This branch needs to extract 'Order Date' and 'Profit' information from the original file. Draw a profit line chart using one quarter as the time unit. This branch outputs the line chart (variable line_chart).",
+        "query4": "Provide a paragraph of analysis summary text for each of the above charts respectively, and integrate the content together through template conversion. The workflow needs to additionally output this paragraph of text (variable analysis)."
+    },
+    {
+        "id": 15,
+        "category": "Developer",
+        "task": "GithubSummary",
+        "query1": "Create a workflow for parsing GitHub file structures. The user will provide the GitHub project URL (variable url) as input. The task is to retrieve the complete file structure of the project, not just the root directory. The workflow needs to output the complete file structure (variable file_structure).",
+        "query2": "Express the complete file structure as a text-based tree view with indentation.",
+        "query3": "Retrieve the project's README content and combine it with the complete file structure to generate a concise GitHub project summary. This summary must include the project's main functions and purpose, primary technologies or programming languages used, an overview of the project structure, potential use cases or application scenarios, and any notable features or innovations. The workflow needs to output the summary content strictly in Markdown format (variable summary)."
+    },
+    {
+        "id": 16,
+        "category": "Developer",
+        "task": "Mermaid",
+        "query1": "Create a workflow specifically for generating system architecture diagrams. The user will provide code documentation (variable 'code') as input. The task requires analyzing code across various programming languages and directly generating corresponding Mermaid syntax code, and from this, generating the system architecture diagram. The workflow needs to output the Mermaid code (variable 'mermaid_code') and the system architecture diagram (variable 'mermaid_pic').",
+        "query2": "Add an extra branch based on the existing foundation. The workflow will be able to receive a web page (variable knowledge_url) as input. The task requires chunking the effective content of the web page, summarizing knowledge for each chunk individually, and thereby generating a final version of the knowledge summary and mind map Mermaid code, followed by generating the mind map from the code. The workflow also needs to additionally output the knowledge summary (variable summary) in this branch. The identical outputs from various branches should be aggregated and unified."
+    },
+    {
+        "id": 17,
+        "category": "Developer",
+        "task": "Code",
+        "query1": "Create a code language translation workflow. The user will provide the original code document (variable source_code), the original code language (variable source_language), and the target code language (variable target_language) as input. The task is to translate the original code into the target code. However, due to output length limitations, the complete code should be generated in two stages. For this first stage, generate the main structure of the code. For classes and functions, only provide the corresponding signatures; do not provide specific implementations. Pay attention to analyzing relevant code files to identify built-in dependencies and custom dependencies, ensuring none are missed. The workflow needs to output the target code (variable target_code).",
+        "query2": "It is no longer necessary to provide the target code language; the target code is unified to Python. The user will provide case input (variable case_input). The workflow needs to first check if the code content and format are correct, then execute the code, and return the Python code (variable python_code) and the execution result (variable result).",
+        "query3": "Case input is no longer required. The workflow also needs to clarify the code semantics and explain the purpose of each step. The workflow ultimately only needs to generate an explanation paragraph in Markdown format (variable explanation) and the corresponding md file (variable markdown)."
+    },
+    {
+        "id": 18,
+        "category": "Education",
+        "task": "StudyPlanner",
+        "query1": "Create a learning path planning workflow. The user will provide a descriptive instruction (variable instruction) as input. The task is to extract four core fields from the input: interested learning field, learning goals, learning preferences, and average learning duration. Subsequently, based on the extracted information, provide the user with a detailed self-study improvement plan, requiring Markdown format output. The workflow needs to output the self-study plan (variable plan).",
+        "query2": "Modify based on the existing foundation. The workflow needs to be able to automatically generate a full set of tutorials. It requires first generating a course syllabus, and then iteratively generating knowledge points by chapter. The content is required to be rigorous, containing rich examples, pros and cons, and precautions. The workflow only needs to output the final tutorial integrated through template conversion (variable tutorial).",
+        "query3": "Rewrite the tutorial into courseware that is convenient for teachers to teach. The workflow only needs to generate the courseware PPT (variable ppt)."
+    },
+    {
+        "id": 19,
+        "category": "Education",
+        "task": "ExamQuestion",
+        "query1": "Create a question generation and exam assembly workflow. The user will provide a teaching plan file (variable teaching_plan), the number of multiple-choice questions (variable num_choice), the number of true/false questions (variable num_tf), and the number of fill-in-the-blank questions (variable num_blank) as inputs. The task requires: First, create a short exam title centering on the document theme, not exceeding 20 words. Then, use three branches to handle the generation of the three types of questions respectively. Finally, integrate them via template conversion to obtain the exam paper text for students (variable result).",
+        "query2": "Add an extra copy of the teacher's version exam containing standard answers. The workflow only needs to output the teacher's version exam text (variable teacher_ver) and the student's version exam text (variable student_ver).",
+        "query3": "Convert both versions of the exam papers into PDF files respectively. The workflow only needs to output the exam files, keeping the variable names unchanged.",
+        "query4": "Change the PDF files to DOCX files."
+    },
+    {
+        "id": 20,
+        "category": "Education",
+        "task": "ErrorNotebook",
+        "query1": "Create a workflow for collecting and organizing incorrect questions for primary and secondary school students. The user will provide an image of an exam paper (variable source) as input. The task is to extract the incorrect questions from the student's exam, classify them by question type (Multiple Choice, Fill-in-the-Blank, True/False, Short Answer), provide the correct answer for each, and finally generate a structured error notebook in JSON format. It must include the fields: 'question_text', 'subject', 'question_type', 'difficulty', 'answer', 'user_answer', and 'explanation'. The workflow needs to output the error notebook (variable result).",
+        "query2": "Generate an additional question of the same type for each incorrect question for the student to practice, while maintaining the JSON format. The workflow only needs to output the collection of new questions."
+    },
+    {
+        "id": 21,
+        "category": "Education",
+        "task": "HomeworkGrading",
+        "query1": "Create an essay grading workflow. The user will provide an image of an English essay (variable homework) as input. The grading needs to evaluate both handwriting standards (50 points) and content quality (50 points) simultaneously. Handwriting standards include: consistency of letter size (15 points), uniformity of spacing (10 points), standardization of stroke connections (10 points), roundness of glyphs (10 points), and overall aesthetics (5 points). Content quality includes: clarity of theme (10 points), completeness of structure (10 points), fluency of language (10 points), vocabulary usage (10 points), and diversity of sentence patterns (10 points). This part needs to be output in JSON format, containing the total score, individual scores, and an overall evaluation (variable result).",
+        "query2": "Add an extra branch based on the existing foundation. The workflow additionally receives a question type (variable subject_type) as input, which is routed to the corresponding branch by a question classifier. The homework image processed by the new branch is a history subjective question. This branch needs to provide a fair score and corresponding grading criteria based on the question and the student's answer. Finally, integrate the question, student answer, score, and grading criteria through template conversion, express it in Markdown format, and eventually present it as an image. This branch needs to output Markdown text (variable result) and the image (variable picture). If different branches have outputs, they should be aggregated and unified."
+    },
+    {
+        "id": 22,
+        "category": "AIGC",
+        "task": "StoryPPT",
+        "query1": "Create a children's story creation workflow. The user will provide a story title (variable 'title') as input. The task is to create a story suitable for children based on the title, striving to be interesting and imaginative, using simple and clear language to express complex concepts. The total length should be kept between 200-300 words, and the story needs to be divided into 2-3 short chapters. The workflow needs to output the generated story (variable 'story').",
+        "query2": "Convert the generated story into audio. The workflow only needs to output this audio file (variable 'audio').", 
+        "query3": "Convert the generated story into Markdown format and generate a PPT file. The workflow only needs to output the story text in the new format (variable 'story') and the generated file (variable 'pptx')."
+    },
+    {
+        "id": 23,
+        "category": "AIGC",
+        "task": "HTML",
+        "query1": "Create a workflow specifically for English word webpage generation. The user will provide an English word (variable word) as input. The task requires analyzing the given English word, providing its definitions and example sentences, and converting the content into a unified HTML webpage. The workflow needs to output the English word analysis result (variable result) and the webpage file (variable html).",
+        "query2": "Add an extra branch based on the existing foundation. The workflow must unify the input (variable query), allowing users to provide ancient poetry as input. The workflow should effectively distinguish the user's actual intent. For ancient poetry input, it must first explain the meaning and the poet's creative background, and then present it on the webpage. The outputs of various branches should be aggregated and unified. The workflow's output variables remain unchanged.",
+        "query3": "Add branch processing for other invalid requirements. In this case, the workflow only needs to output the string 'Invalid' (variable result)."
+    },
+    {
+        "id": 24,
+        "category": "AIGC",
+        "task": "LogoSVG",
+        "query1": "Create a logo generation workflow. Users will provide logo design requirements (variable 'logo_requirement') as input. The task is to optimize these design requirements into a prompt that is better suited for text-to-image generation, and then use this prompt to generate a logo image. The workflow needs to output the generated prompt (variable 'prompt') and the logo image (variable 'logo_pic').",
+        "query2": "Convert the logo image into a usable SVG code format. The workflow only needs to output the final SVG code (variable 'svg_logo').",
+        "query3": "A round of review and verification is required for the result before outputting the SVG code."
+    },
+    {
+        "id": 25,
+        "category": "AIGC",
+        "task": "Podcast",
+        "query1": "Create a podcast generation workflow. The user will provide a podcast summary (variable summary) as input. The task requires generating a podcast script and subsequently generating a podcast audio file from it. The workflow needs to output a podcast script with a duration of under two minutes (variable script) and the podcast audio (variable podcast).",
+        "query2": "Add a branch based on the existing foundation. The user will provide a historical subject regarding a person or event (variable subject) and a style description (variable style). The workflow needs to output a podcast script and audio centered around the historical subject in the specified style. The duration requirement remains the same. The outputs of the various branches should be aggregated and unified, and the output variables remain unchanged.",
+        "query3": "Add another branch based on the existing foundation. The user will provide a series of text requirements for children's story creation (variable requirements). The workflow needs to produce a podcast script strictly according to the requirements and generate podcast audio within two minutes."
+    },
+    {
+        "id": 26,
+        "category": "AIGC",
+        "task": "Creation",
+        "query1": "Create an article creation workflow. The user will provide a descriptive instruction (variable instruction) as input. The task requires extracting four core fields from the input: core theme, target word count, style, and target audience, and generating an article outline based on this. According to the outline's requirements, iteratively generate content for each chapter. Finally, integrate all chapter drafts through template conversion into a logically coherent, smoothly written, and structurally complete article. The workflow needs to output the extracted fields (variables topic, target_length, style, target_audience) and the final article (variable production).",
+        "query2": "Add an additional branch based on the existing foundation. If the user's instruction contains only story keywords, it needs to enter the story creation branch. The task requires creating a short story based on the keywords entered by the user, kept within 300 words. The story must have a complete plot, including an beginning, development, climax, and ending. The language should be vivid and interesting. Subsequently, generate a short image description based on the story content, containing only specific visible elements and no abstract concepts. Finally, generate a cover image for the story using this description. Identical outputs from different branches should be aggregated and unified. This branch needs to output the story and the cover image (variable cover).",
+        "query3": "Remove the article creation branch and replace it with article imitation. If the user's instruction contains a webpage address, it should first extract the URL from it, summarize the writing style of the article on the webpage, and then perform imitation writing based on that style, limited to within 500 words. This branch needs to output the style summary (variable style), the imitated content, and the cover image."
+    },
+    {
+        "id": 27,
+        "category": "AIGC",
+        "task": "Copywriting",
+        "query1": "Create a Xiaohongshu(Red Note) copywriting generation workflow. The user will provide the creation theme (variable theme), background material (variable background), and tone (variable tone) as inputs.The task requires first helping the user generate an eye-catching title, then generating the body content; both must adhere to the tone of the Xiaohongshu platform. Finally, based on the body content, generate an engaging introduction of no more than 40 Chinese characters. The generated title, body, and introduction need to be integrated into a unified template as a single output (variable 'output').",
+        "query2": "Change the inputs to a webpage address (variable url) and a target platform (variable platform). The task requires: First, extract the valid text part of the webpage using regular expressions. Then, convert it into the writing style of the specified platform. Each platform corresponds to a processing branch. The available platforms are Instagram, X, Xiaohongshu(Red Note), and WeChat Official Account, classified using a question classifier. The identical outputs from each branch should be aggregated and unified.",
+        "query3": "Based on the existing foundation, generate a matching illustration for the target copy. The workflow needs to additionally output this image (variable picture)."
     }
 ]

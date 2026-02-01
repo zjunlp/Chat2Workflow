@@ -3,7 +3,7 @@ import json
 import requests
 import argparse
 from time import sleep
-from llm_api import kalm_agent_init, OpenAIAgent
+from llm_api import OpenAIAgent
 
 
 def file_upload(user, api_key, file_name, mime_type, case_files_dir):

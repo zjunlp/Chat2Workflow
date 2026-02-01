@@ -1,7 +1,7 @@
 import json
 import os
 import argparse
-from llm_api import kalm_agent_init, OpenAIAgent
+from llm_api import OpenAIAgent
 
 def process_tasks(agent, input_path, output_path):
     with open(input_path, 'r', encoding='utf-8') as f:
