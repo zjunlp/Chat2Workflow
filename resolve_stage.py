@@ -1,5 +1,6 @@
 import os
 import json
+import yaml
 import requests
 import argparse
 from time import sleep
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="resolve stage")
     
     parser.add_argument('--model_name', type=str, required=True, help='model name')
-    parser.add_argument('--user', type=str, required=True, help='user name')
+    parser.add_argument('--config', type=str, required=True, help='Configuration file path')
     parser.add_argument('--temperature', type=float, required=True, help='LLM Temperature')
     parser.add_argument('--max_tokens', type=int, required=True, help='Max new tokens')
     args = parser.parse_args()
@@ -96,6 +97,9 @@ if __name__ == "__main__":
     with open(task_query_file, 'r', encoding='utf-8') as f:
         task_query_list = json.load(f)
     
+    with open(args.config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
     for item in formatted_results:
@@ -124,7 +128,7 @@ if __name__ == "__main__":
                         continue
                     
                     if isinstance(value, dict):
-                        file_id = file_upload(args.user, api_key, value["value"], value["mime_type"], case_files_dir)
+                        file_id = file_upload(cfg['user'], api_key, value["value"], value["mime_type"], case_files_dir)
                         input_data[key] = {
                             "transfer_method": "local_file",
                             "upload_file_id": file_id,
@@ -135,7 +139,7 @@ if __name__ == "__main__":
                         all_file = []
 
                         for file_item in value:
-                            file_id = file_upload(args.user, api_key, file_item["value"], file_item["mime_type"], case_files_dir)
+                            file_id = file_upload(cfg['user'], api_key, file_item["value"], file_item["mime_type"], case_files_dir)
                             all_file.append({
                                 "transfer_method": "local_file",
                                 "upload_file_id": file_id,
@@ -155,7 +159,7 @@ if __name__ == "__main__":
                 payload = {
                     "inputs": input_data,
                     "response_mode": "blocking",
-                    "user": args.user
+                    "user": cfg['user']
                 }
 
                 try:

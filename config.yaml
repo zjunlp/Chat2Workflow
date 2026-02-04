@@ -1,0 +1,8 @@
+github_rest_token: "github_xxx" # null or "github_xxx"
+
+user: "xxx"
+admin_email: "xxx@yyy.com"
+admin_password: "xxxxx"
+
+llm_api_key: "sk-xxxxxx"
+base_url: "xxxxx"

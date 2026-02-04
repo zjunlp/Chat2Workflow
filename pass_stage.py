@@ -441,8 +441,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="pass stage")
 
     parser.add_argument('--model_name', type=str, required=True, help='model name')
-    parser.add_argument('--admin_email', type=str, required=True, help='admin email')
-    parser.add_argument('--admin_password', type=str, required=True, help='admin password')
+    parser.add_argument('--config', type=str, required=True, help='Configuration file path')
     parser.add_argument('--temperature', type=float, required=True, help='LLM Temperature')
     parser.add_argument('--max_tokens', type=int, required=True, help='Max tokens')
     args = parser.parse_args()
@@ -533,10 +532,14 @@ if __name__ == "__main__":
     # ——————————————————————————————————————————————————————————————————————————————————————————————
     # step 5: Import into the Dify platform and publish - If successful, set valid to True; otherwise, set it to False. 
     session = requests.Session()
+
+    with open(args.config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+
     try:
         login_resp = session.post(f"{base_url}/login", json={
-            "email": args.admin_email, 
-            "password": args.admin_password
+            "email": cfg['admin_email'], 
+            "password": cfg['admin_password']
         })
         login_resp.raise_for_status()
         

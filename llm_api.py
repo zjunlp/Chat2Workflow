@@ -1,10 +1,16 @@
 # from kalm.agent import KalmAgent
 from openai import OpenAI
+import yaml
+
+config = "config.yaml"
+
+with open(config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
 
 class OpenAIAgent:
     def __init__(self, model_name, system_prompt, temperature, max_tokens):
-        self.api_key = "sk-ehMknH38RZvzA2qK6m4dstxtzSUD2TYZpJ7wJTaP0ZFbtjFJ"
-        self.base_url = "https://www.dmxapi.cn/v1"
+        self.api_key = cfg['llm_api_key']
+        self.base_url = cfg['base_url']
         self.model_name = model_name
         self.system_prompt = system_prompt
         self.temperature = temperature

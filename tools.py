@@ -1,4 +1,5 @@
 import re
+import yaml
 import collections
 
 from nodes.basic.code import Code
@@ -22,6 +23,9 @@ from nodes.tool.markdown_exporter import MarkdownExporter
 from nodes.tool.mermaid_converter import MermaidConverter
 from nodes.tool.echarts import Echarts
 from nodes.tool.google_search import GoogleSearch
+
+
+config_path = "config.yaml"
 
 def search_var(ref_var: str, ref_node):
     # Input: Variable name + Reference node object
@@ -153,7 +157,16 @@ def construct(node_type: str, param: dict, x: int, y: int, count: int, id_dict: 
         idd, typee = search_var(ref_var, ref_node)
 
         url = '{{#' + idd + '.' + ref_var + '#}}'
-        current_node = HttpRequest(url, x, y, count)
+
+        with open(config_path, 'r', encoding='utf-8') as f:
+            cfg = yaml.safe_load(f)
+
+        if cfg['github_rest_token']:
+            github_rest_token = cfg['github_rest_token']
+        else:
+            github_rest_token = ""
+
+        current_node = HttpRequest(url, x, y, count, github_rest_token)
 
     elif node_type == 'if-else':
         input_list = []

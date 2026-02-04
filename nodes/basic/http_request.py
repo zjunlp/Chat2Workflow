@@ -1,10 +1,15 @@
 from ..node import Node
 
 class HttpRequest(Node):
-    def __init__(self, url: str, x: int, y: int, count: int = 1, params: str = ""):
+    def __init__(self, url: str, x: int, y: int, count: int = 1, github_rest_token: str = "", params: str = ""):
         super().__init__(x,y)
 
         title = "HTTP Request"
+
+        if github_rest_token:
+            headers = "Authorization:Bearer:" + github_rest_token
+        else:
+            headers = ""
 
         if count > 1:
             title += ' ' + str(count)
@@ -18,7 +23,7 @@ class HttpRequest(Node):
                 "data":[],
                 "type": 'none'
             },
-            "headers": "",
+            "headers": headers,
             "method": "get",
             "params": params,
             "retry_config":{
