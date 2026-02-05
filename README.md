@@ -37,10 +37,10 @@ Setting up an admin account. Also fill the following information into `config.ya
 </br>
 
 Install the following specified version plugins in [Plugins]-[MarketPlace]:
-> - langgenius/tongyi:0.1.13 (API Key Authorization Configuration in [Settings]-[WORKSPACE]-[Model Provider])
-> - langgenius/openai:0.2.7 (API Key Authorization Configuration in [Settings]-[WORKSPACE]-[Model Provider])
-> - wwwzhouhui/qwen_text2image:0.0.3 (API Key Authorization Configuration in [Plugins])
-> - langgenius/google:0.0.9 (API Key Authorization Configuration in [Plugins])
+> - langgenius/tongyi:0.1.13 —— API Key Configuration in [Settings]-[WORKSPACE]-[Model Provider]
+> - langgenius/openai:0.2.7 —— API Key Configuration in [Settings]-[WORKSPACE]-[Model Provider]
+> - wwwzhouhui/qwen_text2image:0.0.3 —— API Key Configuration in [Plugins]
+> - langgenius/google:0.0.9 —— API Key Configuration in [Plugins]
 > - bowenliang123/md_exporter:2.2.0
 > - hjlarry/mermaid_converter:0.0.1
 > - langgenius/echarts:0.0.1
