@@ -47,6 +47,8 @@ Install the following specified version plugins in [Plugins]-[MarketPlace]:
 
 </br>
 
+![plugin_version](./images/plugin_version.png)
+
 Fill in the information in the `config.yaml`.
 
 ```yaml
