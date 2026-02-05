@@ -8,7 +8,7 @@ from llm_api import OpenAIAgent
 
 
 def file_upload(user, api_key, file_name, mime_type, case_files_dir):
-    url = 'http://localhost:5001/v1/files/upload'
+    url = 'http://localhost/v1/files/upload'
     file_path = os.path.join(case_files_dir, file_name)
 
     part1, part2 = mime_type.split('/')
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     parser.add_argument('--max_tokens', type=int, required=True, help='Max new tokens')
     args = parser.parse_args()
 
-    base_url = "http://localhost:5001/v1/workflows/run"
+    base_url = "http://localhost/v1/workflows/run"
 
     input_file = f'output/pass_eval/pass_eval_{args.model_name}.json'
     output_file = f"output/resolve_eval/resolve_eval_{args.model_name}.json"

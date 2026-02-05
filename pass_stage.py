@@ -448,7 +448,7 @@ if __name__ == "__main__":
 
     # agent = OpenAIAgent(args.model_name, system_prompt, args.temperature, args.max_tokens)
 
-    base_url = "http://localhost:5001/console/api"
+    base_url = "http://localhost/console/api"
 
     input_file = f'output/llm_response/response_{args.model_name}.json'
     check_file = 'dataset/check_pass_stage.json'
