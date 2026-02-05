@@ -13,14 +13,14 @@
         "test2":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                "value": "MEM1_Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
                 },
             "language": "Japanese"
         },
         "test3":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "LIMO: Less is More for Reasoning.pdf"
+                "value": "LIMO_Less is More for Reasoning.pdf"
                 },
             "language": "French"
         }
@@ -39,14 +39,14 @@
         "test2":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                "value": "MEM1_Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
                 },
             "language": "Japanese"
         },
         "test3":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "LIMO: Less is More for Reasoning.pdf"
+                "value": "LIMO_Less is More for Reasoning.pdf"
                 },
             "language": "French"
         }
@@ -65,14 +65,14 @@
         "test2":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                "value": "MEM1_Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
                 },
             "language": "Japanese"
         },
         "test3":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "LIMO: Less is More for Reasoning.pdf"
+                "value": "LIMO_Less is More for Reasoning.pdf"
                 },
             "language": "French"
         }
@@ -91,14 +91,14 @@
         "test2":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
+                "value": "MEM1_Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents.pdf"
                 },
             "language": "Japanese"
         },
         "test3":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "LIMO: Less is More for Reasoning.pdf"
+                "value": "LIMO_Less is More for Reasoning.pdf"
                 },
             "language": "French"
         }
@@ -147,7 +147,7 @@
         "test2":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "Stay On-Topic: Generating Context-specific Fake Restaurant Reviews.pdf"
+                "value": "Stay On-Topic_Generating Context-specific Fake Restaurant Reviews.pdf"
                 },
             "question": "Which dataset do they use a starting point in generating fake reviews?",
             "ground_truth": "Answer: The Yelp Challenge dataset.\n Evidence: We use the Yelp Challenge dataset BIBREF2 for our fake review generation."
@@ -155,7 +155,7 @@
         "test3":{
             "paper": {
                 "mime_type": "document/pdf",
-                "value": "LAXARY: A Trustworthy Explainable Twitter Analysis Model for Post-Traumatic Stress Disorder Assessment.pdf"
+                "value": "LAXARY_A Trustworthy Explainable Twitter Analysis Model for Post-Traumatic Stress Disorder Assessment.pdf"
                 },
             "question": "How is the intensity of the PTSD established?",
             "ground_truth": "Answer: Given we have four intensity, No PTSD, Low Risk PTSD, Moderate Risk PTSD and High Risk PTSD with a score of 0, 1, 2 and 3 respectively, the estimated intensity is established as mean squared error.\n Evidence: Our final survey based classification results showed an accuracy of 96% in detecting PTSD and mean squared error of 1.2 in estimating its intensity given we have four intensity, No PTSD, Low Risk PTSD, Moderate Risk PTSD and High Risk PTSD with a score of 0, 1, 2 and 3 respectively."
@@ -186,7 +186,7 @@
         "test3":{
             "paper":{
                 "mime_type": "document/pdf",
-                "value": "CommonGen: A Constrained Text Generation Dataset Towards Generative Commonsense Reasoning.pdf"
+                "value": "CommonGen_A Constrained Text Generation Dataset Towards Generative Commonsense Reasoning.pdf"
             },
             "question_1": "What measures were used for human evaluation?",
             "question_2": "What automatic metrics are used for this task?",
@@ -375,7 +375,7 @@
                 },
                 {
                     "mime_type": "image/png",
-                    "value": "DiffDock-Pocket: Diffusion for Pocket-Level Docking with Sidechain Flexibility.png"
+                    "value": "DiffDock-Pocket_Diffusion for Pocket-Level Docking with Sidechain Flexibility.png"
                 },
                 {
                     "mime_type": "image/png",
@@ -387,7 +387,7 @@
             "pic_list": [
                 {
                     "mime_type": "image/png",
-                    "value": "Layer-Aware Analysis of Catastrophic Overfitting: Revealing the Pseudo-Robust Shortcut Dependency.png"
+                    "value": "Layer-Aware Analysis of Catastrophic Overfitting_Revealing the Pseudo-Robust Shortcut Dependency.png"
                 },
                 {
                     "mime_type": "image/png",
@@ -403,7 +403,7 @@
                 },
                 {
                     "mime_type": "image/png",
-                    "value": "REFACTOR: Learning to Extract Theorems from Proofs.png"
+                    "value": "REFACTOR_Learning to Extract Theorems from Proofs.png"
                 }
             ]
         }

@@ -6,3 +6,4 @@ admin_password: "xxxxx"
 
 llm_api_key: "sk-xxxxxx"
 base_url: "xxxxx"
+evaluation_model: deepseek-chat

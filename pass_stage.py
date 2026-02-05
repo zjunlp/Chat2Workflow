@@ -421,7 +421,7 @@ def import_and_publish(base_url, dsl_file_path):
         return "FALSE-Exception"
 
 
-def kalm_llm_judge(agent, node_selection, design_principle, workflow, gt_nodes):
+def llm_judge(agent, node_selection, design_principle, workflow, gt_nodes):
     user_prompt = '''
     node_selection: {node_selection}
     design_principle: {design_principle}
@@ -501,7 +501,11 @@ if __name__ == "__main__":
     # Step 4: Logical validity check - I. Key nodes should be included    II. The descriptions of the same nodes in the three labels should be consistent.
     with open("prompts/evaluation_pass_system.txt",'r', encoding='utf-8') as f:
         system_prompt = f.read().strip()
-    agent = OpenAIAgent(args.model_name, system_prompt, args.temperature, args.max_tokens)
+
+    with open(args.config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+
+    agent = OpenAIAgent(cfg['evaluation_model'], system_prompt, args.temperature, args.max_tokens)
 
     for item in formatted_results:
         if item["valid"]:
@@ -516,7 +520,7 @@ if __name__ == "__main__":
 
             gt_nodes = check_list[item_name]["related_nodes"]
 
-            result = kalm_llm_judge(agent ,node_selection, design_principle, workflow, gt_nodes)
+            result = llm_judge(agent ,node_selection, design_principle, workflow, gt_nodes)
             answer = result.split('<result>')[-1].split('</result>')[0]
 
             if 'false' in answer.lower():
@@ -532,9 +536,6 @@ if __name__ == "__main__":
     # ——————————————————————————————————————————————————————————————————————————————————————————————
     # step 5: Import into the Dify platform and publish - If successful, set valid to True; otherwise, set it to False. 
     session = requests.Session()
-
-    with open(args.config, 'r', encoding='utf-8') as f:
-        cfg = yaml.safe_load(f)
 
     try:
         login_resp = session.post(f"{base_url}/login", json={

@@ -37,7 +37,7 @@ def file_upload(user, api_key, file_name, mime_type, case_files_dir):
     finally:
         files['file'][1].close()
 
-def kalm_llm_evaluate(agent, queries, input_text ,output_text, ground_truth):
+def llm_evaluate(agent, queries, input_text ,output_text, ground_truth):
     user_prompt = '''
     <queries>
     {queries}
@@ -280,9 +280,10 @@ if __name__ == "__main__":
 
                 with open("prompts/evaluation_resolve_system.txt",'r', encoding='utf-8') as f:
                     system_prompt = f.read().strip()
-                agent = OpenAIAgent(args.model_name, system_prompt, args.temperature, args.max_tokens)
+
+                agent = OpenAIAgent(cfg['evaluation_model'], system_prompt, args.temperature, args.max_tokens)
                 
-                result = kalm_llm_evaluate(agent, queries, input_text, output_text, ground_truth)
+                result = llm_evaluate(agent, queries, input_text, output_text, ground_truth)
                 answer = result.split('<result>')[-1].split('</result>')[0]
 
                 print(f">> Processing LLM evaluation...Done")
@@ -294,7 +295,7 @@ if __name__ == "__main__":
                     print(f"  - Processing {item['task']}_round{item['round']}_{test_key}... Done\n")
                 else:
                     item[test_key] = True
-                    print(f"{item['task']}_round{item['round']}_{test_key} passed the evaluation of LLM, test passed")
+                    print(f"{item['task']}_round{item['round']}_{test_key} completed the evaluation of LLM, test passed")
                     print(f"  - Processing {item['task']}_round{item['round']}_{test_key}... Done\n")
 
                 tag = 'llm_evaluate_reason_' + test_key
