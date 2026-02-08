@@ -7,8 +7,8 @@ from time import sleep
 from llm_api import OpenAIAgent
 
 
-def file_upload(user, api_key, file_name, mime_type, case_files_dir):
-    url = 'http://localhost/v1/files/upload'
+def file_upload(user, api_key, file_name, mime_type, case_files_dir, port):
+    url = f'http://localhost:{port}/v1/files/upload'
     file_path = os.path.join(case_files_dir, file_name)
 
     part1, part2 = mime_type.split('/')
@@ -75,7 +75,10 @@ if __name__ == "__main__":
     parser.add_argument('--max_tokens', type=int, required=True, help='Max new tokens')
     args = parser.parse_args()
 
-    base_url = "http://localhost/v1/workflows/run"
+    with open(args.config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+
+    base_url = f"http://localhost:{cfg['port']}/v1/workflows/run"
 
     input_file = f'output/pass_eval/pass_eval_{args.model_name}.json'
     output_file = f"output/resolve_eval/resolve_eval_{args.model_name}.json"
@@ -97,8 +100,6 @@ if __name__ == "__main__":
     with open(task_query_file, 'r', encoding='utf-8') as f:
         task_query_list = json.load(f)
     
-    with open(args.config, 'r', encoding='utf-8') as f:
-        cfg = yaml.safe_load(f)
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
@@ -128,7 +129,7 @@ if __name__ == "__main__":
                         continue
                     
                     if isinstance(value, dict):
-                        file_id = file_upload(cfg['user'], api_key, value["value"], value["mime_type"], case_files_dir)
+                        file_id = file_upload(cfg['user'], api_key, value["value"], value["mime_type"], case_files_dir, cfg['port'])
                         input_data[key] = {
                             "transfer_method": "local_file",
                             "upload_file_id": file_id,
@@ -139,7 +140,7 @@ if __name__ == "__main__":
                         all_file = []
 
                         for file_item in value:
-                            file_id = file_upload(cfg['user'], api_key, file_item["value"], file_item["mime_type"], case_files_dir)
+                            file_id = file_upload(cfg['user'], api_key, file_item["value"], file_item["mime_type"], case_files_dir, cfg['port'])
                             all_file.append({
                                 "transfer_method": "local_file",
                                 "upload_file_id": file_id,

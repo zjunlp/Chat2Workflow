@@ -448,7 +448,10 @@ if __name__ == "__main__":
 
     # agent = OpenAIAgent(args.model_name, system_prompt, args.temperature, args.max_tokens)
 
-    base_url = "http://localhost/console/api"
+    with open(args.config, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+
+    base_url = f"http://localhost:{cfg['port']}/console/api"
 
     input_file = f'output/llm_response/response_{args.model_name}.json'
     check_file = 'dataset/check_pass_stage.json'
@@ -501,9 +504,6 @@ if __name__ == "__main__":
     # Step 4: Logical validity check - I. Key nodes should be included    II. The descriptions of the same nodes in the three labels should be consistent.
     with open("prompts/evaluation_pass_system.txt",'r', encoding='utf-8') as f:
         system_prompt = f.read().strip()
-
-    with open(args.config, 'r', encoding='utf-8') as f:
-        cfg = yaml.safe_load(f)
 
     agent = OpenAIAgent(cfg['evaluation_model'], system_prompt, args.temperature, args.max_tokens)
 

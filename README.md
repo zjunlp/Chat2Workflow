@@ -16,7 +16,9 @@ pip install -r requirements.txt
 
 Obtain the specified version of dify:
 
-`git clone https://github.com/langgenius/dify.git --branch 1.9.2 --depth 1`
+```bash
+git clone https://github.com/langgenius/dify.git --branch 1.9.2 --depth 1
+```
 
 The easiest way to start the Dify server is through [Docker Compose]. Before running Dify with the following commands, make sure that [Docker] and [Docker Compose] are installed on your machine:
 

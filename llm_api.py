@@ -36,6 +36,40 @@ class OpenAIAgent:
         )
         
         return response.choices[0].message.content
+    
+    def generate_stream(self, query, history=None):
+        """Generate response with streaming support, including reasoning content"""
+        client = OpenAI(base_url=self.base_url, api_key=self.api_key)
+        messages = [{"role": "system", "content": self.system_prompt}]
+        
+        if history:
+            for user_msg, assistant_msg in history:
+                messages.append({"role": "user", "content": user_msg})
+                messages.append({"role": "assistant", "content": assistant_msg})
+        
+        messages.append({"role": "user", "content": query})
+        
+        stream = client.chat.completions.create(
+            model=self.model_name,
+            messages=messages,
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+            stream=True
+        )
+        
+        for chunk in stream:
+            delta = chunk.choices[0].delta
+            reasoning = None
+            content = None
+            
+            if hasattr(delta, 'reasoning_content') and delta.reasoning_content is not None:
+                reasoning = delta.reasoning_content
+            
+            if delta.content is not None:
+                content = delta.content
+
+            if reasoning is not None or content is not None:
+                yield (reasoning, content)
 
 # def kalm_agent_init(service_url, system_prompt, temerature, max_new_tokens):
 #     agent = KalmAgent(
