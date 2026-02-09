@@ -1,10 +1,13 @@
+# Github REST API for higher rate limits.
+# Used for the GithubSummary task in the resolve stage.
 github_rest_token: "github_xxx" # null or "github_xxx"
 
+# Your admin account
 user_name: "xxx"
 email_address: "xxx@yyy.com"
 password: "xxxxx"
-port: 80
 
+# LLM API for workflow generation and evaluation
 llm_api_key: "sk-xxxxxx"
 base_url: "xxxxx"
 evaluation_model: deepseek-chat
