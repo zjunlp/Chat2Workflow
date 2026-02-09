@@ -1,8 +1,8 @@
 github_rest_token: "github_xxx" # null or "github_xxx"
 
-user: "xxx"
-admin_email: "xxx@yyy.com"
-admin_password: "xxxxx"
+user_name: "xxx"
+email_address: "xxx@yyy.com"
+password: "xxxxx"
 port: 80
 
 llm_api_key: "sk-xxxxxx"

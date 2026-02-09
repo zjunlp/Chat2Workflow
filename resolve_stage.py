@@ -129,7 +129,7 @@ if __name__ == "__main__":
                         continue
                     
                     if isinstance(value, dict):
-                        file_id = file_upload(cfg['user'], api_key, value["value"], value["mime_type"], case_files_dir, cfg['port'])
+                        file_id = file_upload(cfg['user_name'], api_key, value["value"], value["mime_type"], case_files_dir, cfg['port'])
                         input_data[key] = {
                             "transfer_method": "local_file",
                             "upload_file_id": file_id,
@@ -140,7 +140,7 @@ if __name__ == "__main__":
                         all_file = []
 
                         for file_item in value:
-                            file_id = file_upload(cfg['user'], api_key, file_item["value"], file_item["mime_type"], case_files_dir, cfg['port'])
+                            file_id = file_upload(cfg['user_name'], api_key, file_item["value"], file_item["mime_type"], case_files_dir, cfg['port'])
                             all_file.append({
                                 "transfer_method": "local_file",
                                 "upload_file_id": file_id,
@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 payload = {
                     "inputs": input_data,
                     "response_mode": "blocking",
-                    "user": cfg['user']
+                    "user": cfg['user_name']
                 }
 
                 try:

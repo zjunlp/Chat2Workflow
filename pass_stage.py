@@ -539,8 +539,8 @@ if __name__ == "__main__":
 
     try:
         login_resp = session.post(f"{base_url}/login", json={
-            "email": cfg['admin_email'], 
-            "password": cfg['admin_password']
+            "email": cfg['email_address'], 
+            "password": cfg['password']
         })
         login_resp.raise_for_status()
         
