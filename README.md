@@ -15,7 +15,7 @@
 - 💻 [Generation](#generation)
 
 ## 👀Overview
-![main_picture](./images/main_picture.svg)
+![main_picture](./images/main_picture.png)
 
 ## 🔧Installation
 ### Conda Environment Configuration
