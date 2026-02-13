@@ -10,12 +10,25 @@
 
 ## Table of Contents
 - 👀 [Overview](#overview)
+- 📁 [Directory](#directory)
 - 🔧 [Installation](#installation)
 - 🧐 [Evaluation](#evaluation)
 - 💻 [Generation](#generation)
 
 ## 👀Overview
 ![main_picture](./images/main_picture.svg)
+
+## 📁Directory
+| Directory | Description | 
+| :--- | :--- | 
+| `case_files/` | All files required for the test cases | 
+| `dataset/` | Workflow generation instructions and evaluation checks | 
+| `experiment_result/` | The final result of the evaluation |
+| `images/` | The images used in README.md | 
+| `nodes/` | The functional logic of each node | 
+| `prompts/` | System prompt and evaluation prompts | 
+| `yaml/` | The generated Dify workflow YAML files, you can obtain them from <br> https://huggingface.co/datasets/zjunlp/Chat2Workflow-Evaluation | 
+
 
 ## 🔧Installation
 ### Conda Environment Configuration
