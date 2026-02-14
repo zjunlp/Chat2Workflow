@@ -125,7 +125,7 @@ base_url: "xxxxx"
 
 2. Run the Python script to start the workflow generation program.
 ```bash
-python chat2workflow.py
+chainlit run chat2workflow.py -w
 ```
 Click on the returned link to start the interactive conversation.  The result will be stored in `output/generated_workflows`.
 Finally import the generated YAML file into the Dify platform for execution.
