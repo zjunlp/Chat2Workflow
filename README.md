@@ -16,7 +16,9 @@
 - 💻 [Generation](#generation)
 
 ## 👀Overview
-![main_picture](./images/main_picture.svg)
+![main_picture](./assets/main_picture.svg)
+
+![demo](./assets/demo.gif)
 
 ## 📁Directory
 | Directory | Description | 
@@ -90,7 +92,7 @@ After running, you can access the Dify dashboard in your browser at http://local
 
 </br>
 
-![plugin_version](./images/plugin_version.png)
+![plugin_version](./assets/plugin_version.png)
 
 > In this setup, the LLM defaults to `tongyi:qwen3-vl-plus`, TTS (Text-to-Speech) to `openai:gpt-4o-mini-tts`, image generation to `qwen_text2image:qwen-image`, and search engines to `google:SerpApi`. After the workflow is generated, you can modify the above nodes as needed.
 
