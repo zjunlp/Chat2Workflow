@@ -6,12 +6,9 @@ import re
 import asyncio
 from datetime import datetime
 
-# 导入你原有的核心逻辑
 from llm_api import OpenAIAgent
 from pass_stage import convert_to_yaml
 
-# --- 全局状态缓存 ---
-# 仅保留 settings，移除 chat_history，以实现每次新建对话都是全新的上下文
 GLOBAL_STATE = {
     "settings": {
         "model_name": "deepseek-chat",
@@ -19,8 +16,6 @@ GLOBAL_STATE = {
         "max_tokens": 8192
     }
 }
-
-# --- 核心数据处理函数 ---
 
 def load_system_prompt():
     prompt_path = "prompts/builder_prompt.txt"
@@ -58,14 +53,13 @@ def save_workflow_yaml(workflow_json_str, task_name=None):
         return False, None, f"Error during conversion: {str(e)}"
 
 
-# --- Chainlit UI 交互逻辑 ---
 
 @cl.on_chat_start
 async def start():
-    """初始化页面，恢复配置参数，但重置历史上下文"""
+    """Initialize page, restore configuration parameters, but reset history context"""
     saved_settings = GLOBAL_STATE["settings"]
     
-    # 1. 设置并恢复侧边栏参数配置
+    # 1. Set and restore sidebar parameter configuration
     settings = cl.ChatSettings(
         [
             TextInput(id="model_name", label="Model Name", initial=saved_settings["model_name"]),
@@ -75,7 +69,7 @@ async def start():
     )
     await settings.send()
     
-    # 2. 初始化 Agent
+    # 2. Initialize Agent
     try:
         system_prompt = load_system_prompt()
         agent = OpenAIAgent(
@@ -86,21 +80,20 @@ async def start():
         )
         cl.user_session.set("agent", agent)
     except Exception as e:
-        await cl.Message(content=f"❌ Agent 初始化失败: {str(e)}").send()
+        await cl.Message(content=f"❌ Agent initialization failed: {str(e)}").send()
     
-    # 3. 初始化全新的历史对话记录（不再从 GLOBAL_STATE 获取）
+    # 3. Initialize fresh chat history
     cl.user_session.set("chat_history", [])
     
-    # 4. 发送欢迎语及状态提示
-    welcome_msg = f"👋 **欢迎使用 Chat2Workflow！**\n\n\nmodel: `{saved_settings['model_name']}`, temperature: `{saved_settings['temperature']}`, max_tokens: `{saved_settings['max_tokens']}`"
+    # 4. Send welcome message and status prompt
+    welcome_msg = f"👋 **Welcome to Chat2Workflow!**\n\n\nmodel: `{saved_settings['model_name']}`, temperature: `{saved_settings['temperature']}`, max_tokens: `{saved_settings['max_tokens']}`\n**You can reset them in Settings!**"
         
     await cl.Message(content=welcome_msg).send()
 
 @cl.on_settings_update
 async def setup_agent(settings):
-    """当用户修改设置时，更新全局状态并重新加载 Agent"""
+    """Update global state and reload Agent when user modifies settings"""
     try:
-        # 同步更新到全局状态
         GLOBAL_STATE["settings"]["model_name"] = settings["model_name"]
         GLOBAL_STATE["settings"]["temperature"] = settings["temperature"]
         GLOBAL_STATE["settings"]["max_tokens"] = settings["max_tokens"]
@@ -114,19 +107,18 @@ async def setup_agent(settings):
         )
         cl.user_session.set("agent", agent)
         
-        # 明确提示当前更新的模型名称
-        await cl.Message(content=f"✅ 配置已更新！\n\n\nmodel: `{settings['model_name']}`, temperature: `{settings['temperature']}`, max_tokens: `{settings['max_tokens']}`").send()
+        await cl.Message(content=f"✅ Configuration updated!\n\n\nmodel: `{settings['model_name']}`, temperature: `{settings['temperature']}`, max_tokens: `{settings['max_tokens']}`").send()
     except Exception as e:
-        await cl.Message(content=f"❌ 更新失败: {str(e)}").send()
+        await cl.Message(content=f"❌ Update failed: {str(e)}").send()
 
 @cl.on_message
 async def main(message: cl.Message):
-    """处理用户消息核心逻辑"""
+    """Core logic for processing user messages"""
     agent = cl.user_session.get("agent")
     chat_history = cl.user_session.get("chat_history")
     
     if not agent:
-        await cl.Message(content="⚠️ Agent 未就绪，请刷新页面。").send()
+        await cl.Message(content="⚠️ Agent not ready, please refresh the page.").send()
         return
 
     msg = cl.Message(content="")
@@ -139,23 +131,18 @@ async def main(message: cl.Message):
     reasoning_closed = False
 
     try:
-        # 流式获取 Agent 输出
         for reasoning_chunk, content_chunk in agent.generate_stream(query=message.content, history=chat_history):
             
-            # 处理思考过程：使用 Markdown 的折叠标签 (open 属性代表默认展开)
             if reasoning_chunk:
                 if not has_reasoning:
-                    await msg.stream_token("🧠 思考过程\n\n> ")
+                    await msg.stream_token("🧠 Reasoning Process\n\n> ")
                     has_reasoning = True
                 
-                # 为了视觉美观，思考内容加上引用块的格式
                 clean_chunk = reasoning_chunk.replace('\n', '\n> ')
                 full_reasoning += reasoning_chunk
                 await msg.stream_token(clean_chunk)
             
-            # 处理最终回复内容
             if content_chunk:
-                # 如果之前有思考过程，且尚未闭合标签，则在此处闭合
                 if has_reasoning and not reasoning_closed:
                     await msg.stream_token("\n\n---\n\n")
                     reasoning_closed = True
@@ -166,20 +153,17 @@ async def main(message: cl.Message):
             await asyncio.sleep(0.01)
             
     except Exception as e:
-        await cl.Message(content=f"❌ 生成过程中出错: {str(e)}").send()
+        await cl.Message(content=f"❌ Error during generation: {str(e)}").send()
         return
 
-    # 容错收尾：如果模型只有思考没输出正文，确保标签闭合
     if has_reasoning and not reasoning_closed:
         await msg.stream_token("\n</details>\n\n")
         
     await msg.update()
 
-    # --- 更新对话历史（仅保存在当前 session，不再同步到全局状态） ---
     chat_history.append((message.content, full_response))
     cl.user_session.set("chat_history", chat_history)
 
-    # --- 提取 JSON 并尝试转换为 YAML ---
     workflow_json, is_valid, error_msg = extract_workflow_json(full_response)
     
     if workflow_json and is_valid:
@@ -190,7 +174,7 @@ async def main(message: cl.Message):
                 yaml_content = f.read()
             
             yaml_preview = cl.Text(
-                name="YAML 预览", 
+                name="YAML Preview", 
                 content=yaml_content, 
                 language="yaml", 
                 display="side"
@@ -202,11 +186,11 @@ async def main(message: cl.Message):
             )
             
             await cl.Message(
-                content=f"🎉 **工作流 YAML 已生成！**",
+                content=f"🎉 **Workflow YAML generated successfully!**",
                 elements=[yaml_preview, yaml_download]
             ).send()
         else:
-            await cl.Message(content=f"⚠️ YAML 转换失败。错误: {error_msg}").send()
+            await cl.Message(content=f"⚠️ YAML conversion failed. Error: {error_msg}").send()
             
     elif workflow_json and not is_valid:
-        await cl.Message(content=f"❌ 发现工作流标签但 JSON 格式错误: `{error_msg}`").send()
+        await cl.Message(content=f"❌ Workflow tags found but JSON format is invalid: `{error_msg}`").send()
