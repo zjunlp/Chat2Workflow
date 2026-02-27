@@ -20,7 +20,7 @@
 ![demo](./assets/demo.gif)
 
 ### Benchmark
-![main_picture](./assets/main_picture.svg)
+![main_picture](./assets/main_picture_0227.svg)
 
 ## 📁Directory
 | Directory | Description | 
