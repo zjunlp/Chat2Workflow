@@ -86,7 +86,7 @@ After running, you can access the Dify dashboard in your browser at http://local
 2. Install the following specified version plugins in [Plugins]-[MarketPlace]:
 > - langgenius/tongyi:0.1.13 —— API Key Configuration in [Settings]-[WORKSPACE]-[Model Provider]
 > - langgenius/openai:0.2.7 —— API Key Configuration in [Settings]-[WORKSPACE]-[Model Provider]
-> - wwwzhouhui/qwen_text2image:0.0.3 —— API Key Configuration in [Plugins]
+> - sawyer-shi/tongyi_aigc:0.0.1 —— API Key Configuration in [Plugins]
 > - langgenius/google:0.0.9 —— API Key Configuration in [Plugins]
 > - bowenliang123/md_exporter:2.2.0
 > - hjlarry/mermaid_converter:0.0.1
@@ -96,7 +96,7 @@ After running, you can access the Dify dashboard in your browser at http://local
 
 ![plugin_version](./assets/plugin_version.png)
 
-> In this setup, the LLM defaults to `tongyi:qwen3-vl-plus`, TTS (Text-to-Speech) to `openai:gpt-4o-mini-tts`, image generation to `qwen_text2image:qwen-image`, and search engines to `google:SerpApi`. After the workflow is generated, you can modify the above nodes as needed.
+> In this setup, the LLM defaults to `tongyi:qwen3-vl-plus`, TTS (Text-to-Speech) to `openai:gpt-4o-mini-tts`, image generation to `tongyi_aigc:z-image-turbo`, search engines to `google:SerpApi`, Question Classifier and Parameter Extractor to `tongyi:qwen3-max`. After the workflow is generated, you can modify the above nodes as needed.
 
 ## 🧐Evaluation
 1. Fill in the information in the `config.yaml`.

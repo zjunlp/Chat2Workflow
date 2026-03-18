@@ -17,7 +17,7 @@ class ParameterExtractor(Node):
                     "max_tokens": 32768
                 },
                 "mode": "chat",
-                "name": "qwen3-vl-plus",
+                "name": "qwen3-max",
                 "provider": "langgenius/tongyi/tongyi"
             },
             "parameters": [],
