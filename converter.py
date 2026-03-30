@@ -1,6 +1,8 @@
 import json
 import yaml
 import os
+import shutil
+import zipfile
 
 from tools import layout_nodes, construct, search_var, construct_coze
 
@@ -226,9 +228,9 @@ def convert_to_dify(data, name, yaml_dir):
 
 
 # coze
-def convert_to_coze(data, name, yaml_dir):
+def convert_to_coze(data, name, yaml_dir, manifest_path=None):
     try:
-        app_name = name
+        app_name = name + "-draft"
         
         output_file = os.path.join(yaml_dir, app_name + ".yaml")
 
@@ -316,7 +318,7 @@ def convert_to_coze(data, name, yaml_dir):
 
         general_template = {
             "schema_version": "1.0.0",
-            "name": app_name,
+            "name": name,
             "id": 1,
             "description": "coze workflow",
             "mode": "workflow",
@@ -436,6 +438,33 @@ def convert_to_coze(data, name, yaml_dir):
             yaml.dump(general_template, yaml_file, allow_unicode=True, default_flow_style=False)    
         
         print(f"{app_name} - Conversion successful!")
+        
+        # 创建目录结构并压缩
+        workflow_dir = os.path.join(yaml_dir, f"Workflow-{app_name}")
+        workflow_subdir = os.path.join(workflow_dir, "workflow")
+        os.makedirs(workflow_subdir, exist_ok=True)
+        
+        # 复制 MANIFEST.yml 到目标目录
+        manifest_dest = os.path.join(workflow_dir, "MANIFEST.yml")
+        shutil.copy(manifest_path, manifest_dest)
+        
+        # 移动 yaml 文件到 workflow 子目录
+        yaml_dest = os.path.join(workflow_subdir, f"{app_name}.yaml")
+        shutil.move(output_file, yaml_dest)
+        
+        # 创建 zip 文件
+        zip_path = os.path.join(yaml_dir, f"Workflow-{app_name}")
+        with zipfile.ZipFile(f"{zip_path}.zip", 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files in os.walk(workflow_dir):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    arcname = os.path.relpath(file_path, yaml_dir)
+                    zipf.write(file_path, arcname)
+        
+        # 删除临时目录
+        shutil.rmtree(workflow_dir)
+        
+        print(f"Created zip file: Workflow-{app_name}.zip")
         return True
         
     except Exception as e:
@@ -458,6 +487,8 @@ if __name__ == "__main__":
     parser.add_argument('--type', type=str, required=True, choices=['dify', 'coze'], help='Target type: dify or coze')
     
     args = parser.parse_args()
+
+    manifest_path = "nodes/coze/MANIFEST.yml"
     
     if args.json_path:
         with open(args.json_path, 'r', encoding='utf-8') as file:
@@ -470,4 +501,4 @@ if __name__ == "__main__":
     if args.type == 'dify':
         convert_to_dify(data, args.name, args.output_path)
     elif args.type == 'coze':
-        convert_to_coze(data, args.name, args.output_path)
+        convert_to_coze(data, args.name, args.output_path, manifest_path)
