@@ -76,7 +76,7 @@ class ParameterExtractor(Node):
 
             for var in records:
                 input_template = {
-                    "name": var[1] + '_' + var[0],
+                    "name": '_' + var[1] + '_' + var[0],
                     "input":{
                         "value":{
                             "path": var[0],

@@ -354,7 +354,7 @@ def construct_coze(node_type: str, param: dict, x: int, y: int, count: int, id_d
             
             records.append([var_name,new_id])
 
-            return f"{{{{{new_id}_{var_name}}}}}"
+            return f"{{{{_{new_id}_{var_name}}}}}"
 
         new_text = re.sub(pattern, replace_callback, text)
     

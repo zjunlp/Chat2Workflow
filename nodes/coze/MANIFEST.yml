@@ -1,0 +1,11 @@
+type: Workflow
+version: 1.0.0
+main:
+    id: 1
+    name: test
+    desc: coze workflow
+    icon: plugin_icon/workflow.png
+    version: ""
+    flowMode: 0
+    commitId: ""
+sub: []

@@ -439,20 +439,16 @@ def convert_to_coze(data, name, yaml_dir, manifest_path=None):
         
         print(f"{app_name} - Conversion successful!")
         
-        # 创建目录结构并压缩
         workflow_dir = os.path.join(yaml_dir, f"Workflow-{app_name}")
         workflow_subdir = os.path.join(workflow_dir, "workflow")
         os.makedirs(workflow_subdir, exist_ok=True)
         
-        # 复制 MANIFEST.yml 到目标目录
         manifest_dest = os.path.join(workflow_dir, "MANIFEST.yml")
         shutil.copy(manifest_path, manifest_dest)
         
-        # 移动 yaml 文件到 workflow 子目录
         yaml_dest = os.path.join(workflow_subdir, f"{app_name}.yaml")
         shutil.move(output_file, yaml_dest)
         
-        # 创建 zip 文件
         zip_path = os.path.join(yaml_dir, f"Workflow-{app_name}")
         with zipfile.ZipFile(f"{zip_path}.zip", 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, dirs, files in os.walk(workflow_dir):
@@ -461,7 +457,6 @@ def convert_to_coze(data, name, yaml_dir, manifest_path=None):
                     arcname = os.path.relpath(file_path, yaml_dir)
                     zipf.write(file_path, arcname)
         
-        # 删除临时目录
         shutil.rmtree(workflow_dir)
         
         print(f"Created zip file: Workflow-{app_name}.zip")
