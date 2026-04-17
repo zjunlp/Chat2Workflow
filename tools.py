@@ -100,7 +100,7 @@ def search_var(ref_var: str, ref_node):
     elif ref_node.data['type'] == "variable-aggregator":
         typee = ref_node.data['output_type']
     
-    elif ref_node.data['tool_name'] in ["text2image","tts","mermaid-converter"] or 'md' in ref_node.data['tool_name']:
+    elif ref_node.data['tool_name'] in ["z_image_text_2_image","tts","mermaid-converter"] or 'md' in ref_node.data['tool_name']:
         typee = "array[file]"
     
     elif ref_node.data['tool_name'] == "google-search":
