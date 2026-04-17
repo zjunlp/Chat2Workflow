@@ -6,7 +6,7 @@ import requests
 import time
 
 import argparse
-from llm_api import OpenAIAgent, kalm_agent_init
+from llm_api import OpenAIAgent
 
 from tools import layout_nodes, construct, search_var
 
@@ -432,9 +432,8 @@ def llm_judge(agent, node_selection, design_principle, workflow, gt_nodes):
     query = user_prompt.format(node_selection=node_selection, design_principle=design_principle, workflow=workflow, gt_nodes=gt_nodes)
 
     resp = agent.generate(query=query)
-    response = resp['response'] # for kalm
-    # response = resp
-
+    # response = resp['response']
+    response = resp
     print(response)
     return response
 
@@ -506,9 +505,7 @@ if __name__ == "__main__":
     with open("prompts/evaluation_pass_system.txt",'r', encoding='utf-8') as f:
         system_prompt = f.read().strip()
 
-    # agent = OpenAIAgent(cfg['evaluation_model'], system_prompt, args.temperature, args.max_tokens)
-
-    agent = kalm_agent_init(cfg['evaluation_model_url'], system_prompt, args.temperature, args.max_tokens)
+    agent = OpenAIAgent(cfg['evaluation_model'], system_prompt, args.temperature, args.max_tokens)
 
     for item in formatted_results:
         if item["valid"]:
