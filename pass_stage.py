@@ -263,6 +263,8 @@ def extract_and_format_data(data):
                     node_str = match_node.group(1).strip()
                     design_str = match_design.group(1).strip()
                     workflow_str = match_workflow.group(1).strip()
+
+                    workflow_str = workflow_str.strip('\n`json')
                     
                     result_obj["node_selection"] = node_str
                     result_obj["design_principle"] = design_str

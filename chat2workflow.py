@@ -34,6 +34,7 @@ def extract_workflow_json(text):
     match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
     if match:
         workflow_str = match.group(1).strip()
+        workflow_str = workflow_str.strip('\n`json')
         try:
             json.loads(workflow_str)
             return workflow_str, True, None

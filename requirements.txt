@@ -2,3 +2,4 @@ openai==2.16.0
 Requests==2.32.5
 PyYAML==6.0.3
 chainlit==2.9.6
+json_repair==0.59.4
