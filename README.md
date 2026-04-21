@@ -113,7 +113,7 @@ Please ensure that the APIs for the necessary models are configured in advance.
 
 
 ## 🧐Evaluation
-1. Fill in the information in the `config.yaml`.
+#### 1. Fill in the information in the `config.yaml`.
 
 ```yaml
 # Github REST API for higher rate limits.
@@ -135,30 +135,29 @@ evaluation_model: deepseek-chat
 opencode_bin: "~/.opencode/bin/opencode"
 ```
 
-2. Generate LLM response. 
+#### 2. Generate LLM response. 
 
-### Zero-Shot Mode
-
-Modify the `model_name` and then execute the script. 
+- **Zero-Shot Mode**: Modify the `model_name` and then execute the script. 
 ```bash
 # The result will be stored in `output/llm_response`.
 bash bash_generation.sh
 ```
 
-### Agentic Mode 
+- **Agentic Mode**: Modify the `model` and then execute the script. 
 
-Modify the `model` and then execute the script. 
+> Note:
+> 
+> - **Model Format:** The `model` parameter must follow the `provider/name` format (e.g., `deepseek/deepseek-chat`).
+> - **Available Models:** You can view the list of supported models by running the `opencode models` command.
+> - **Prerequisite:** Ensure that the corresponding API key for your selected model is configured in OpenCode prior to execution.
 
-**Note:**
-* **Model Format:** The `model` parameter must follow the `provider/name` format (e.g., `deepseek/deepseek-chat`).
-* **Available Models:** You can view the list of supported models by running the `opencode models` command.
-* **Prerequisite:** Ensure that the corresponding API key for your selected model is configured in OpenCode prior to execution.
+
 ```bash
 # The result will be stored in `output/llm_response`.
 bash bash_opencode_generation.sh
 ```
 
-3. Evaluate the LLM response.
+#### 3. Evaluate the LLM response.
 ```bash
 # Step 1: The pass stage of the evaluation.
 # The result will be stored in `output/pass_eval` and `output/yaml`.
