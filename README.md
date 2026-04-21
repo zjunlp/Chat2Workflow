@@ -103,6 +103,7 @@ After running, you can access the Dify dashboard in your browser at http://local
 
 ### Opencode Initialization (Optional)
 The OpenCode framework is only required for the agentic generation mode.
+
 Obtain the specified version of opencode:
 ```bash
 curl -fsSL https://opencode.ai/install | VERSION=1.3.17 bash
@@ -136,15 +137,18 @@ opencode_bin: "~/.opencode/bin/opencode"
 
 2. Generate LLM response. 
 
-2.1 Zero-Shot Mode
+- Zero-Shot Mode
+
 Modify the `model_name` and then execute the script. 
 ```bash
 # The result will be stored in `output/llm_response`.
 bash bash_generation.sh
 ```
 
-2.2 Agentic Mode 
+- Agentic Mode 
+
 Modify the `model` and then execute the script. 
+
 **Note:**
 * **Model Format:** The `model` parameter must follow the `provider/name` format (e.g., `deepseek/deepseek-chat`).
 * **Available Models:** You can view the list of supported models by running the `opencode models` command.
@@ -192,11 +196,11 @@ Finally import the generated YAML file into the Dify or Coze platform for execut
 opencode_bin: "~/.opencode/bin/opencode"
 ```
 
-2. Launch the OpenCode interactive CLI
+2. Launch the OpenCode interactive CLI.
 ```bash
 opencode
 ```
-Responses generated through the interactive session can be converted into the target configuration format via `bash_converter.sh`.
+Responses generated through the interactive session can be converted into the target configuration file via `bash_converter.sh`.
 
 
 ## ⚙️Conversion
