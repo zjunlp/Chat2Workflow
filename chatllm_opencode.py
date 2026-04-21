@@ -1,4 +1,5 @@
 import json
+import yaml
 import os
 import argparse
 import subprocess
@@ -9,10 +10,11 @@ from collections import defaultdict
 from json_repair import repair_json
 
 
-# Path to the opencode binary
-OPENCODE_BIN = os.environ.get(
-    "OPENCODE_BIN", "/data/home/evanszhong/.opencode/bin/opencode"
-)
+with open("config.yaml", 'r', encoding='utf-8') as f:
+    cfg = yaml.safe_load(f)
+
+# Path to the opencode binary (supports ~ in path)
+OPENCODE_BIN = os.path.expanduser(cfg.get("opencode_bin", "opencode"))
 
 # Path to the skill directory (contains SKILL.md and node_docs/)
 SKILL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".agents", "skills", "chat2workflow")
