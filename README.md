@@ -14,6 +14,7 @@
 - 🔧 [Installation](#installation)
 - 🧐 [Evaluation](#evaluation)
 - 💻 [Generation](#generation)
+- ⚙️ [Conversion](#conversion)
 
 ## 👀Overview
 ### Demostration
@@ -25,9 +26,10 @@
 ## 📁Directory
 | Directory | Description | 
 | :--- | :--- | 
+| `.agents/skills/chat2workflow/` | The skills used for agentic workflow generation | 
 | `case_files/` | All files required for the test cases | 
 | `dataset/` | Workflow generation instructions and evaluation checks | 
-| `experiment_run_example/` | An example of the results from a single experiment run. |
+| `experiment_run_example/` | An example of the results from a single experiment run |
 | `assets/` | The images used in README.md | 
 | `nodes/` | The functional logic of each node | 
 | `prompts/` | System prompt and evaluation prompts | 
@@ -98,6 +100,17 @@ After running, you can access the Dify dashboard in your browser at http://local
 
 > In this setup, the LLM defaults to `tongyi:qwen3-vl-plus`, TTS (Text-to-Speech) to `openai:gpt-4o-mini-tts`, image generation to `tongyi_aigc:z-image-turbo`, search engines to `google:SerpApi`, Question Classifier and Parameter Extractor to `tongyi:qwen3-max`. After the workflow is generated, you can modify the above nodes as needed.
 
+
+### Opencode Initialization (Optional)
+The OpenCode framework is only required for the agentic generation mode.
+Obtain the specified version of opencode:
+```bash
+curl -fsSL https://opencode.ai/install | VERSION=1.3.17 bash
+```
+Please ensure that the APIs for the necessary models are configured in advance.
+
+
+
 ## 🧐Evaluation
 1. Fill in the information in the `config.yaml`.
 
@@ -115,24 +128,48 @@ password: "xxxxx"
 llm_api_key: "sk-xxxxxx"
 base_url: "xxxxx"
 evaluation_model: deepseek-chat
+
+# (Optional) —— Required for agentic generation
+# OpenCode binary path, supports ~ in path. You can get this path by running `which opencode` in your terminal.
+opencode_bin: "~/.opencode/bin/opencode"
 ```
 
-2. Modify the `model_name` and then execute the script sequentially.:
+2. Generate LLM response. 
+
+2.1 Zero-Shot Mode
+Modify the `model_name` and then execute the script. 
 ```bash
-# Step 1: Generate LLM response.
 # The result will be stored in `output/llm_response`.
 bash bash_generation.sh
+```
 
-# Step 2: The pass stage of the evaluation.
+2.2 Agentic Mode 
+Modify the `model` and then execute the script. 
+**Note:**
+* **Model Format:** The `model` parameter must follow the `provider/name` format (e.g., `deepseek/deepseek-chat`).
+* **Available Models:** You can view the list of supported models by running the `opencode models` command.
+* **Prerequisite:** Ensure that the corresponding API key for your selected model is configured in OpenCode prior to execution.
+```bash
+# The result will be stored in `output/llm_response`.
+bash bash_opencode_generation.sh
+```
+
+3. Evaluate the LLM response.
+```bash
+# Step 1: The pass stage of the evaluation.
 # The result will be stored in `output/pass_eval` and `output/yaml`.
 bash bash_pass_stage.sh
 
-# Step 3: The resolve stage of the evaluation.
+# Step 2: The resolve stage of the evaluation.
 # The result will be stored in `output/resolve_eval`.
 bash bash_resolve_stage.sh
 ```
 
 ## 💻Generation
+We provide two interactive approaches for generating workflows.
+
+### Launching the Interactive Demo (Zero-Shot Mode)
+
 1. Fill in the information in the `config.yaml`.
 ```yaml
 # LLM API for workflow generation and evaluation
@@ -146,3 +183,32 @@ chainlit run chat2workflow.py -w
 ```
 Click on the returned link to start the interactive conversation.  The result will be stored in `output/generated_workflows`.
 Finally import the generated YAML file into the Dify or Coze platform for execution.
+
+### Generating via OpenCode CLI (Agentic Mode)
+
+1. Fill in the information in the `config.yaml`.
+```yaml
+# OpenCode binary path, supports ~ in path. You can get this path by running `which opencode` in your terminal.
+opencode_bin: "~/.opencode/bin/opencode"
+```
+
+2. Launch the OpenCode interactive CLI
+```bash
+opencode
+```
+Responses generated through the interactive session can be converted into the target configuration format via `bash_converter.sh`.
+
+
+## ⚙️Conversion
+
+`bash_converter.sh`
+
+```bash
+python converter.py \
+    --json_path test.json \ # The JSON file path
+    --name test \ # The name of the workflow
+    --output_path output/converter \ # The output path
+    --type dify # dify or coze
+```
+
+In most cases, the JSON format can be seamlessly converted for both Dify and Coze. In rare instances where the conversion fails, platform-specific system prompts should be used for generation (refer to `prompts/builder_prompt.txt` and `prompts/builder_prompt_coze.txt`).
