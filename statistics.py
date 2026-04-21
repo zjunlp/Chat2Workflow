@@ -35,14 +35,14 @@ category_dict = {
 
 category_list = ["Research","Document","Enterprise","Developer","Education","AIGC"]
 model_list = ["claude_sonnet4d5","deepseek_v3d1","deepseek_v3d2","gemini3_propreview","glm_4d6","glm_4d7","gpt_5d1","gpt_5d2","k2_instruct","k2_thinking","qwen3_8B", "qwen3_14B","qwen3_32B","qwen3_235B_A22B","qwen3_coder_480B_A35B_instruct"]
-target_dir = "experiment_result"
+target_dir = "experiment_run_example"
 
 
 
 # pass_rate（category）
 print("——————————————————————————————————pass rate by category——————————————————————————————————")
 for model in model_list:
-    count_file = os.path.join(target_dir, f"final_{model}.json")
+    count_file = os.path.join(target_dir, f"{model}.json")
 
     all_count_list = []
     right_count_list = []
@@ -74,7 +74,7 @@ for model in model_list:
 # resolve_rate (category)
 print("——————————————————————————————————resolve rate by category——————————————————————————————————")
 for model in model_list:
-    count_file = os.path.join(target_dir, f"final_{model}.json")
+    count_file = os.path.join(target_dir, f"{model}.json")
 
     all_count_list = []
     right_count_list = []
@@ -104,7 +104,7 @@ for model in model_list:
 # pass_rate (round)
 print("——————————————————————————————————pass rate by round——————————————————————————————————")
 for model in model_list:
-    count_file = os.path.join(target_dir, f"final_{model}.json")
+    count_file = os.path.join(target_dir, f"{model}.json")
 
     with open(count_file, 'r', encoding='utf-8') as f:
         formatted_results = json.load(f)
@@ -131,7 +131,7 @@ for model in model_list:
 #  resolve_rate (round)
 print("——————————————————————————————————resolve rate by round——————————————————————————————————")
 for model in model_list:
-    count_file = os.path.join(target_dir, f"final_{model}.json")
+    count_file = os.path.join(target_dir, f"{model}.json")
 
     with open(count_file, 'r', encoding='utf-8') as f:
         formatted_results = json.load(f)
@@ -150,4 +150,3 @@ for model in model_list:
     
         print(f"model: {model}, round: {turn}, num_total: {all_count}, num_correct: {right_count}, resolve_rate: {right_count / all_count}")
     print(" ")
-
