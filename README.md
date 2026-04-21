@@ -27,7 +27,7 @@
 | :--- | :--- | 
 | `case_files/` | All files required for the test cases | 
 | `dataset/` | Workflow generation instructions and evaluation checks | 
-| `experiment_result/` | The final result of the evaluation |
+| `experiment_run_example/` | An example of the results from a single experiment run. |
 | `assets/` | The images used in README.md | 
 | `nodes/` | The functional logic of each node | 
 | `prompts/` | System prompt and evaluation prompts | 
