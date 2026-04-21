@@ -137,7 +137,7 @@ opencode_bin: "~/.opencode/bin/opencode"
 
 2. Generate LLM response. 
 
-- Zero-Shot Mode
+#### Zero-Shot Mode
 
 Modify the `model_name` and then execute the script. 
 ```bash
@@ -145,7 +145,7 @@ Modify the `model_name` and then execute the script.
 bash bash_generation.sh
 ```
 
-- Agentic Mode 
+#### Agentic Mode 
 
 Modify the `model` and then execute the script. 
 
