@@ -168,6 +168,12 @@ bash bash_pass_stage.sh
 bash bash_resolve_stage.sh
 ```
 
+#### 4. Obtain the evaluation results.
+```bash
+python statistics.py
+```
+
+
 ## 💻Generation
 We provide two interactive approaches for generating workflows.
 
