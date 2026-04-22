@@ -121,7 +121,7 @@ To use variables from other nodes in a Code node, you must select them in the va
 3. "code": string
     - Description: Python code function.
     - Value: Your function must receive the input variables that you’ve declared, and return a dictionary containing the output variables you’ve declared. **Note**: Format the code using '\n' for newlines and use '\t' for each indentation level.
-    - Example: `"def main(arg1: str, arg2: str):\n\treturn {\n\t\t\"out1\": [arg1,arg2]\n\t\t\"out2\": arg1\n\t\t}"` 
+    - Example: `"def main(arg1: str, arg2: str):\n\treturn {\n\t\t\"out1\": [arg1,arg2],\n\t\t\"out2\": arg1\n\t\t}"` 
 </parameter>
 <referable_variables>
 Each variable in `"outputs"` can be referenced by downstream nodes.
