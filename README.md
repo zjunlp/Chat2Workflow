@@ -9,12 +9,20 @@
 </div>
 
 ## Table of Contents
+- 🔔 [News](#news)
 - 👀 [Overview](#overview)
 - 📁 [Directory](#directory)
 - 🔧 [Installation](#installation)
 - 🧐 [Evaluation](#evaluation)
 - 💻 [Generation](#generation)
 - ⚙️ [Conversion](#conversion)
+
+---
+
+## 🔔 News
+
+- **[2026-04]** We release a new paper: "[Chat2Workflow: A Benchmark for Generating Executable Visual Workflows with Natural Language](https://arxiv.org/abs/2604.19667)".
+
 
 ## 👀Overview
 ### Demostration
