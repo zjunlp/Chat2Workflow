@@ -446,6 +446,13 @@ def convert_to_coze(data, name, yaml_dir, manifest_path=None):
         manifest_dest = os.path.join(workflow_dir, "MANIFEST.yml")
         shutil.copy(manifest_path, manifest_dest)
         
+        # Update the "name" field in MANIFEST.yml to match the workflow name 
+        with open(manifest_dest, 'r', encoding='utf-8') as mf:
+            manifest_data = yaml.safe_load(mf)
+        manifest_data['main']['name'] = name
+        with open(manifest_dest, 'w', encoding='utf-8') as mf:
+            yaml.dump(manifest_data, mf, allow_unicode=True, default_flow_style=False)
+        
         yaml_dest = os.path.join(workflow_subdir, f"{app_name}.yaml")
         shutil.move(output_file, yaml_dest)
         
