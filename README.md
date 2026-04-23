@@ -6,6 +6,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![arXiv](https://img.shields.io/badge/arXiv-b5212f.svg?logo=arxiv)](https://arxiv.org/abs/2604.19667)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-FFD21E)](https://huggingface.co/papers/2604.19667)
+[![Clawhub](https://img.shields.io/badge/Clawhub-Available-blueviolet.svg)](https://clawhub.ai/chikawa11/chat2workflow)
 ![](https://img.shields.io/github/last-commit/zjunlp/Chat2Workflow?color=green) 
 
 </div>
@@ -207,8 +208,8 @@ Finally import the generated YAML file into the Dify or Coze platform for execut
 
 > Note:
 > 
-> - The default SKILL (.agents/skills/chat2workflow) is optimized for automated benchmark evaluation.
-> - For real-world interactive applications, please use `skill_chat2workflow_interactive`. To enable it, replace the default folder in .agents/skills/ with this interactive version, ensuring the directory remains named chat2workflow. We have published this SKILL on [Clawhub](https://clawhub.ai/chikawa11/chat2workflow).
+> - The default SKILL (`.agents/skills/chat2workflow`) is optimized for automated benchmark evaluation.
+> - For real-world interactive applications, please use `skill_chat2workflow_interactive`. To enable it, replace the default folder in `.agents/skills/` with this interactive version, ensuring the directory remains named chat2workflow. We have published this SKILL on [Clawhub](https://clawhub.ai/chikawa11/chat2workflow).
 
 
 1. Fill in the information in the `config.yaml`.
