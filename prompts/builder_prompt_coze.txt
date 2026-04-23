@@ -176,9 +176,8 @@ ELSE Path serves as the fallback when no conditions match, ensuring your workflo
 2. Condition Types
 Each case contains at least one condition. The available **Comparison Operator** depend on the variable’s data type:
 For `string` variables: contains, not contains, is, is not, empty, not empty.
-    - **Exception: For sub-variable `type` of `file`: in, not in.**
 For `number` variables: '≠', '=', '>', '<', '≥', '≤', empty, not empty.
-For `boolean` variables: is, is not. (The corresponding comparison value can only be 'true'/'false')
+For `boolean` variables: is, is not. (The corresponding comparison value can only be the string 'true' or 'false', not a boolean value).
 For `object` variables: is, is not, empty, not empty.
 For `file` variables: exists, not exists.
 For `array[string]`/`array[number]`/`array[boolean]`/`array[file]` variables: contains, not contains, empty, not empty.
@@ -212,7 +211,7 @@ Use the variable selector to choose from available variables, or type variable n
     - Example: `[[null, [[["query2","1"],"=",5]]],[null,[[["query","1"],"empty"]]]]` 
 </parameter>
 <supplementary_information>
-Each case maps to an output port in sequential order. Output port numbers are 0, 1, 2... in sequence. For example, when there are 3 cases, namely IF Path, ELIF Path and ElSE Path in sequence, then IF Path corresponds to port 0, ELIF Path corresponds to port 1, and ELSE Path corresponds to port 2.
+Each case maps to an output port in sequential order. Output port numbers are 0, 1, 2... in sequence. For example, when there are 3 cases, namely IF Path, ELIF Path and ELSE Path in sequence, then IF Path corresponds to port 0, ELIF Path corresponds to port 1, and ELSE Path corresponds to port 2.
 </supplementary_information>
 
 
@@ -408,7 +407,7 @@ This node is used for performing Google SERP searches and extracting fragments a
     - Example: `"Systematically study vocal music"`
 <referable_variables>
 1. "json": array[object]
-    - Description: Each object is a dictionary with the keys `has_image`, `image_url`, `logo_url`, `sitename`, `summary`, `title`, and`url`.
+    - Description: Each object is a dictionary with the keys `has_image`, `image_url`, `logo_url`, `sitename`, `summary`, `title`, and `url`.
 </referable_variables>
 
 
