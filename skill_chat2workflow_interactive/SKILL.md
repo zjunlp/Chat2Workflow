@@ -1,9 +1,16 @@
 ---
 name: chat2workflow
-description: An expert workflow builder for the Dify and Coze platforms. Designs and generates importable workflows through multi-round conversation. Produces structured JSON (nodes, edges, variable references) convertible to platform-specific YAML via the bundled converter, with support for incremental add/modify/remove operations on existing workflows.
+description: An expert workflow designer for the Dify and Coze platforms. Through multi-round conversation, it produces a structured workflow JSON (nodes, edges, variable references) that represents the designed workflow. An optional, user-initiated converter script can translate that JSON into a platform-native import file (Dify YAML or Coze ZIP). The skill itself is design-only and does not execute any local scripts on its own.
 ---
 
 # Chat2Workflow Builder Skill
+
+## Scope & Safety
+
+- **Primary output**: a workflow JSON wrapped in `<workflow></workflow>` tags. This is the sole deliverable the skill is responsible for.
+- **Bundled scripts are optional tools, not part of the agent's execution contract.** Files such as `autofix.py`, `converter.py`, `tools.py`, and `bash_converter.sh` are provided for the *user* to run manually, or for the agent to run **only after the user explicitly asks for compilation in the current turn**.
+- **No autonomous execution.** The agent MUST NOT invoke any bundled script, shell command, or subprocess as a side effect of producing a workflow JSON. Running them requires explicit, per-turn user consent.
+- **No network / credential access.** The bundled scripts perform local file I/O and JSON/YAML transformation only. They do not make network requests and do not read environment credentials.
 
 ## Overview
 
@@ -28,8 +35,6 @@ Before you begin reasoning about the workflow:
 **IMPORTANT**: Do not mix node types from different platforms in a single workflow. Every node's `type` must come from the selected platform's documentation.
 
 **IMPORTANT**: The user will provide instructions for creating or modifying the workflow through an interactive conversation with you. Except for special requirements, every modification should be made on the basis of what already exists. Please provide your response according to the format specified as shown in the ## Output Format.
-
-**IMPORTANT — End-to-End Auto Pipeline**: Whenever you produce a response that contains the three required tagged sections (`<node_selection>`, `<design_principle>`, `<workflow>`), you MUST immediately — in the *same* turn, without waiting for any additional user confirmation — continue on to execute the full post-generation pipeline: (1) run `autofix` on the raw response, (2) extract the fixed workflow JSON, and (3) invoke `converter.py` to emit the platform-specific configuration file (Dify YAML or Coze ZIP). Do NOT stop after merely printing the tagged response. See the **## Post-Generation Auto Pipeline (MANDATORY)** section below for the exact execution contract. The only situation in which the pipeline is NOT triggered is when the current turn does not produce a fresh three-section response (e.g. pure Q&A, clarification, or the user explicitly asks you to *only* draft without compiling).
 
 
 ## Output Format
@@ -153,35 +158,53 @@ After resolving the target platform (see "Platform Resolution Rule" above), read
 
 ---
 
-## Post-Generation Auto Pipeline (MANDATORY)
+## Optional Post-Generation Conversion (User-Initiated)
 
-Whenever your response in the current turn contains the three required tagged sections (`<node_selection>`, `<design_principle>`, `<workflow>`), you MUST, in the **same turn** and **without any further prompting from the user**, continue executing the following end-to-end pipeline. Treat the three-section response as only the *first half* of the turn; the pipeline below is the *second half* and is not optional.
+> This section describes **optional** tooling. The skill's contract ends once the three tagged sections (`<node_selection>`, `<design_principle>`, `<workflow>`) are produced. The steps below run **only if the user explicitly asks** to compile the JSON into a platform-native artifact (e.g. "please convert this to Dify YAML", "compile to Coze ZIP"). Absent such a request, the agent stops after emitting the three tagged sections.
 
-The `<workflow>` JSON you produce is the **intermediate representation**. It is compiled to the target platform's native import format (Dify YAML or Coze ZIP) via the bundled converter shipped with this skill.
+The `<workflow>` JSON is an intermediate representation. If requested, it can be translated into the target platform's native import format (Dify YAML or Coze ZIP) using the helper scripts bundled with this skill. All helper scripts are purely local, offline utilities — they perform only file I/O and JSON/YAML transformation, with no network access and no credential reads.
 
 ### Files shipped in this skill
 
 | Path | Purpose |
 |------|---------|
-| `converter.py` | CLI entry point. Converts a workflow JSON to Dify YAML or Coze ZIP. |
+| `converter.py` | Offline CLI. Converts a workflow JSON to Dify YAML or Coze ZIP. |
 | `tools.py` | Layout, variable-lookup, and node-construction helpers used by `converter.py`. |
 | `nodes/` | Python node-class definitions for both Dify and Coze platforms. |
 | `bash_converter.sh` | Example wrapper script for running the converter. |
-| `autofix.py` | Robust auto-fix and validation routines for the `<workflow>` JSON produced by the LLM (strip code fences, repair JSON with `json_repair`, topological re-ordering, `<node_selection>` consistency). |
+| `autofix.py` | Offline auto-fix and validation routines for the `<workflow>` JSON (strip code fences, repair JSON with `json_repair`, topological re-ordering, `<node_selection>` consistency). |
 | `requirements.txt` | Python dependencies required by the converter and auto-fix logic. |
 
-### Fixed Execution Contract — run these steps in order, every time
+### Manual usage (for the user)
 
-**Step 1. Auto-fix the raw response.** Save your full tagged response (everything between and including `<node_selection>` and `</workflow>`) to a file, then apply `autofix.apply_all_autofixes` and `autofix.extract_workflow_json` to obtain the cleaned, parseable workflow JSON. Also call `autofix.validate_workflow` and surface any reported issues to the user.
+If the user wants to compile the JSON themselves, the following commands can be run locally:
 
-**Step 2. Persist the fixed workflow JSON.** Write the extracted JSON to a file (e.g. `workflow.json`) so it can be consumed by the converter CLI.
+```bash
+pip install -r requirements.txt
 
-**Step 3. Invoke the converter.** Immediately run `converter.py` against the fixed JSON to produce the platform-native artifact (Dify YAML or Coze ZIP). Select `--type dify` or `--type coze` according to the platform resolved earlier (see "Platform Resolution Rule"). Report the output path to the user when finished.
+python converter.py \
+    --json_path workflow.json \
+    --name my_workflow \
+    --output_path output/ \
+    --type dify        # or: --type coze
+```
 
-A minimal reference driver that performs all three steps:
+The JSON may also be passed inline via `--json_str '{...}'` instead of `--json_path`.
+
+**Note**: `--name` must be in English only.
+
+### Agent-assisted conversion (only on explicit user request)
+
+When — and only when — the user has explicitly asked the agent in the current turn to compile or convert the workflow, the agent may perform the following offline steps on the user's behalf. The agent MUST NOT run these steps as an automatic side effect of producing the three tagged sections.
+
+1. **Auto-fix the tagged response.** Apply `autofix.apply_all_autofixes` followed by `autofix.extract_workflow_json` to obtain a cleaned, parseable workflow JSON. Optionally call `autofix.validate_workflow` and surface any reported issues.
+2. **Persist the fixed JSON.** Write the extracted JSON to a local file (e.g. `workflow.json`).
+3. **Invoke the converter.** Run `converter.py` against the JSON with `--type dify` or `--type coze` matching the platform resolved earlier (see "Platform Resolution Rule"), then report the output path back to the user.
+
+A minimal reference driver (for the user to run, or for the agent to run only after explicit user request):
 
 ```python
-# run_pipeline.py — executed automatically after every three-section response
+# run_pipeline.py — runs locally, offline
 import json, subprocess, sys
 from pathlib import Path
 from autofix import apply_all_autofixes, validate_workflow, extract_workflow_json
@@ -209,20 +232,6 @@ subprocess.run([
 ], check=True)
 ```
 
-Equivalent shell invocation for step 3 (after step 1 has written `workflow.json`):
-
-```bash
-python converter.py \
-    --json_path workflow.json \
-    --name my_workflow \
-    --output_path output/ \
-    --type dify        # or: --type coze
-```
-
-You may also pass the JSON inline with `--json_str '{...}'` instead of `--json_path`.
-
-**IMPORTANT**: `--name` must be in English only.
-
 ### What `autofix` performs (in order)
 
 1. **Strip code fences** inside `<workflow>` tags.
@@ -231,16 +240,6 @@ You may also pass the JSON inline with `--json_str '{...}'` instead of `--json_p
 4. **Node-selection consistency** — rewrites `<node_selection>` to exactly match the node types present in `<workflow>`.
 
 See `autofix.py` for the full API and `validate_workflow()` for a comprehensive post-fix diagnostic.
-
-### When to SKIP the pipeline
-
-Skip (and only skip) when **any** of the following hold:
-
-- The current turn is a clarification / Q&A that does not emit a fresh, complete `<node_selection>` + `<design_principle>` + `<workflow>` triple.
-- The user has explicitly asked you to "only draft" / "do not compile" / "just show the JSON" for this turn.
-- `autofix.validate_workflow` reports a fatal error that cannot be resolved automatically — in that case, report the error and ask the user how to proceed instead of blindly invoking the converter.
-
-In all other situations, the three steps above MUST run automatically as part of the same turn that produced the workflow JSON.
 
 ### Installation
 

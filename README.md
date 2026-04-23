@@ -222,8 +222,8 @@ opencode_bin: "~/.opencode/bin/opencode"
 ```bash
 opencode
 ```
-Responses generated through the interactive session can be converted into the target configuration file via `bash_converter.sh`.
-
+Once the model generates the target response, it can be prompted to automatically perform self-correction and synthesize the corresponding configuration file.
+Optionally, users can manually execute `bash_converter.sh` to convert the generated responses into the target configuration file.
 
 ## ⚙️Conversion
 
