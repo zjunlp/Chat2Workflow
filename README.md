@@ -223,6 +223,7 @@ opencode_bin: "~/.opencode/bin/opencode"
 opencode
 ```
 Once the model generates the target response, it can be prompted to automatically perform self-correction and synthesize the corresponding configuration file.
+
 Optionally, users can manually execute `bash_converter.sh` to convert the generated responses into the target configuration file.
 
 ## ⚙️Conversion
