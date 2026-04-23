@@ -8,6 +8,15 @@ from datetime import datetime
 
 from llm_api import OpenAIAgent
 from converter import convert_to_dify, convert_to_coze
+# Reuse the autofix helpers already implemented and tested in chatllm_opencode.py
+# so that the interactive chat pipeline matches the batch pipeline's behavior.
+from chatllm_opencode import (
+    _strip_workflow_code_fences,
+    _fix_workflow_json,
+    _fix_topological_order,
+    _fix_node_selection_consistency,
+    _validate_workflow,
+)
 
 GLOBAL_STATE = {
     "settings": {
@@ -41,6 +50,38 @@ def extract_workflow_json(text):
         except json.JSONDecodeError as e:
             return workflow_str, False, f"Invalid JSON: {str(e)}"
     return None, False, "No <workflow> tags found"
+
+def apply_autofix_pipeline(raw_response):
+    """Run the full autofix pipeline on the raw LLM response.
+
+    Returns:
+        fixed_response: The response text after all fixes have been applied.
+        applied_fixes: A list of human-readable strings describing which fixes
+            were actually applied (empty if the response was already clean).
+        issues: A list of remaining validation issues on the *fixed* response
+            (empty if everything checks out).
+    """
+    applied_fixes = []
+    fixed = raw_response
+
+    fixed, was_stripped = _strip_workflow_code_fences(fixed)
+    if was_stripped:
+        applied_fixes.append("Stripped markdown code fences from `<workflow>` block.")
+
+    fixed, brackets_fixed = _fix_workflow_json(fixed)
+    if brackets_fixed:
+        applied_fixes.append("Repaired JSON issues (brackets / control chars) in `<workflow>` block.")
+
+    fixed, topo_fixed = _fix_topological_order(fixed)
+    if topo_fixed:
+        applied_fixes.append("Reordered `nodes_info` into topological order.")
+
+    fixed, ns_fixed = _fix_node_selection_consistency(fixed)
+    if ns_fixed:
+        applied_fixes.append("Synchronized `<node_selection>` with node types in `<workflow>`.")
+
+    issues = _validate_workflow(fixed)
+    return fixed, applied_fixes, issues
 
 def save_workflow_yaml(workflow_json_str, workflow_type="dify", task_name=None):
     
@@ -184,8 +225,46 @@ async def main(message: cl.Message):
     chat_history.append((message.content, full_response))
     cl.user_session.set("chat_history", chat_history)
 
-    workflow_json, is_valid, error_msg = extract_workflow_json(full_response)
-    
+    # ------------------------------------------------------------------
+    # AutoFix stage: repair common issues in the raw response *before*
+    # extracting the workflow JSON. The conversion that follows is always
+    # driven by the fixed response, never the raw one.
+    # ------------------------------------------------------------------
+    fixed_response, applied_fixes, remaining_issues = apply_autofix_pipeline(full_response)
+
+    if applied_fixes or remaining_issues:
+        summary_lines = ["🔧 **AutoFix Report**"]
+        if applied_fixes:
+            summary_lines.append("")
+            summary_lines.append("**Applied fixes:**")
+            summary_lines.extend(f"- {item}" for item in applied_fixes)
+        else:
+            summary_lines.append("")
+            summary_lines.append("_No automatic fixes were needed._")
+
+        if remaining_issues:
+            summary_lines.append("")
+            summary_lines.append("**Remaining validation issues:**")
+            summary_lines.extend(f"- `{issue}`" for issue in remaining_issues)
+        else:
+            summary_lines.append("")
+            summary_lines.append("✅ All post-fix validation checks passed.")
+
+        elements = []
+        if applied_fixes and fixed_response != full_response:
+            # Surface the fixed response as a side panel so the user can
+            # inspect exactly what the downstream converter will consume.
+            elements.append(cl.Text(
+                name="Fixed Response",
+                content=fixed_response,
+                language="markdown",
+                display="side",
+            ))
+
+        await cl.Message(content="\n".join(summary_lines), elements=elements).send()
+
+    workflow_json, is_valid, error_msg = extract_workflow_json(fixed_response)
+
     if workflow_json and is_valid:
         workflow_type = GLOBAL_STATE["settings"]["workflow_type"]
         success, output_path, task_name = save_workflow_yaml(workflow_json, workflow_type)

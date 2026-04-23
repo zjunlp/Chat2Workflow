@@ -120,15 +120,19 @@ def _topological_sort_nodes(nodes, edges):
     if not nodes:
         return nodes, False
 
-    node_map = {n.get("id"): n for n in nodes}
-    node_ids = [n.get("id") for n in nodes]
+    # Normalize ids to strings up-front: LLMs occasionally emit numeric ids
+    # (e.g. 5) in nodes_info while edges reference them as "5" (or vice versa).
+    # Comparing mixed types would spuriously break the topological sort, so
+    # we canonicalize every id we compare against to a string.
+    node_map = {str(n.get("id")): n for n in nodes}
+    node_ids = [str(n.get("id")) for n in nodes]
 
     # Build adjacency: for each node, which node IDs must come before it?
     # Source 1: edges (source must come before target)
     deps = defaultdict(set)
     for edge in edges:
         if isinstance(edge, list) and len(edge) >= 3:
-            src, _, tgt = edge[0], edge[1], edge[2]
+            src, tgt = str(edge[0]), str(edge[2])
             if src in node_map and tgt in node_map:
                 # Handle iteration internal edges: don't create dep from
                 # iteration-start to iteration parent
@@ -138,7 +142,7 @@ def _topological_sort_nodes(nodes, edges):
     iteration_ids = set()
     for n in nodes:
         if n.get("type") == "iteration":
-            iteration_ids.add(n.get("id"))
+            iteration_ids.add(str(n.get("id")))
 
     # Source 2: variable references in param (scan for ["varname", "nodeID"] patterns)
     def _extract_ref_ids(obj, skip_keys=None):
@@ -146,9 +150,10 @@ def _topological_sort_nodes(nodes, edges):
         refs = set()
         if isinstance(obj, list):
             # Check if this is a variable reference: [name, nodeID]
-            if (len(obj) == 2 and isinstance(obj[0], str) and isinstance(obj[1], str)
-                    and obj[1] in node_map):
-                refs.add(obj[1])
+            if (len(obj) == 2 and isinstance(obj[0], str)
+                    and isinstance(obj[1], (str, int))
+                    and str(obj[1]) in node_map):
+                refs.add(str(obj[1]))
             else:
                 for item in obj:
                     refs.update(_extract_ref_ids(item))
@@ -166,7 +171,7 @@ def _topological_sort_nodes(nodes, edges):
         return refs
 
     for node in nodes:
-        nid = node.get("id")
+        nid = str(node.get("id"))
         ntype = node.get("type", "")
         param = node.get("param", {})
         # For iteration nodes, skip output_selector when extracting deps.
@@ -388,7 +393,10 @@ def _validate_workflow(response_text):
 
     # --- Check 3: Start and End nodes ---
     node_types = [n.get("type", "") for n in nodes]
-    node_ids = [n.get("id", "") for n in nodes]
+    # Normalize ids to strings up-front: LLMs occasionally emit numeric ids
+    # (e.g. 5) in nodes_info while edges reference them as "5" (or vice versa).
+    # Comparing a set of mixed types would spuriously fail, so we canonicalize.
+    node_ids = [str(n.get("id", "")) for n in nodes]
     if "start" not in node_types:
         issues.append("MISSING_START: No 'start' node found in nodes_info.")
     else:
@@ -396,7 +404,7 @@ def _validate_workflow(response_text):
         start_nodes = [n for n in nodes if n.get("type") == "start"]
         if len(start_nodes) != 1:
             issues.append(f"MULTIPLE_START: Found {len(start_nodes)} start nodes, but exactly 1 is required.")
-        elif start_nodes[0].get("id") != "1":
+        elif str(start_nodes[0].get("id")) != "1":
             issues.append(f"START_ID_WRONG: Start node has id '{start_nodes[0].get('id')}', but SKILL.md requires id '1'.")
     if "end" not in node_types:
         issues.append("MISSING_END: No 'end' node found in nodes_info.")
@@ -416,7 +424,8 @@ def _validate_workflow(response_text):
     bad_edges = []
     for edge in edges:
         if isinstance(edge, list) and len(edge) >= 3:
-            src, _, tgt = edge[0], edge[1], edge[2]
+            # Stringify edge endpoints to match the canonical node_id_set above.
+            src, tgt = str(edge[0]), str(edge[2])
             if src not in node_id_set:
                 bad_edges.append(f"source '{src}'")
             if tgt not in node_id_set:
@@ -440,7 +449,7 @@ def _validate_workflow(response_text):
         issues.append("NODE_SELECTION_MISSING: No <node_selection> tag found. The evaluation pipeline requires all three sections: <node_selection>, <design_principle>, and <workflow>.")
 
     # --- Check 7: Iteration structure ---
-    iteration_nodes = {n.get("id"): n for n in nodes if n.get("type") == "iteration"}
+    iteration_nodes = {str(n.get("id")): n for n in nodes if n.get("type") == "iteration"}
     for iter_id, iter_node in iteration_nodes.items():
         # Check iteration-start exists
         expected_start_id = f"{iter_id}-1"
@@ -449,7 +458,7 @@ def _validate_workflow(response_text):
         # Check output_selector references an internal node
         out_sel = iter_node.get("param", {}).get("output_selector", [])
         if isinstance(out_sel, list) and len(out_sel) >= 2:
-            ref_id = out_sel[1]
+            ref_id = str(out_sel[1])
             if ref_id not in node_id_set:
                 issues.append(f"ITERATION_BAD_OUTPUT: Iteration node '{iter_id}' output_selector references non-existent node '{ref_id}'.")
             elif not ref_id.startswith(f"{iter_id}-"):
@@ -467,19 +476,20 @@ def _validate_workflow(response_text):
     # must appear earlier in the array.
     # Exception: iteration nodes may forward-reference their child nodes
     # via output_selector — the converter handles this via deferred back-fill.
-    iter_id_set = set(n.get("id") for n in nodes if n.get("type") == "iteration")
+    iter_id_set = set(str(n.get("id")) for n in nodes if n.get("type") == "iteration")
     seen_so_far = set()
     topo_violations = []
     for node in nodes:
-        nid = node.get("id", "")
+        nid = str(node.get("id", ""))
         ntype = node.get("type", "")
         param = node.get("param", {})
         # Extract all node ID references from param
         def _collect_refs(obj, refs, _skip_keys=None):
             if isinstance(obj, list):
-                if (len(obj) == 2 and isinstance(obj[0], str) and isinstance(obj[1], str)
-                        and obj[1] in node_id_set and obj[1] != nid):
-                    refs.add(obj[1])
+                if (len(obj) == 2 and isinstance(obj[0], str)
+                        and isinstance(obj[1], (str, int))
+                        and str(obj[1]) in node_id_set and str(obj[1]) != nid):
+                    refs.add(str(obj[1]))
                 else:
                     for item in obj:
                         _collect_refs(item, refs)
