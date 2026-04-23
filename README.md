@@ -185,9 +185,9 @@ python statistics.py
 
 
 ## 💻Generation
-We provide two interactive approaches for generating workflows.
+We provide two **interactive approaches** for generating workflows.
 
-### Launching the Interactive Demo (Zero-Shot Mode)
+### Launching the Interactive Demo (Zero-Shot Mode + Autofix)
 
 1. Fill in the information in the `config.yaml`.
 ```yaml
@@ -203,7 +203,13 @@ chainlit run chat2workflow.py -w
 Click on the returned link to start the interactive conversation.  The result will be stored in `output/generated_workflows`.
 Finally import the generated YAML file into the Dify or Coze platform for execution.
 
-### Generating via OpenCode CLI (Agentic Mode)
+### Generating via OpenCode CLI (Agentic Mode + Autofix)
+
+> Note:
+> 
+> - The default SKILL (.agents/skills/chat2workflow) is optimized for automated benchmark evaluation.
+> - For real-world interactive applications, please use `skill_chat2workflow_interactive`. To enable it, replace the default folder in .agents/skills/ with this interactive version, ensuring the directory remains named chat2workflow. We have published this SKILL on [Clawhub](https://clawhub.ai/chikawa11/chat2workflow).
+
 
 1. Fill in the information in the `config.yaml`.
 ```yaml
