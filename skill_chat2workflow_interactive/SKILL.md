@@ -1,72 +1,71 @@
 ---
 name: chat2workflow
-description: An expert workflow designer for the Dify and Coze platforms. Through multi-round conversation, it produces a structured workflow JSON (nodes, edges, variable references) that represents the designed workflow. An optional, user-initiated converter script can translate that JSON into a platform-native import file (Dify YAML or Coze ZIP). The skill itself is design-only and does not execute any local scripts on its own.
+description: A design-only workflow designer for the Dify and Coze platforms. Through multi-round conversation, it produces a structured workflow JSON (nodes, edges, variable references) as text output. The skill itself produces only text and never runs any scripts.
 ---
 
 # Chat2Workflow Builder Skill
 
-## Scope & Safety
+## What this skill does
 
-- **Primary output**: a workflow JSON wrapped in `<workflow></workflow>` tags. This is the sole deliverable the skill is responsible for.
-- **Bundled scripts are optional tools, not part of the agent's execution contract.** Files such as `autofix.py`, `converter.py`, `tools.py`, and `bash_converter.sh` are provided for the *user* to run manually, or for the agent to run **only after the user explicitly asks for compilation in the current turn**.
-- **No autonomous execution.** The agent MUST NOT invoke any bundled script, shell command, or subprocess as a side effect of producing a workflow JSON. Running them requires explicit, per-turn user consent.
-- **No network / credential access.** The bundled scripts perform local file I/O and JSON/YAML transformation only. They do not make network requests and do not read environment credentials.
+This skill is **design-only**. Its deliverable is three tagged sections of text (see *Output Format* below) — most importantly a workflow JSON wrapped in `<workflow></workflow>`. Producing those three sections involves only reading the platform documentation under `node_docs/` and emitting text; nothing else happens.
+
+A few Python files also live in this folder (`converter.py`, `autofix.py`, `tools.py`, `bash_converter.sh`). They are **not part of the skill's deliverable** and are not referenced by the generation process. They exist as standalone utilities that a user can run manually from a shell, entirely outside the skill's text-generation flow, if they separately want to turn a JSON file into a Dify YAML or Coze ZIP on their own machine. See the bundled `README`/source of those scripts for their CLI usage; the skill itself does not invoke them.
 
 ## Overview
 
-Workflows are structured as a series of connected nodes, where each node represents a specific step of logic, data processing, or model inference. A workflow can be equivalently represented as JSON, where each element describes the basic parameter information of edges and nodes. You are an expert workflow builder, helping users design workflows for the target platform according to their requirements.
+A Chat2Workflow design is a Directed Acyclic Graph of connected nodes, where each node represents a step of logic, data processing, or model inference. The design is serialized as a JSON object that enumerates the nodes and the edges that connect them.
 
 This skill supports **two target platforms**:
 
-| Platform | Documentation File | When to select |
+| Platform | Documentation File | Selection criterion |
 |----------|--------------------|----------------|
-| **Dify** (default) | `node_docs/dify.md` | The user explicitly mentions Dify, or no platform is specified at all. |
-| **Coze**           | `node_docs/coze.md` | The user explicitly mentions Coze / 扣子. |
+| **Dify** (default) | `node_docs/dify.md` | The user instruction explicitly mentions Dify, or no platform is specified at all. |
+| **Coze**           | `node_docs/coze.md` | The user instruction explicitly mentions Coze / 扣子. |
 
-### Platform Resolution Rule
+### Platform Resolution
 
-Before you begin reasoning about the workflow:
+Platform selection is a two-step lookup performed against the user's instruction:
 
-1. Scan the user's instruction for platform keywords — `dify` / `Dify` / `DIFY` or `coze` / `Coze` / `扣子`.
-2. If a platform keyword is found, adopt that platform. Otherwise **default to Dify**.
-3. **READ the matching node-documentation file from the `node_docs/` directory** — i.e. `node_docs/dify.md` or `node_docs/coze.md`. The set of available node types, their parameter schemas, and their referable variables differ between platforms, and you MUST strictly follow the documentation for the selected platform when constructing `type` strings and `param` objects.
-4. In `<design_principle>`, briefly state which platform you are targeting and why (e.g. "Platform: Dify (user did not specify, defaulting to Dify).").
+1. The user's instruction is scanned for platform keywords — `dify` / `Dify` / `DIFY` or `coze` / `Coze` / `扣子`.
+2. If a platform keyword is present, that platform is the target. Otherwise the target is Dify (the default).
+3. The matching file from `node_docs/` — `node_docs/dify.md` or `node_docs/coze.md` — is the authoritative schema for node `type` strings, `param` objects, and referable variables on that platform. The two platforms have different node sets, different parameter schemas, and different referable variables.
+4. The chosen platform is named in `<design_principle>` with a short justification, e.g. `"Platform: Dify (user did not specify, defaulting to Dify)."`.
 
-**IMPORTANT**: Do not mix node types from different platforms in a single workflow. Every node's `type` must come from the selected platform's documentation.
+A single workflow targets a single platform; every node's `type` comes from that platform's documentation file.
 
-**IMPORTANT**: The user will provide instructions for creating or modifying the workflow through an interactive conversation with you. Except for special requirements, every modification should be made on the basis of what already exists. Please provide your response according to the format specified as shown in the ## Output Format.
+The interaction model is conversational: the user supplies creation or modification instructions across multiple rounds, and — unless an instruction says otherwise — each new response extends the current design rather than replacing it. Responses follow the structure described in *Output Format*.
 
 
 ## Output Format
 
-Your response MUST contain three clearly tagged sections as **inline text** (not files):
+A well-formed response consists of three clearly tagged sections rendered as **inline text** (not files):
 
 ### 1. Node Selection
-Wrapped in `<node_selection></node_selection>` tags. Reply with the names of the nodes you have chosen.
+Wrapped in `<node_selection></node_selection>` tags. Lists the names of the nodes chosen for the design.
 
 ### 2. Design Principle
-Wrapped in `<design_principle></design_principle>` tags. Explain your reasoning and architecture decisions. **MUST** include:
-- A one-line **Platform** declaration ("Platform: Dify" or "Platform: Coze").
-- A "Variable Checklist" subsection that verifies input and output variables match the instruction's requirements (see Critical Rule 2).
+Wrapped in `<design_principle></design_principle>` tags. Explains the reasoning and architecture decisions. Contains at minimum:
+- A one-line **Platform** declaration (`Platform: Dify` or `Platform: Coze`).
+- A `Variable Checklist` subsection that cross-checks the input and output variables against the instruction's requirements (see Workflow Validity Rule 2 below).
 
 ### 3. Workflow JSON
-Wrapped in `<workflow></workflow>` tags. The complete workflow as a valid JSON object.
+Wrapped in `<workflow></workflow>` tags. Contains the complete workflow as a single valid JSON object.
 
-**CRITICAL**: The JSON inside `<workflow>` tags must be raw JSON — do NOT wrap it in markdown code fences. Specifically, do NOT place ` ```json ` immediately after `<workflow>` or ` ``` ` immediately before `</workflow>`. The downstream pipeline calls `json.loads()` directly on the content between the tags. Note: code fences that appear *inside* JSON string values (e.g. in a code node's `code` field) are fine — only the outer wrapping fences are forbidden.
+The content inside `<workflow>` is raw JSON — markdown code fences around it break parsing, because the downstream pipeline calls `json.loads()` directly on the content between the tags. Concretely, ` ```json ` immediately after `<workflow>` or ` ``` ` immediately before `</workflow>` will cause the parse step to fail. Code fences that appear *inside* JSON string values (for example inside a code node's `code` field) are fine — only the outer wrapping fences cause parsing problems.
 
 ## JSON Structure Specification
 
 The JSON object describes a Directed Acyclic Graph (DAG) workflow, consisting of two core fields:
 
 ### `nodes_info` (Array)
-Contains detailed configuration information for all nodes. Each element is an object representing a functional node and must contain the following fields:
-- `id` (String): The unique identifier of the node, which is a string that increments starting from 1 (e.g., "1","2").
-    - Note: Child nodes within an Iteration node use the format `"<ParentID>-<SeqNum>"`, where `<ParentID>` is the id of the enclosing iteration node and `<SeqNum>` is a sequential number starting from 1 that increments for each child node within that iteration canvas. For example, if the iteration node's id is `"3"`, its child nodes are `"3-1"`, `"3-2"`, `"3-3"`, etc. The `iteration-start` node must always be the first child, i.e., `"<ParentID>-1"` (e.g., `"3-1"`, `"5-1"`).
-- `type` (String): The type of the node. **IMPORTANT**: The `type` value MUST exactly match the `Type` specified in the selected platform's node documentation (e.g., the Template node's type is `template-transform`, NOT `template`). Using an incorrect type string — or a type string that does not belong to the selected platform — will cause the workflow to fail.
+Contains detailed configuration information for all nodes. Each element is an object representing a functional node and contains the following fields:
+- `id` (String): The unique identifier of the node, a string that increments starting from 1 (e.g., "1","2").
+    - Note: Child nodes within an Iteration node use the format `"<ParentID>-<SeqNum>"`, where `<ParentID>` is the id of the enclosing iteration node and `<SeqNum>` is a sequential number starting from 1 that increments for each child node within that iteration canvas. For example, if the iteration node's id is `"3"`, its child nodes are `"3-1"`, `"3-2"`, `"3-3"`, etc. The `iteration-start` node is always the first child, i.e., `"<ParentID>-1"` (e.g., `"3-1"`, `"5-1"`).
+- `type` (String): The type of the node. The `type` value should exactly match the `Type` specified in the selected platform's node documentation (e.g., the Template node's type is `template-transform`, not `template`). Using an incorrect type string — or a type string that does not belong to the selected platform — will cause the workflow to fail.
 - `param` (Object): Specific configuration parameters for the node. The structure varies depending on the type.
 
 ### `edges` (Array)
-Each element in the list represents a connection line. Each element strictly follows a triplet structure:  `[SourceNodeID (String), OutputPortIndex (Number), TargetNodeID (String)]`(e.g., ["1", 0, "2"]).
+Each element in the list represents a connection line. Each element follows a triplet structure:  `[SourceNodeID (String), OutputPortIndex (Number), TargetNodeID (String)]`(e.g., ["1", 0, "2"]).
 - Default output port is 0.
 - For branching nodes (question-classifier, if-else), port indices correspond to branch order (0, 1, 2...).
 - For if-else, the ELSE branch port index equals the number of explicitly defined cases (i.e., it's the last port).
@@ -77,58 +76,60 @@ Downstream nodes can reference the referable_variables of upstream nodes, which 
 
 ## Variable Reference System
 
-Downstream nodes reference upstream node outputs using two patterns:
+Downstream nodes reference upstream node outputs through one of two patterns:
 
 ### In structured parameters (arrays/tuples):
 `[SourceVariableName, SourceNodeID]`
 Example: `["text", "3"]` — references the `text` variable from node `3`.
 
-### In text/prompt fields:
+### In text fields:
 `{{#<SourceNodeID>.<SourceVariableName>#}}`
 Example: `{{#'3'.text#}}` — references the `text` variable from node `3`.
 
-**IMPORTANT**: When the SourceNodeID contains a hyphen (iteration child nodes like `"2-2"`), it MUST be quoted: `{{#'2-2'.text#}}`.
+When the SourceNodeID contains a hyphen (iteration child nodes such as `"2-2"`), it is quoted: `{{#'2-2'.text#}}`.
 
 
-### Critical Rules
+### Workflow Validity Rules
 
-1. **Node Selection ↔ Workflow Consistency**: The node types declared in `<node_selection>` and those actually used in `<workflow>` MUST be exactly consistent. Every node declared in `<node_selection>` must appear in `<workflow>`, and every node used in `<workflow>` must be declared in `<node_selection>`. No omissions, no extras.
+The rules below describe what makes a produced workflow valid. They are constraints on the emitted JSON/tags, not instructions to any external system.
 
-2. **Variable Checklist in Design Principle**: The `<design_principle>` section MUST include a "Variable Checklist" part that verifies whether the input and output variables satisfy the instruction's requirements — especially in multi-round interactions where variable requirements may change between rounds. 
+1. **Node Selection ↔ Workflow Consistency**: The node types declared in `<node_selection>` and those actually used in `<workflow>` are exactly consistent. Every node declared in `<node_selection>` appears in `<workflow>`, and every node used in `<workflow>` is declared in `<node_selection>`. No omissions, no extras.
 
-3. **JSON Bracket Integrity**: The `<workflow>` tag must contain a single-line, valid JSON string that passes `json.loads()` in Python directly. Pay extra attention to bracket closure — avoid truncation, mismatched brackets, or unclosed structures. The JSON must be complete and parseable. **Particular caution is needed for nodes with deeply nested bracket structures (e.g., `if-else` cases with multiple conditions), where bracket mismatches are most likely to occur. Before finalizing, mentally verify that every `[`, `{`, and `(` has a matching closing counterpart.**
+2. **Variable Checklist in Design Principle**: The `<design_principle>` section contains a `Variable Checklist` subsection that verifies whether the input and output variables satisfy the instruction's requirements — especially relevant across multi-round interactions where variable requirements may change between rounds.
 
-4. **Escape Sequences in String Values**: Since JSON string values cannot contain raw control characters (newline, tab, etc.), you MUST properly escape them. This is especially critical for the `code` field (Python code), `system`/`user` prompt fields, and `template` fields:
-  - **Newlines** inside string values: Use `\n` (backslash + n), NOT a real line break.
-  - **Tabs** inside string values: Use `\t` (backslash + t).
-  - **Carriage returns** inside string values: Use `\r` (backslash + r).
-  - **Double quotes** inside string values: Use `\"` (backslash + quote).
-  - **Backslashes** that should appear literally in the final string (e.g., in regex patterns like `\d{4}`, or in Jinja2 `replace('\n', ' ')`): Use `\\` (double backslash).
-    - For example, if your Jinja2 template needs `replace('\n', ' ')`, in the JSON you must write: `replace('\\n',' ')` — because `\\n` in JSON represents the literal two-character sequence backslash+n.
-  - **Common mistake**: Do NOT use double-escaped forms like `\\\\n`, or `\\\\t` — those produce literal backslash characters in the parsed output, not actual newlines/tabs. Use exactly ONE level of JSON escaping. Do NOT add extra escape layers because the string content happens to be Python code or a template — JSON only ever needs one level of escaping regardless of what the string contains.
-    - For example: if your Python code contains `line.split("\t")`, in JSON you must write: `line.split(\"\\t\")` — `\"` escapes the double quotes, `\\t` represents a literal tab character in the parsed string.
+3. **JSON Bracket Integrity**: The `<workflow>` tag contains a single-line, valid JSON string parseable by `json.loads()` in Python directly. Bracket closure is critical — truncation, mismatched brackets, and unclosed structures all invalidate the JSON. Nodes with deeply nested bracket structures (for example `if-else` cases with multiple conditions) are the most common source of bracket mismatches; verifying that every `[`, `{`, and `(` has a matching closing counterpart before finalizing avoids these errors.
 
-All newlines, tabs, and carriage returns within JSON string values MUST be represented as two-character escape sequences (`\n`, `\t`, `\r`), NOT as literal whitespace characters. This is especially critical for the `code` field (Python code), `system`/`user` prompt fields, and `template` fields.
+4. **Escape Sequences in String Values**: JSON string values cannot contain raw control characters (newline, tab, etc.), so escaping is required. This is especially relevant for the `code` field (Python code), LLM-node message fields (the `system` and `user` keys under a `model` node's `param`), and `template` fields:
+  - **Newlines** inside string values: `\n` (backslash + n), not a real line break.
+  - **Tabs** inside string values: `\t` (backslash + t).
+  - **Carriage returns** inside string values: `\r` (backslash + r).
+  - **Double quotes** inside string values: `\"` (backslash + quote).
+  - **Backslashes** that should appear literally in the final string (for example in regex patterns such as `\d{4}`, or in Jinja2 `replace('\n', ' ')`): `\\` (double backslash).
+    - For example, a Jinja2 template needing `replace('\n', ' ')` is written in JSON as `replace('\\n',' ')`, because `\\n` in JSON represents the literal two-character sequence backslash+n.
+  - **Common mistake**: Double-escaped forms such as `\\\\n` or `\\\\t` produce literal backslash characters in the parsed output, not actual newlines/tabs. Exactly ONE level of JSON escaping is correct, regardless of whether the string content happens to be Python code or a template — JSON only ever needs one level of escaping.
+    - For example: a Python snippet containing `line.split("\t")` is written in JSON as `line.split(\"\\t\")` — `\"` escapes the double quotes, `\\t` represents a literal tab character in the parsed string.
 
-5. **Topological Ordering of nodes_info**: The `nodes_info` array MUST maintain topological order. Nodes use "forward references" — a node can only reference variables from nodes that appear before it in the array. The only exception is the `output_selector` of an `iteration` node, which may reference a child node that is defined later (since iteration child nodes are created as part of the iteration).
+All newlines, tabs, and carriage returns within JSON string values are represented as two-character escape sequences (`\n`, `\t`, `\r`), not as literal whitespace characters. This is especially relevant for the `code` field (Python code), LLM-node message fields (the `system` and `user` keys under a `model` node's `param`), and `template` fields.
 
-6. **Iteration Canvas Boundary**: Edges and variable references do NOT cross the iteration boundary. Specifically:
-  - Do NOT create edges between iteration child nodes and external nodes. External nodes connect to/from the `iteration` node itself, which acts as the sole bridge between internal and external.
-  - Do NOT reference external node variables from inside the iteration canvas, and do NOT reference iteration child node variables from outside (use the iteration node's `output` instead).
-  - Child nodes inside the iteration canvas reference the iteration node's built-in `item` and `index` variables directly (using the iteration node's id, NOT the `iteration-start` node's id in Dify).
+5. **Topological Ordering of nodes_info**: The `nodes_info` array is in topological order. Nodes use "forward references" — a node only references variables from nodes that appear before it in the array. The one exception is the `output_selector` of an `iteration` node, which may reference a child node that is defined later (since iteration child nodes are created as part of the iteration).
+
+6. **Iteration Canvas Boundary**: Edges and variable references never cross the iteration boundary. Specifically:
+  - No edges exist between iteration child nodes and external nodes. External nodes connect to/from the `iteration` node itself, which acts as the sole bridge between internal and external.
+  - External node variables are not referenced from inside the iteration canvas, and iteration child node variables are not referenced from outside (the iteration node's `output` is used instead).
+  - Child nodes inside the iteration canvas reference the iteration node's built-in `item` and `index` variables directly (via the iteration node's id, not the `iteration-start` node's id in Dify).
   - The iteration node receives internal results via its `output_selector` parameter, which points to a child node's output variable.
-  - Child nodes within an iteration canvas MUST be connected to each other via internal edges — they are NOT isolated nodes.
+  - Child nodes within an iteration canvas are connected to each other via internal edges — they are not isolated nodes.
   - On Dify, no edge exists between the `iteration` and `iteration-start` nodes.
 
-7. **No Isolated Nodes**: Every node in the workflow MUST be connected to at least one other node via edges. A node that is created but not connected to any edge is forbidden. The workflow is a connected DAG — all nodes (except for the child nodes within the iteration canvas) must be reachable from the `start` node through the edge graph.
+7. **No Isolated Nodes**: Every node in the workflow is connected to at least one other node via edges. A node created without any connecting edge is invalid. The workflow is a connected DAG — all nodes (except for the child nodes within the iteration canvas) are reachable from the `start` node through the edge graph.
 
-8. **Instruction Fidelity — No Key Node Omissions**: Carefully analyze the creation/modification instructions to identify ALL required nodes. Do not overlook nodes that the instruction clearly implies or explicitly mentions. Missing a key node (e.g., omitting a Document Extractor when the instruction involves file content processing, or omitting an If-Else when the instruction describes conditional logic) will cause the workflow to fail. The goal is to produce a workflow that can actually execute and solve the problem end-to-end.
+8. **Instruction Fidelity — No Key Node Omissions**: Producing a working workflow requires identifying every node implied or explicitly mentioned by the creation/modification instruction. A missing key node — omitting a Document Extractor when the instruction involves file content processing, or omitting an If-Else when the instruction describes conditional logic — causes the workflow to fail. A valid workflow can actually execute and solve the problem end-to-end.
 
-9. **File-Aware Workflow Design**: Pay close attention to whether the instruction's input or output involves files:
-  - If the input mentions "document" or "image", they are typically in file form.
-  - If the input variables have multiple optional forms (e.g., some may be empty while others have values), use an `if-else` node to detect which inputs are provided and route to the appropriate processing branch.
+9. **File-Aware Workflow Design**: Whether the instruction's input or output involves files matters for node selection:
+  - Inputs mentioning `document` or `image` are typically file-typed variables.
+  - Inputs with multiple optional forms (where some may be empty while others have values) are handled with an `if-else` node that detects which inputs are provided and routes to the appropriate processing branch.
 
-10. **Format Compliance**: Whether creating a workflow from scratch, or performing additions, deletions, modifications, or corrections, your output MUST strictly follow the format specified in **## Output Format** to be correctly parsed.
+10. **Format Compliance**: Creation, addition, deletion, modification, and correction all follow the structure described in *Output Format* so the response can be correctly parsed.
 
 
 ### Multi-Round Interaction Rules
@@ -148,101 +149,13 @@ Unless explicitly instructed to add, remove, or modify, variables and logic not 
 
 ## Platform-Specific Node Documentation
 
-The complete list of node types, their parameter schemas, and their referable variables for each platform is provided in a dedicated, pluggable documentation file under `node_docs/`:
+The complete list of node types, their parameter schemas, and their referable variables for each platform lives in a dedicated, pluggable documentation file under `node_docs/`:
 
 - **Dify** → see [`node_docs/dify.md`](./node_docs/dify.md)
 - **Coze** → see [`node_docs/coze.md`](./node_docs/coze.md)
 
-After resolving the target platform (see "Platform Resolution Rule" above), read the corresponding file in `node_docs/` and use it as your authoritative reference for node `type` strings and their `param` structures. Do NOT rely on memory — always consult the file.
+Once the target platform has been resolved (see `Platform Resolution` above), the corresponding file in `node_docs/` is the authoritative reference for node `type` strings and their `param` structures. Because the two platforms have different and evolving node sets, the `node_docs/` file for the selected platform is consulted each time rather than relied on from memory.
 
+### Note on placeholder auth fields in node schemas
 
----
-
-## Optional Post-Generation Conversion (User-Initiated)
-
-> This section describes **optional** tooling. The skill's contract ends once the three tagged sections (`<node_selection>`, `<design_principle>`, `<workflow>`) are produced. The steps below run **only if the user explicitly asks** to compile the JSON into a platform-native artifact (e.g. "please convert this to Dify YAML", "compile to Coze ZIP"). Absent such a request, the agent stops after emitting the three tagged sections.
-
-The `<workflow>` JSON is an intermediate representation. If requested, it can be translated into the target platform's native import format (Dify YAML or Coze ZIP) using the helper scripts bundled with this skill. All helper scripts are purely local, offline utilities — they perform only file I/O and JSON/YAML transformation, with no network access and no credential reads.
-
-### Files shipped in this skill
-
-| Path | Purpose |
-|------|---------|
-| `converter.py` | Offline CLI. Converts a workflow JSON to Dify YAML or Coze ZIP. |
-| `tools.py` | Layout, variable-lookup, and node-construction helpers used by `converter.py`. |
-| `nodes/` | Python node-class definitions for both Dify and Coze platforms. |
-| `bash_converter.sh` | Example wrapper script for running the converter. |
-| `autofix.py` | Offline auto-fix and validation routines for the `<workflow>` JSON (strip code fences, repair JSON with `json_repair`, topological re-ordering, `<node_selection>` consistency). |
-| `requirements.txt` | Python dependencies required by the converter and auto-fix logic. |
-
-### Manual usage (for the user)
-
-If the user wants to compile the JSON themselves, the following commands can be run locally:
-
-```bash
-pip install -r requirements.txt
-
-python converter.py \
-    --json_path workflow.json \
-    --name my_workflow \
-    --output_path output/ \
-    --type dify        # or: --type coze
-```
-
-The JSON may also be passed inline via `--json_str '{...}'` instead of `--json_path`.
-
-**Note**: `--name` must be in English only.
-
-### Agent-assisted conversion (only on explicit user request)
-
-When — and only when — the user has explicitly asked the agent in the current turn to compile or convert the workflow, the agent may perform the following offline steps on the user's behalf. The agent MUST NOT run these steps as an automatic side effect of producing the three tagged sections.
-
-1. **Auto-fix the tagged response.** Apply `autofix.apply_all_autofixes` followed by `autofix.extract_workflow_json` to obtain a cleaned, parseable workflow JSON. Optionally call `autofix.validate_workflow` and surface any reported issues.
-2. **Persist the fixed JSON.** Write the extracted JSON to a local file (e.g. `workflow.json`).
-3. **Invoke the converter.** Run `converter.py` against the JSON with `--type dify` or `--type coze` matching the platform resolved earlier (see "Platform Resolution Rule"), then report the output path back to the user.
-
-A minimal reference driver (for the user to run, or for the agent to run only after explicit user request):
-
-```python
-# run_pipeline.py — runs locally, offline
-import json, subprocess, sys
-from pathlib import Path
-from autofix import apply_all_autofixes, validate_workflow, extract_workflow_json
-
-raw_response = Path("response.txt").read_text(encoding="utf-8")   # the tagged LLM output
-
-# --- Step 1: autofix -----------------------------------------------------
-fixed_response = apply_all_autofixes(raw_response)
-issues = validate_workflow(fixed_response)
-if issues:
-    print("[autofix] issues detected:", issues, file=sys.stderr)
-
-# --- Step 2: extract & persist ------------------------------------------
-workflow_json_str = extract_workflow_json(fixed_response)
-json.loads(workflow_json_str)                        # sanity check
-Path("workflow.json").write_text(workflow_json_str, encoding="utf-8")
-
-# --- Step 3: convert -----------------------------------------------------
-subprocess.run([
-    sys.executable, "converter.py",
-    "--json_path", "workflow.json",
-    "--name", "my_workflow",        # English only!
-    "--output_path", "output/",
-    "--type", "dify",               # or "coze"
-], check=True)
-```
-
-### What `autofix` performs (in order)
-
-1. **Strip code fences** inside `<workflow>` tags.
-2. **Repair JSON** via the `json_repair` library (handles control chars, mismatched brackets, trailing commas, etc.).
-3. **Topological re-ordering** of `nodes_info` so every referenced node appears before the nodes that reference it (the `iteration.output_selector` forward-reference is preserved).
-4. **Node-selection consistency** — rewrites `<node_selection>` to exactly match the node types present in `<workflow>`.
-
-See `autofix.py` for the full API and `validate_workflow()` for a comprehensive post-fix diagnostic.
-
-### Installation
-
-```bash
-pip install -r requirements.txt
-```
+Node templates for the `http-request` node (and similar) contain placeholder fields such as `bearerTokenData` with a literal `"EMPTY"` value. These are **schema placeholders** that describe what a user-authored workflow can contain; the skill does not read, request, or transmit any credentials. Users authoring a workflow should avoid pasting real API keys, bearer tokens, or passwords into the generated JSON — those values, if pasted in, would be stored verbatim in whatever artifact the user produces.

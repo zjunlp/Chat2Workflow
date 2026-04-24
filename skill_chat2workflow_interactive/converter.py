@@ -2,9 +2,74 @@ import json
 import yaml
 import os
 import shutil
+import sys
+
+# Disable on-disk bytecode caches (__pycache__/*.pyc) as early as possible.
+# This MUST run before any non-stdlib `import` in this module so that the
+# very first import of sibling modules (tools, nodes.*) does not emit any
+# .pyc files into the skill folder. Static scanners on clawhub/VirusTotal
+# treat such newly written binary files as "Dropped Files" and raise the
+# package to Suspicious. The converter is a one-shot offline utility, so
+# the negligible cost of recompiling on each run is acceptable.
+sys.dont_write_bytecode = True
+
+import tempfile
 import zipfile
 
 from tools import layout_nodes, construct, search_var, construct_coze
+
+# ---------------------------------------------------------------------------
+# Safety: never drop files inside the skill directory itself.
+#
+# Static/dynamic scanners (e.g. VirusTotal) flag "Dropped Files" that land
+# inside a packaged skill folder.  The converter is a pure offline file-I/O
+# utility, but to make its behavior explicit and auditable we:
+#   1. Refuse to write into the skill directory;
+#   2. Default the output location to a sibling directory of the skill;
+#   3. Place transient intermediate artifacts in the system temp directory
+#      (see convert_to_coze below) so only the final YAML/ZIP ever touches
+#      the user-chosen output path;
+#   4. Disable Python bytecode caching (see `sys.dont_write_bytecode` above)
+#      so that importing sibling modules never creates __pycache__/*.pyc
+#      inside the skill folder.
+# ---------------------------------------------------------------------------
+
+SKILL_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_OUTPUT_DIR = os.path.join(os.path.dirname(SKILL_DIR), "chat2workflow_output")
+
+
+def _is_within(path, parent):
+    """Return True if `path` is equal to or located inside `parent`."""
+    try:
+        path_real = os.path.realpath(path)
+        parent_real = os.path.realpath(parent)
+    except OSError:
+        return False
+    try:
+        rel = os.path.relpath(path_real, parent_real)
+    except ValueError:
+        return False
+    return not rel.startswith("..") and not os.path.isabs(rel)
+
+
+def resolve_safe_output_path(output_path):
+    """
+    Ensure the chosen output path never falls inside the skill directory.
+    If it does, redirect to DEFAULT_OUTPUT_DIR (a sibling of the skill) and
+    emit a warning on stderr.
+    """
+    if not output_path:
+        return DEFAULT_OUTPUT_DIR
+    abs_path = os.path.abspath(output_path)
+    if _is_within(abs_path, SKILL_DIR):
+        print(
+            f"[converter] WARNING: output_path '{output_path}' is inside the "
+            f"skill directory '{SKILL_DIR}'. Redirecting to '{DEFAULT_OUTPUT_DIR}' "
+            f"to avoid dropping files into the skill folder.",
+            file=sys.stderr,
+        )
+        return DEFAULT_OUTPUT_DIR
+    return abs_path
 
 # dify
 def convert_to_dify(data, name, yaml_dir):
@@ -231,8 +296,13 @@ def convert_to_dify(data, name, yaml_dir):
 def convert_to_coze(data, name, yaml_dir, manifest_path=None):
     try:
         app_name = name + "-draft"
-        
-        output_file = os.path.join(yaml_dir, app_name + ".yaml")
+
+        # All intermediate artifacts (MANIFEST copy, Workflow-*/ scaffolding,
+        # the draft YAML before it is zipped) live in a throw-away system
+        # temp directory so the skill folder and the user's output folder
+        # only ever see the final .zip deliverable.
+        staging_dir = tempfile.mkdtemp(prefix="chat2workflow_coze_")
+        output_file = os.path.join(staging_dir, app_name + ".yaml")
 
         node_list = []
         edge_list = []
@@ -438,38 +508,48 @@ def convert_to_coze(data, name, yaml_dir, manifest_path=None):
             yaml.dump(general_template, yaml_file, allow_unicode=True, default_flow_style=False)    
         
         print(f"{app_name} - Conversion successful!")
-        
-        workflow_dir = os.path.join(yaml_dir, f"Workflow-{app_name}")
+
+        # Build the Workflow-<name>-draft/ scaffolding inside the staging dir.
+        workflow_dir = os.path.join(staging_dir, f"Workflow-{app_name}")
         workflow_subdir = os.path.join(workflow_dir, "workflow")
         os.makedirs(workflow_subdir, exist_ok=True)
-        
+
         manifest_dest = os.path.join(workflow_dir, "MANIFEST.yml")
         shutil.copy(manifest_path, manifest_dest)
-        
-        # Update the "name" field in MANIFEST.yml to match the workflow name 
+
+        # Update the "name" field in MANIFEST.yml to match the workflow name
         with open(manifest_dest, 'r', encoding='utf-8') as mf:
             manifest_data = yaml.safe_load(mf)
         manifest_data['main']['name'] = name
         with open(manifest_dest, 'w', encoding='utf-8') as mf:
             yaml.dump(manifest_data, mf, allow_unicode=True, default_flow_style=False)
-        
+
         yaml_dest = os.path.join(workflow_subdir, f"{app_name}.yaml")
         shutil.move(output_file, yaml_dest)
-        
-        zip_path = os.path.join(yaml_dir, f"Workflow-{app_name}")
-        with zipfile.ZipFile(f"{zip_path}.zip", 'w', zipfile.ZIP_DEFLATED) as zipf:
+
+        # The only artifact that escapes the staging dir is the final zip,
+        # which is written to the user-chosen yaml_dir.
+        os.makedirs(yaml_dir, exist_ok=True)
+        final_zip_path = os.path.join(yaml_dir, f"Workflow-{app_name}.zip")
+        with zipfile.ZipFile(final_zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for root, dirs, files in os.walk(workflow_dir):
                 for file in files:
                     file_path = os.path.join(root, file)
-                    arcname = os.path.relpath(file_path, yaml_dir)
+                    arcname = os.path.relpath(file_path, staging_dir)
                     zipf.write(file_path, arcname)
-        
-        shutil.rmtree(workflow_dir)
-        
-        print(f"Created zip file: Workflow-{app_name}.zip")
+
+        # Always remove the staging dir, even if something below fails.
+        shutil.rmtree(staging_dir, ignore_errors=True)
+
+        print(f"Created zip file: {final_zip_path}")
         return True
-        
+
     except Exception as e:
+        # Best-effort cleanup of the staging dir on failure.
+        try:
+            shutil.rmtree(staging_dir, ignore_errors=True)
+        except Exception:
+            pass
         print(f"{app_name} - Conversion error occurred: {e}")
         return False
 
@@ -485,25 +565,27 @@ if __name__ == "__main__":
     input_group.add_argument('--json_str', type=str, help='JSON string content')
     
     parser.add_argument('--name', type=str, required=True, help='Workflow name')
-    parser.add_argument('--output_path', type=str, required=True, help='Output directory path for YAML file')
+    parser.add_argument('--output_path', type=str, required=False, default=None,
+                        help=f'Output directory path for YAML/ZIP file. '
+                             f'Defaults to {DEFAULT_OUTPUT_DIR} (a sibling of the skill directory). '
+                             f'Paths inside the skill directory are refused and silently redirected.')
     parser.add_argument('--type', type=str, required=True, choices=['dify', 'coze'], help='Target type: dify or coze')
     
     args = parser.parse_args()
 
-    manifest_path = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)),
-        "nodes", "coze", "MANIFEST.yml",
-    )
-    
+    manifest_path = os.path.join(SKILL_DIR, "nodes", "coze", "MANIFEST.yml")
+
     if args.json_path:
         with open(args.json_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
     else:
         data = json.loads(args.json_str)
-    
-    os.makedirs(args.output_path, exist_ok=True)
-    
+
+    # Resolve and sanitize the output path: never drop files inside the skill.
+    safe_output_path = resolve_safe_output_path(args.output_path)
+    os.makedirs(safe_output_path, exist_ok=True)
+
     if args.type == 'dify':
-        convert_to_dify(data, args.name, args.output_path)
+        convert_to_dify(data, args.name, safe_output_path)
     elif args.type == 'coze':
-        convert_to_coze(data, args.name, args.output_path, manifest_path)
+        convert_to_coze(data, args.name, safe_output_path, manifest_path)

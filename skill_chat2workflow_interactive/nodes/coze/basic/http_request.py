@@ -1,7 +1,7 @@
 from ..node import Node
 
 class HttpRequest(Node):
-    def __init__(self, url: str, x: int, y: int, count: int = 1, github_rest_token: str = "", params: str = ""):
+    def __init__(self, url: str, x: int, y: int, count: int = 1, params: str = ""):
         super().__init__(x,y)
 
         self.type = "http"
@@ -12,12 +12,6 @@ class HttpRequest(Node):
         if count > 1:
             self.title += ' ' + str(count)
 
-
-        if github_rest_token:
-            authdata = github_rest_token
-        else:
-            authdata = "EMPTY"
-
         self.parameters = {
             "apiInfo":{
                 "method": "GET",
@@ -25,7 +19,7 @@ class HttpRequest(Node):
             },
             "auth":{
                 "authData":{
-                    "bearerTokenData": [{"name": "token", "input": {"type": "string", "value": authdata}}],
+                    "bearerTokenData": [{"name": "token", "input": {"type": "string", "value": "EMPTY"}}],
                     "customData": {"addTo": "header"}
                 },
                 "authOpen": True,
