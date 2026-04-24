@@ -19,6 +19,7 @@
 - 🧐 [Evaluation](#evaluation)
 - 💻 [Generation](#generation)
 - ⚙️ [Conversion](#conversion)
+- 📜 [Citation](#citation)
 
 ---
 
@@ -37,10 +38,11 @@
 ## 📁Directory
 | Directory | Description | 
 | :--- | :--- | 
-| `.agents/skills/chat2workflow/` | The skills used for agentic workflow generation | 
+| `.agents/skills/chat2workflow/` | The skills used for agentic workflow generation in our benchmark. | 
 | `case_files/` | All files required for the test cases | 
 | `dataset/` | Workflow generation instructions and evaluation checks | 
 | `experiment_run_example/` | An example of the results from a single experiment run |
+| `skill_chat2workflow_interactive/` | The skills used for interactive workflow generation |
 | `assets/` | The images used in README.md | 
 | `nodes/` | The functional logic of each node | 
 | `prompts/` | System prompt and evaluation prompts | 
@@ -239,3 +241,19 @@ python converter.py \
 ```
 
 In most cases, the JSON format can be seamlessly converted for both Dify and Coze. In rare instances where the conversion fails, platform-specific system prompts should be used for generation (refer to `prompts/builder_prompt.txt` and `prompts/builder_prompt_coze.txt`).
+
+
+## 📜Citation
+If you find our work helpful, please consider giving a star ⭐ and citation 📝
+
+```BibTeXw
+@misc{zhong2026chat2workflowbenchmarkgeneratingexecutable,
+      title={Chat2Workflow: A Benchmark for Generating Executable Visual Workflows with Natural Language}, 
+      author={Yi Zhong and Buqiang Xu and Yijun Wang and Zifei Shan and Shuofei Qiao and Guozhou Zheng and Ningyu Zhang},
+      year={2026},
+      eprint={2604.19667},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2604.19667}, 
+}
+```
