@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![arXiv](https://img.shields.io/badge/arXiv-b5212f.svg?logo=arxiv)](https://arxiv.org/abs/2604.19667)
 [![Hugging Face Paper](https://img.shields.io/badge/%F0%9F%A4%97%20Paper-FFD21E)](https://huggingface.co/papers/2604.19667)
-[![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-FFD21E)](https://huggingface.co/datasets/zjunlp/Chat2Workflow-Evaluation)
+[![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-FFD21E)](https://huggingface.co/collections/zjunlp/chat2workflow)
 [![Clawhub](https://img.shields.io/badge/Clawhub-Available-blueviolet.svg)](https://clawhub.ai/chikawa11/chat2workflow)
 ![](https://img.shields.io/github/last-commit/zjunlp/Chat2Workflow?color=green) 
 
