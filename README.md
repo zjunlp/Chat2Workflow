@@ -38,14 +38,14 @@
 ## 📁Directory
 | Directory | Description | 
 | :--- | :--- | 
-| `.agents/skills/chat2workflow/` | The skills used for agentic workflow generation in our benchmark. | 
-| `skill_chat2workflow_interactive/` | The skills used for interactive workflow generation |
-| `experiment_run_example/` | An example of the results from a single experiment run |
+| `.agents/skills/chat2workflow/` | The skills used for agentic workflow generation in our benchmark | 
+| `assets/` | The images used in README.md | 
 | `case_files/` | All files required for the test cases | 
 | `dataset/` | Workflow generation instructions and evaluation checks | 
-| `prompts/` | System prompt and evaluation prompts | 
-| `assets/` | The images used in README.md | 
+| `experiment_run_example/` | An example of the results from a single experiment run |
 | `nodes/` | The functional logic of each node | 
+| `prompts/` | System prompt and evaluation prompts | 
+| `skill_chat2workflow_interactive/` | The skills used for interactive workflow generation |
 | `yaml/` | The generated Dify workflow YAML files, you can obtain them from <br> https://huggingface.co/datasets/zjunlp/Chat2Workflow-Evaluation | 
 
 
