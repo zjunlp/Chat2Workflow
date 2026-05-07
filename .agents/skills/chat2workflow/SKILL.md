@@ -229,7 +229,7 @@ Here are the meta information to the nodes that may be used in the workflow:
   3. `code`: `string`
       - Description: Python code function.
       - Value: Your function must receive the input variables that you've declared, and return a dictionary containing the output variables you've declared. **Note**: Format the code using `\n` for newlines and use `\t` for each indentation level.
-      - Example: `"def main(arg1: str, arg2: str):\n\treturn {\n\t\t\"out1\": [arg1,arg2]\n\t\t\"out2\": arg1\n\t\t}"`
+      - Example: `"def main(arg1: str, arg2: str):\n\treturn {\n\t\t\"out1\": [arg1,arg2],\n\t\t\"out2\": arg1\n\t\t}"`
 - **Referable Variables**: Each variable in `"outputs"` can be referenced by downstream nodes.
 
 
