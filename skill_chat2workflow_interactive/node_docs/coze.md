@@ -139,6 +139,7 @@ Here are the meta information to the nodes that may be used in the workflow:
       - For `file` variables: exists, not exists.
       - For `array[string]`/`array[number]`/`array[boolean]`/`array[file]` variables: contains, not contains, empty, not empty.
       - For `array[object]` variables: empty, not empty.
+    **IMPORTANT: All values need to be represented as strings. **
 
   3. **Complex Conditions**
   Within a case, combine multiple conditions using **Logical Operator** for sophisticated decision-making:
@@ -159,7 +160,7 @@ Here are the meta information to the nodes that may be used in the workflow:
                 - **Index 0**: **Variable Reference** (`[string, string]`) — The standard reference tuple: `[Source Variable Name, Source Node ID]`.
                 - **Index 1**: **Comparison Operator** (`string`) — The comparison logic.
                 - **Index 2**: **Comparison Value** (`string | number | boolean | object | Optional`) — The target value to compare against. *Note: This element is omitted if the **Comparison Operator** is unary ("empty"/"not empty"/"exists"/"not exists").*
-    - Example: `[[null, [[["query2","1"],"=",5]]],[null,[[["query","1"],"empty"]]]]`
+    - Example: `[[null, [[["query2","1"],"=","5"]]],[null,[[["query","1"],"empty"]]]]`
 - **Supplementary Information**: Each case maps to an output port in sequential order. Output port numbers are 0, 1, 2... in sequence. For example, when there are 3 cases, namely IF Path, ELIF Path and ELSE Path in sequence, then IF Path corresponds to port 0, ELIF Path corresponds to port 1, and ELSE Path corresponds to port 2.
 
 
