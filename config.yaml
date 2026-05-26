@@ -10,7 +10,7 @@ password: "xxxxx"
 # LLM API for workflow generation and evaluation
 llm_api_key: "sk-xxxxxx"
 base_url: "xxxxx"
-evaluation_model: deepseek-chat
+evaluation_model: gpt-5.1
 
 # OpenCode binary path, supports ~ in path.
 opencode_bin: "~/.opencode/bin/opencode"
